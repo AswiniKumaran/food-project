@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sarah Foods — Document View</title>
+<title>Sarah Foods — Menu &amp; Specials</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Bebas+Neue&family=Poppins:wght@400;600;700;800&family=Great+Vibes&family=Lilita+One&display=swap" rel="stylesheet">
@@ -22,34 +22,151 @@
 
   *{margin:0;padding:0;box-sizing:border-box;}
 
-  /* Document Body Layout */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Document Body with Warm Charcoal & Ambient Glow */
   body{
-    background:#2C2C2E;
+    background: radial-gradient(circle at 50% 20%, #2A1F1A 0%, #151110 60%, #0D0B0A 100%);
+    background-attachment: fixed;
     font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
     color:var(--dark);
-    padding:40px 10px;
+    padding:0 10px 40px;
     display:flex;
     flex-direction:column;
     align-items:center;
     gap:40px;
   }
 
-  /* Separate Document Page Container */
+  /* Enhanced Sticky Navigation Header */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100vw;
+    background: rgba(18, 15, 14, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 2px solid rgba(241, 103, 15, 0.6);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 216, 77, 0.2);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex: 0 0 auto;
+  }
+  .nav-brand img {
+    width: 38px;
+    height: auto;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+  }
+  .nav-brand-text {
+    font-family: 'Titan One', sans-serif;
+    color: var(--yellow);
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 4px 0;
+    scrollbar-width: none;
+  }
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-links a {
+    color: #F0E6D8;
+    text-decoration: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: 0.08em;
+    padding: 7px 16px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .nav-links a span.icon {
+    font-size: 1rem;
+  }
+  .nav-links a:hover,
+  .nav-links a:active {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%);
+    color: var(--white);
+    border-color: var(--yellow);
+    box-shadow: 0 4px 14px rgba(241, 103, 15, 0.45);
+    transform: translateY(-2px);
+  }
+
+  .nav-call {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #0B7A1F 0%, #075214 100%);
+    color: var(--white);
+    text-decoration: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 10px rgba(11, 122, 31, 0.3);
+    flex: 0 0 auto;
+    transition: transform 0.2s ease;
+  }
+  .nav-call:hover {
+    transform: scale(1.04);
+  }
+
+  /* Page Container & Radiant Glow Frame */
   .page-container {
     position: relative;
     width: 100%;
     max-width: 800px;
+    scroll-margin-top: 75px;
+  }
+
+  /* Ambient Glow Effect around each Card */
+  .page-container::before {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    background: radial-gradient(circle at 50% 50%, rgba(241, 103, 15, 0.22) 0%, rgba(232, 72, 12, 0.08) 50%, transparent 75%);
+    border-radius: 24px;
+    z-index: 0;
+    pointer-events: none;
   }
 
   .page{
     position:relative;
+    z-index: 1;
     width:100%;
     min-height: 1120px;
     background: var(--cream);
     overflow:hidden;
     padding:48px 40px 40px;
-    border-radius: 8px;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05);
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -189,7 +306,7 @@
   .veg-dot.red{border-color:#C41E12;}     .veg-dot.red::after{background:#C41E12;}
   .veg-dot.blue{border-color:#0E9EC7;}    .veg-dot.blue::after{background:#0E9EC7;}
 
-  /* PAGE 1 HERO ADJUSTMENTS */
+  /* HERO ADJUSTMENTS */
   .hero-wrapper {
     position: relative;
     background: radial-gradient(circle at 50% 30%, rgba(241, 103, 15, 0.12) 0%, transparent 70%);
@@ -265,7 +382,7 @@
   .qr-mini img{width:100%;border-radius:8px;}
   .qr-mini span{font-family:'Bebas Neue',sans-serif;color:var(--orange-deep);font-size:.9rem;letter-spacing:.08em;}
 
-  /* PAGE 2 MENU */
+  /* MENU TABLE */
   .menu-header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;}
   .menu-header .chef-emoji{font-size:3rem;}
   .menu-header .mh-title{text-align:center;flex:1;}
@@ -388,9 +505,13 @@
   .thanks{font-family:'Great Vibes',cursive;color:var(--dark);font-size:2.8rem;text-align:center;margin-top:10px;}
 
   /* RESPONSIVE & PRINT */
-  @media (max-width:640px){
-    body{padding:10px 0;gap:20px;}
+  @media (max-width:768px){
+    body{padding:0 0 30px;gap:20px;}
+    .sticky-nav{padding:8px 12px;}
+    .nav-brand-text{display:none;}
+    .nav-call span.text{display:none;}
     .page-container{max-width:100%;}
+    .page-container::before{inset:0;border-radius:0;}
     .page{padding:28px 16px;min-height:auto;border-radius:0;}
     .overlapping-logo{width:80px;top:-18px;right:-6px;}
     table.menu td{font-size:0.95rem;padding:8px 4px;}
@@ -402,16 +523,41 @@
   }
 
   @media print {
+    .sticky-nav { display: none; }
     body { background: none; padding: 0; gap: 0; }
     .page-container { page-break-after: always; page-break-inside: avoid; }
+    .page-container::before { display: none; }
     .page { box-shadow: none; border-radius: 0; width: 100%; min-height: 100vh; }
   }
 </style>
 </head>
 <body>
 
+<!-- ENHANCED STICKY NAVIGATION -->
+<nav class="sticky-nav">
+  <a href="#home" class="nav-brand">
+    <img src="assets/logo.png" alt="Sarah Foods Logo">
+    <span class="nav-brand-text">SARAH FOODS</span>
+  </a>
+
+  <div class="nav-links">
+    <a href="#home"><span class="icon">🏠</span> HOME</a>
+    <a href="#daily-menu"><span class="icon">📅</span> DAILY MENU</a>
+    <a href="#add-ons"><span class="icon">🥗</span> ADD-ONS</a>
+    <a href="#chicken-seafood"><span class="icon">🍗</span> CHICKEN &amp; SEAFOOD</a>
+    <a href="#egg-veg"><span class="icon">🍳</span> EGG &amp; VEG</a>
+    <a href="#pricing"><span class="icon">🍱</span> COMBOS</a>
+    <a href="#payment"><span class="icon">💳</span> PAYMENT</a>
+  </div>
+
+  <a href="tel:9600566044" class="nav-call">
+    <span class="icon">📞</span>
+    <span class="text">9600566044</span>
+  </a>
+</nav>
+
 <!-- PAGE 1 (HERO) -->
-<div class="page-container">
+<div class="page-container" id="home">
   <section class="page page-1">
     <span class="deco tl">🌶️</span>
     <span class="deco mr">🧅</span>
@@ -460,7 +606,7 @@
 </div>
 
 <!-- PAGE 2 (WEEKLY MENU) -->
-<div class="page-container">
+<div class="page-container" id="daily-menu">
   <section class="page page-2">
     <span class="deco tl">🧅</span>
     <span class="deco mr">🌶️</span>
@@ -553,7 +699,7 @@
 </div>
 
 <!-- PAGE 3 (ADD-ONS & SIDES) -->
-<div class="page-container">
+<div class="page-container" id="add-ons">
   <section class="page page-3">
     <span class="deco tr">🌶️</span>
     <span class="deco ml">🧅</span>
@@ -602,14 +748,14 @@
 </div>
 
 <!-- PAGE 4 (CHICKEN & SEAFOOD) -->
-<div class="page-container">
+<div class="page-container" id="chicken-seafood">
   <section class="page page-4">
     <span class="deco tr">🧅</span>
     <span class="deco ml">🌶️</span>
     <div class="z">
       <div>
         <div class="title-with-logo">
-          <h2 class="list-title">CHICKEN &amp; SEA FOOD VARITIES
+          <h2 class="list-title">CHICKEN &amp; SEA FOOD VARIETIES
             <span class="veg-dot red"></span><span class="veg-dot blue"></span>
           </h2>
           <img class="header-logo" src="assets/logo.png" alt="Sarah Foods Logo">
@@ -670,14 +816,14 @@
 </div>
 
 <!-- PAGE 5 (EGG & VEG) -->
-<div class="page-container">
+<div class="page-container" id="egg-veg">
   <section class="page page-5">
     <span class="deco tl">🌶️</span>
     <span class="deco mr">🧅</span>
     <div class="z">
       <div>
         <div class="title-with-logo">
-          <h2 class="list-title">EGG &amp; VEG VARITIES <span class="veg-dot green"></span></h2>
+          <h2 class="list-title">EGG &amp; VEG VARIETIES <span class="veg-dot green"></span></h2>
           <img class="header-logo" src="assets/logo.png" alt="Sarah Foods Logo">
         </div>
 
@@ -731,7 +877,7 @@
 </div>
 
 <!-- PAGE 6 (PRICING & COMBOS) -->
-<div class="page-container">
+<div class="page-container" id="pricing">
   <section class="page page-6">
     <span class="deco tr">🌶️</span>
     <span class="deco ml">🧅</span>
@@ -775,7 +921,7 @@
 </div>
 
 <!-- PAGE 7 (PAYMENT) -->
-<div class="page-container">
+<div class="page-container" id="payment">
   <section class="page page-7">
     <span class="deco tl">🧅</span>
     <span class="deco mr">🌶️</span>
