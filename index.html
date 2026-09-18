@@ -41,22 +41,11 @@
     max-width: 800px;
   }
 
-  .page-number {
-    text-align: right;
-    color: #A1A1A6;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-    padding-right: 4px;
-  }
-
   .page{
     position:relative;
     width:100%;
     min-height: 1120px;
-    background:
-      repeating-conic-gradient(from 0deg at 50% 42%, rgba(241,103,15,.05) 0deg 7deg, transparent 7deg 14deg),
-      var(--cream);
+    background: var(--cream);
     overflow:hidden;
     padding:48px 40px 40px;
     border-radius: 8px;
@@ -64,6 +53,53 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  /* Distinct Individual Page Styles */
+  .page-1 {
+    background:
+      repeating-conic-gradient(from 0deg at 50% 42%, rgba(241,103,15,.06) 0deg 7deg, transparent 7deg 14deg),
+      var(--cream);
+  }
+
+  .page-2 {
+    background:
+      repeating-conic-gradient(from 45deg at 50% 50%, rgba(232,72,12,.05) 0deg 8deg, transparent 8deg 16deg),
+      #FFF8EB;
+    border-top: 6px solid var(--orange);
+  }
+
+  .page-3 {
+    background:
+      radial-gradient(circle at top right, rgba(255,216,77,0.2), transparent 60%),
+      #FAF2E1;
+    border-top: 6px solid var(--orange-deep);
+  }
+
+  .page-4 {
+    background:
+      repeating-conic-gradient(from 120deg at 50% 50%, rgba(232,72,12,.04) 0deg 6deg, transparent 6deg 12deg),
+      #FFF6ED;
+    border-top: 6px solid #C41E12;
+  }
+
+  .page-5 {
+    background:
+      radial-gradient(circle at bottom left, rgba(11,122,31,0.08), transparent 50%),
+      #F7F8F0;
+    border-top: 6px solid #0B7A1F;
+  }
+
+  .page-6 {
+    background:
+      radial-gradient(circle at center, rgba(255,216,77,0.25), transparent 70%),
+      #FFFDF5;
+    border-top: 6px solid var(--yellow);
+  }
+
+  .page-7 {
+    background: #FAF5EA;
+    border-top: 6px solid var(--dark);
   }
 
   .deco{position:absolute;font-size:74px;filter:blur(2.5px);opacity:.85;pointer-events:none;z-index:1;line-height:1;}
@@ -368,17 +404,15 @@
   @media print {
     body { background: none; padding: 0; gap: 0; }
     .page-container { page-break-after: always; page-break-inside: avoid; }
-    .page-number { display: none; }
     .page { box-shadow: none; border-radius: 0; width: 100%; min-height: 100vh; }
   }
 </style>
 </head>
 <body>
 
-<!-- PAGE 1 -->
+<!-- PAGE 1 (HERO) -->
 <div class="page-container">
-  <div class="page-number">Page 1 of 7</div>
-  <section class="page">
+  <section class="page page-1">
     <span class="deco tl">🌶️</span>
     <span class="deco mr">🧅</span>
     <div class="z">
@@ -425,10 +459,9 @@
   </section>
 </div>
 
-<!-- PAGE 2 -->
+<!-- PAGE 2 (WEEKLY MENU) -->
 <div class="page-container">
-  <div class="page-number">Page 2 of 7</div>
-  <section class="page">
+  <section class="page page-2">
     <span class="deco tl">🧅</span>
     <span class="deco mr">🌶️</span>
     <div class="z">
@@ -519,10 +552,9 @@
   </section>
 </div>
 
-<!-- PAGE 3 -->
+<!-- PAGE 3 (ADD-ONS & SIDES) -->
 <div class="page-container">
-  <div class="page-number">Page 3 of 7</div>
-  <section class="page">
+  <section class="page page-3">
     <span class="deco tr">🌶️</span>
     <span class="deco ml">🧅</span>
     <div class="z">
@@ -569,10 +601,9 @@
   </section>
 </div>
 
-<!-- PAGE 4 -->
+<!-- PAGE 4 (CHICKEN & SEAFOOD) -->
 <div class="page-container">
-  <div class="page-number">Page 4 of 7</div>
-  <section class="page">
+  <section class="page page-4">
     <span class="deco tr">🧅</span>
     <span class="deco ml">🌶️</span>
     <div class="z">
@@ -638,10 +669,9 @@
   </section>
 </div>
 
-<!-- PAGE 5 -->
+<!-- PAGE 5 (EGG & VEG) -->
 <div class="page-container">
-  <div class="page-number">Page 5 of 7</div>
-  <section class="page">
+  <section class="page page-5">
     <span class="deco tl">🌶️</span>
     <span class="deco mr">🧅</span>
     <div class="z">
@@ -700,10 +730,9 @@
   </section>
 </div>
 
-<!-- PAGE 6 -->
+<!-- PAGE 6 (PRICING & COMBOS) -->
 <div class="page-container">
-  <div class="page-number">Page 6 of 7</div>
-  <section class="page">
+  <section class="page page-6">
     <span class="deco tr">🌶️</span>
     <span class="deco ml">🧅</span>
     <div class="z">
@@ -745,10 +774,9 @@
   </section>
 </div>
 
-<!-- PAGE 7 -->
+<!-- PAGE 7 (PAYMENT) -->
 <div class="page-container">
-  <div class="page-number">Page 7 of 7</div>
-  <section class="page">
+  <section class="page page-7">
     <span class="deco tl">🧅</span>
     <span class="deco mr">🌶️</span>
     <div class="z">
