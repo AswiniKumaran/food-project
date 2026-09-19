@@ -45,7 +45,7 @@
     top: 0;
     z-index: 1000;
     width: 100vw;
-    background: rgba(18, 15, 14, 0.92);
+    background: rgba(18, 15, 14, 0.94);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 2px solid rgba(241, 103, 15, 0.6);
@@ -82,13 +82,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: 4px 0;
-    scrollbar-width: none;
-  }
-  .nav-links::-webkit-scrollbar {
-    display: none;
+    flex-wrap: wrap;
   }
 
   .nav-links a {
@@ -118,24 +112,59 @@
     transform: translateY(-2px);
   }
 
-  .nav-call {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+  /* Hamburger Menu Toggle Button */
+  .nav-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 1001;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 26px;
+    height: 3px;
+    background-color: var(--yellow);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  /* PERSISTENT FLOATING CALL BUTTON WIDGET */
+  .floating-call-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
     background: linear-gradient(135deg, #0B7A1F 0%, #075214 100%);
     color: var(--white);
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border-radius: 50px;
+    border: 2px solid var(--yellow);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.1rem;
-    padding: 6px 14px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 10px rgba(11, 122, 31, 0.3);
-    flex: 0 0 auto;
-    transition: transform 0.2s ease;
+    font-size: 1.25rem;
+    letter-spacing: 0.06em;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    animation: pulseCall 2.5s infinite;
   }
-  .nav-call:hover {
-    transform: scale(1.04);
+  .floating-call-btn:hover {
+    transform: scale(1.06);
+    box-shadow: 0 8px 24px rgba(11, 122, 31, 0.6);
+  }
+  .floating-call-btn .call-icon {
+    font-size: 1.3rem;
+  }
+
+  @keyframes pulseCall {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(11, 122, 31, 0.7); }
+    50% { box-shadow: 0 0 0 12px rgba(11, 122, 31, 0); }
   }
 
   /* Page Container & Radiant Glow Frame */
@@ -146,7 +175,6 @@
     scroll-margin-top: 75px;
   }
 
-  /* Ambient Glow Effect around each Card */
   .page-container::before {
     content: '';
     position: absolute;
@@ -172,7 +200,7 @@
     justify-content: space-between;
   }
 
-  /* Distinct Individual Page Styles */
+  /* Page Background Customizations */
   .page-1 {
     background:
       repeating-conic-gradient(from 0deg at 50% 42%, rgba(241,103,15,.06) 0deg 7deg, transparent 7deg 14deg),
@@ -225,9 +253,8 @@
   .deco.ml{top:45%;left:-24px;}
   .deco.mr{top:52%;right:-22px;transform:scaleX(-1);}
 
-  .z{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;}
+  .z{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-style:space-between;}
 
-  /* Floating animations */
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-6px); }
@@ -236,19 +263,24 @@
     animation: float 4s ease-in-out infinite;
   }
 
-  /* Global UI Elements */
+  /* UPDATED CONTACT BAR - CENTERED & BALANCED */
   .contact-bar{
-    display:flex;align-items:center;justify-content:space-between;gap:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:32px;
     background:linear-gradient(180deg,var(--orange) 0%,var(--orange-deep) 100%);
-    border-radius:22px;padding:16px 26px;margin-top:20px;
-    color:var(--white);flex-wrap:wrap;
+    border-radius:22px;
+    padding:16px 26px;
+    margin-top:20px;
+    color:var(--white);
+    flex-wrap:wrap;
   }
   .contact-item{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.06em;font-size:1.05rem;}
   .contact-icon{
     width:44px;height:44px;border-radius:50%;background:var(--white);color:var(--orange-deep);
     display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex:0 0 auto;
   }
-  .contact-item .phone-num{font-size:1.5rem;letter-spacing:.04em;}
 
   .delivery-badge{
     width:110px;height:110px;border-radius:50%;
@@ -367,20 +399,6 @@
     font-family:'Lilita One',sans-serif;font-size:clamp(1.9rem,5vw,2.8rem);
     margin-top:20px;letter-spacing:.01em;text-align:center;
   }
-  .hero-bottom-integrated {
-    display: flex;align-items: center;gap: 12px;
-    background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%);
-    border-radius: 24px;padding: 12px 18px;margin-top: 16px;
-    box-shadow: 0 10px 25px rgba(232, 72, 12, 0.25);
-  }
-  .hero-bottom-integrated .contact-bar {background: transparent;box-shadow: none;padding: 0;margin: 0;flex: 1;}
-  .qr-mini{
-    background:#fff;border-radius:14px;padding:8px;flex:0 0 110px;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-  }
-  .qr-mini img{width:100%;border-radius:8px;}
-  .qr-mini span{font-family:'Bebas Neue',sans-serif;color:var(--orange-deep);font-size:.9rem;letter-spacing:.08em;}
 
   /* MENU TABLE */
   .menu-header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;}
@@ -443,10 +461,6 @@
     box-shadow:inset 0 0 0 2px rgba(0,0,0,.35), 0 10px 24px rgba(0,0,0,.12);
     position:relative;
   }
-  .overlapping-logo{
-    position:absolute;top:-26px;right:-10px;width:110px;z-index:10;
-    filter:drop-shadow(0 6px 12px rgba(0,0,0,0.35));
-  }
 
   .addons-figure{position:relative;width:min(440px,85%);margin:10px auto 20px;}
   .addons-figure img.plate{width:100%;display:block;filter:drop-shadow(0 16px 26px rgba(0,0,0,.35));}
@@ -477,53 +491,78 @@
   .panel-flex{display:flex;justify-content:flex-end;margin-top:10px;}
 
   /* PRICING & PAYMENT */
-  .price-row{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:18px 0;}
-  .price-row .pr-text{
-    font-family:'Titan One',sans-serif;color:var(--cream);font-size:clamp(2rem,5.5vw,3.2rem);
-    line-height:1;text-transform:uppercase;-webkit-text-stroke:2px rgba(0,0,0,.85);paint-order:stroke fill;
-    text-shadow: 0 4px 10px rgba(0,0,0,0.35);
-  }
-  .price-row img{width:min(210px,36%);flex:0 0 auto;filter:drop-shadow(0 10px 18px rgba(0,0,0,.3));}
-  .package-badge{
-    background:linear-gradient(180deg,var(--orange) 0%,var(--orange-deep) 100%);
-    border:3px solid var(--dark);border-radius:18px;color:var(--white);
-    text-align:center;padding:14px 32px;margin:10px auto 0;width:fit-content;
-  }
-  .package-badge .b1{font-family:'Bebas Neue',sans-serif;font-size:2rem;line-height:1.05;display:block;}
-  .package-badge .b2{font-family:'Bebas Neue',sans-serif;font-size:1rem;display:block;}
-
   .pay-title{
     font-family:'Titan One',sans-serif;color:var(--cream);font-size:clamp(2rem,6vw,3.2rem);
     text-transform:uppercase;text-align:center;-webkit-text-stroke:2px rgba(0,0,0,.85);paint-order:stroke fill;
     margin-bottom:20px;text-shadow: 0 4px 10px rgba(0,0,0,0.35);
   }
-  .qr-big{display:block;width:min(380px,82%);margin:0 auto;border-radius:20px;box-shadow:0 12px 28px rgba(0,0,0,.28);}
+  .qr-big{
+    display:block;
+    width:min(340px,82%);
+    height:auto;
+    margin:0 auto;
+    border-radius:20px;
+    box-shadow:0 12px 28px rgba(0,0,0,.28);
+    background:#ffffff;
+    padding:12px;
+  }
   .scan-pay{
     font-family:'Lilita One',sans-serif;color:var(--white);font-size:1.7rem;letter-spacing:.12em;
     text-align:center;margin-top:20px;text-shadow:0 2px 0 rgba(0,0,0,.25);
   }
   .thanks{font-family:'Great Vibes',cursive;color:var(--dark);font-size:2.8rem;text-align:center;margin-top:10px;}
 
-  /* RESPONSIVE & PRINT */
+  /* RESPONSIVE STYLES */
+  @media (max-width: 900px) {
+    .nav-toggle {
+      display: flex;
+    }
+    .nav-links {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100vw;
+      background: rgba(18, 15, 14, 0.98);
+      flex-direction: column;
+      padding: 16px;
+      gap: 12px;
+      display: none;
+      border-bottom: 2px solid var(--orange);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+    .nav-links.active {
+      display: flex;
+    }
+    .nav-links a {
+      width: 100%;
+      justify-content: center;
+      padding: 10px;
+    }
+  }
+
   @media (max-width:768px){
-    body{padding:0 0 30px;gap:20px;}
-    .sticky-nav{padding:8px 12px;}
-    .nav-brand-text{display:none;}
-    .nav-call span.text{display:none;}
+    body{padding:0 0 90px;gap:20px;}
+    .sticky-nav{padding:10px 16px;}
     .page-container{max-width:100%;}
     .page-container::before{inset:0;border-radius:0;}
     .page{padding:28px 16px;min-height:auto;border-radius:0;}
-    .overlapping-logo{width:80px;top:-18px;right:-6px;}
     table.menu td{font-size:0.95rem;padding:8px 4px;}
     .dish-list{column-count:1;}
-    .hero-bottom-integrated{flex-direction:column;}
-    .qr-mini{width:100%;flex:0 0 auto;}
     .hero-right-block{align-items:flex-start;}
     .header-logo{width:70px;}
+    .floating-call-btn {
+      bottom: 16px;
+      right: 16px;
+      padding: 10px 16px;
+      font-size: 1.1rem;
+    }
+    .contact-bar {
+      gap: 16px;
+    }
   }
 
   @media print {
-    .sticky-nav { display: none; }
+    .sticky-nav, .floating-call-btn { display: none; }
     body { background: none; padding: 0; gap: 0; }
     .page-container { page-break-after: always; page-break-inside: avoid; }
     .page-container::before { display: none; }
@@ -540,21 +579,29 @@
     <span class="nav-brand-text">SARAH FOODS</span>
   </a>
 
-  <div class="nav-links">
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation links">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <div class="nav-links" id="navLinks">
     <a href="#home"><span class="icon">🏠</span> HOME</a>
     <a href="#daily-menu"><span class="icon">📅</span> DAILY MENU</a>
     <a href="#add-ons"><span class="icon">🥗</span> ADD-ONS</a>
     <a href="#chicken-seafood"><span class="icon">🍗</span> CHICKEN &amp; SEAFOOD</a>
     <a href="#egg-veg"><span class="icon">🍳</span> EGG &amp; VEG</a>
-    <a href="#pricing"><span class="icon">🍱</span> COMBOS</a>
     <a href="#payment"><span class="icon">💳</span> PAYMENT</a>
   </div>
-
-  <a href="tel:9600566044" class="nav-call">
-    <span class="icon">📞</span>
-    <span class="text">9600566044</span>
-  </a>
 </nav>
+
+<!-- FLOATING CALL BUTTON WIDGET -->
+<a href="tel:9600566044" class="floating-call-btn" aria-label="Call Sarah Foods at 9600566044">
+  <svg class="call-icon" width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+  </svg>
+  <span>CALL US NOW</span>
+</a>
 
 <!-- PAGE 1 (HERO) -->
 <div class="page-container" id="home">
@@ -591,14 +638,12 @@
 
       <h2 class="good-meal">Every Day Deserves a Good Meal</h2>
 
-      <div class="hero-bottom-integrated">
-        <div class="contact-bar">
-          <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE<br>AMBATTUR</div>
-          <div class="contact-item"><span class="contact-icon">📞</span> <span class="phone-num">9600566044</span></div>
-        </div>
-        <div class="qr-mini">
-          <img src="assets/qr-card.png" alt="UPI QR code">
-          <span>SCAN AND PAY</span>
+      <div class="contact-bar">
+        <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
+        <div class="delivery-badge">
+          <span class="truck">🛵</span>
+          <span class="t1">DOOR STEP</span>
+          <span class="t2">DELIVERY</span>
         </div>
       </div>
     </div>
@@ -682,17 +727,16 @@
             <img src="assets/ribbon.png" alt="Price Ribbon">
             <div class="rb-text"><span class="just">JUST</span><span class="amt">2999</span></div>
           </div>
-          <div class="delivery-badge">
-            <span class="truck">🛵</span>
-            <span class="t1">DOOR STEP</span>
-            <span class="t2">DELIVERY</span>
-          </div>
         </div>
       </div>
 
       <div class="contact-bar">
-        <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE<br>AMBATTUR</div>
-        <div class="contact-item"><span class="contact-icon">📞</span> <span class="phone-num">9600566044</span></div>
+        <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
+        <div class="delivery-badge">
+          <span class="truck">🛵</span>
+          <span class="t1">DOOR STEP</span>
+          <span class="t2">DELIVERY</span>
+        </div>
       </div>
     </div>
   </section>
@@ -735,8 +779,7 @@
       </div>
 
       <div class="contact-bar">
-        <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE<br>AMBATTUR</div>
-        <div class="contact-item"><span class="contact-icon">📞</span> <span class="phone-num">9600566044</span></div>
+        <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
         <div class="delivery-badge">
           <span class="truck">🛵</span>
           <span class="t1">DOOR STEP</span>
@@ -803,8 +846,7 @@
       </div>
 
       <div class="contact-bar">
-        <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE<br>AMBATTUR</div>
-        <div class="contact-item"><span class="contact-icon">📞</span> <span class="phone-num">9600566044</span></div>
+        <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
         <div class="delivery-badge">
           <span class="truck">🛵</span>
           <span class="t1">DOOR STEP</span>
@@ -833,22 +875,20 @@
             <li>FULL BOIL</li>
             <li>OMELETTE</li>
             <li>EGG MASALA GRAVY</li>
-            <li>MUTTAI VARUVAL</li>
-          </ul>
-          <ul class="dish-list">
-            <li>PANEER 65</li>
+            <li>MUTTAI PODIMAS</li>
+            <li>PANNER 65</li>
             <li>MUSHROOM 65</li>
             <li>CAULIFLOWER 65</li>
             <li>MEAL 65</li>
-            <li>PANEER BUTTER MASALA</li>
-            <li>MUTTER PANEER MASALA</li>
+            <li>PANNER BUTTER MASALA</li>
+            <li>MUTTER PANEER MASLA</li>
             <li>KADAI PANEER</li>
             <li>MUSHROOM MASALA</li>
             <li>PEPPER MUSHROOM MASALA</li>
             <li>JAPAN MUSHROOM</li>
             <li>MUSHROOM POPCORN</li>
             <li>CAULIFLOWER POPCORN</li>
-            <li>PANEER POPCORN</li>
+            <li>PANNER POPCORN</li>
             <li>MEAL MAKER MASALA</li>
             <li>MEAL MAKER CHUKKA</li>
           </ul>
@@ -864,8 +904,7 @@
       </div>
 
       <div class="contact-bar">
-        <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE<br>AMBATTUR</div>
-        <div class="contact-item"><span class="contact-icon">📞</span> <span class="phone-num">9600566044</span></div>
+        <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
         <div class="delivery-badge">
           <span class="truck">🛵</span>
           <span class="t1">DOOR STEP</span>
@@ -876,72 +915,28 @@
   </section>
 </div>
 
-<!-- PAGE 6 (PRICING & COMBOS) -->
-<div class="page-container" id="pricing">
-  <section class="page page-6">
-    <span class="deco tr">🌶️</span>
-    <span class="deco ml">🧅</span>
-    <div class="z">
-      <div>
-        <div class="orange-panel">
-          <img class="overlapping-logo" src="assets/logo.png" alt="Sarah Foods Logo">
-
-          <div class="price-row">
-            <div class="pr-text">DIET FOOD<br>@90</div>
-            <img src="assets/diet-bowls.png" alt="Diet food bowls">
-          </div>
-          <div class="price-row">
-            <div class="pr-text">CUSTOMIZED<br>FOOD @70</div>
-            <img src="assets/customized-icon.png" alt="Customized food counter icon">
-          </div>
-          <div class="price-row">
-            <div class="pr-text">FRESH JUICE<br>@35</div>
-            <img src="assets/juice.png" alt="Fresh fruit juices">
-          </div>
-          <div class="package-badge">
-            <span class="b1">PACKAGE STARTS FROM<br>JUST - 2999</span>
-            <span class="b2">PER MONTH</span>
-          </div>
-        </div>
-
-        <div class="trail-pack">TRAIL PACK AVAILABLE AT 199</div>
-      </div>
-
-      <div class="contact-bar">
-        <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE<br>AMBATTUR</div>
-        <div class="contact-item"><span class="contact-icon">📞</span> <span class="phone-num">9600566044</span></div>
-        <div class="delivery-badge">
-          <span class="truck">🛵</span>
-          <span class="t1">DOOR STEP</span>
-          <span class="t2">DELIVERY</span>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- PAGE 7 (PAYMENT) -->
+<!-- PAGE 6 (CHECKOUT / PAYMENT) -->
 <div class="page-container" id="payment">
-  <section class="page page-7">
+  <section class="page page-6">
     <span class="deco tl">🧅</span>
-    <span class="deco mr">🌶️</span>
+    <span class="deco tr">🌶️</span>
     <div class="z">
       <div>
-        <div class="orange-panel">
-          <img class="overlapping-logo" src="assets/logo.png" alt="Sarah Foods Logo">
-
-          <h2 class="pay-title">Payment Details</h2>
-          <img class="qr-big" src="assets/qr-card.png" alt="UPI Payment QR code">
-          <div class="scan-pay">SCAN AND PAY</div>
-          <div class="thanks">thanks for choosing us</div>
+        <div class="title-with-logo">
+          <h2 class="pay-title">SCAN &amp; PAY</h2>
+          <img class="header-logo" src="assets/logo.png" alt="Sarah Foods Logo">
         </div>
 
-        <div class="trail-pack">TRAIL PACK AVAILABLE AT 199</div>
+        <div class="orange-panel" style="text-align:center;">
+          <img class="qr-big" src="assets/qr-card.png" alt="UPI Checkout QR Code" loading="lazy">
+          <div class="scan-pay">SCAN QR CODE TO COMPLETE PAYMENT</div>
+        </div>
+
+        <div class="thanks">Thank You for Choosing Sarah Foods!</div>
       </div>
 
       <div class="contact-bar">
-        <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE<br>AMBATTUR</div>
-        <div class="contact-item"><span class="contact-icon">📞</span> <span class="phone-num">9600566044</span></div>
+        <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
         <div class="delivery-badge">
           <span class="truck">🛵</span>
           <span class="t1">DOOR STEP</span>
@@ -951,6 +946,25 @@
     </div>
   </section>
 </div>
+
+<script>
+  // Mobile Navigation Menu Toggle Handler
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu when clicking navigation items
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+  }
+</script>
 
 </body>
 </html>
