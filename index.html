@@ -142,6 +142,44 @@
             transition: all 0.3s ease;
         }
 
+        /* Responsive Table Wrapper */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 18px;
+            border: 3px solid var(--dark);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+            margin-bottom: 10px;
+        }
+
+        /* Remove border/radius from table directly since wrapper now handles outer border */
+        table.menu {
+            width: 100%;
+            min-width: 480px; /* Ensures all 4 columns keep legible width on small screens */
+            border-collapse: collapse;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        @media (max-width: 768px) {
+            /* ... existing media query styles ... */
+            table.menu th {
+                font-size: 1.1rem;
+                padding: 6px 4px;
+            }
+
+            table.menu td {
+                font-size: 0.85rem;
+                padding: 6px 4px;
+            }
+
+            table.menu td.day {
+                font-size: 0.95rem;
+            }
+        }
+
         /* =========================================================
    FIXED SIDEBAR: CONSTANT ON SCREEN ACROSS ALL PAGES
    ========================================================= */
@@ -1427,60 +1465,62 @@
                     <img class="logo-sm" src="assets/logo.png" alt="Sarah Foods Logo">
                 </div>
 
-                <table class="menu">
-                    <thead>
-                    <tr>
-                        <th>DAY</th>
-                        <th>MORNING</th>
-                        <th>AFTERNOON</th>
-                        <th>NIGHT</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr class="row-a">
-                        <td class="day">MONDAY</td>
-                        <td class="item">PONGAL - VADA</td>
-                        <td class="item">LEMON RICE -<br>PORIYAL</td>
-                        <td class="item">CHAPATHI / PAROTTA<br>KURMA</td>
-                    </tr>
-                    <tr class="row-b">
-                        <td class="day">TUESDAY</td>
-                        <td class="item">IDLY &amp; SAMBAR</td>
-                        <td class="item">RICE,<br>KADALACURRY,<br>PORIYAL</td>
-                        <td class="item">DOSA - CHUTNEY</td>
-                    </tr>
-                    <tr class="row-a">
-                        <td class="day">WEDNESDAY</td>
-                        <td class="item">IDIYAPPAM,<br>COCONUT MILK</td>
-                        <td class="item">TOMATO RICE,<br>CURD RICE,<br>PORIYAL</td>
-                        <td class="item">KUSHKA &amp;<br>EGG FRIED RICE</td>
-                    </tr>
-                    <tr class="row-b">
-                        <td class="day">THURSDAY</td>
-                        <td class="item">SEMIYA UPMA /<br>RAVA UPMA,<br>CHUTNEY</td>
-                        <td class="item">RICE,<br>MOR KULAMBU /<br>KEERAI KULAMBU,<br>PORIYAL</td>
-                        <td class="item">MINI UTHAPPAM<br>&amp; KARA CHUTNEY</td>
-                    </tr>
-                    <tr class="row-a">
-                        <td class="day">FRIDAY</td>
-                        <td class="item">IDLY &amp; CHUTNEY,<br>IDLY PODI</td>
-                        <td class="item">RICE,<br>PORIYAL, SAMBAR /<br>URUNDAI KULAMBU</td>
-                        <td class="item">VEG BRINJI,<br>PULAO &amp; ONION RAITHA</td>
-                    </tr>
-                    <tr class="row-b">
-                        <td class="day">SATURDAY</td>
-                        <td class="item">KICHADI &amp; CHUTNEY</td>
-                        <td class="item">SAMBAR SADAM &amp;<br>PORIYAL</td>
-                        <td class="item">IDLY &amp; CHUTNEY /<br>SAMBAR</td>
-                    </tr>
-                    <tr class="row-a">
-                        <td class="day">SUNDAY</td>
-                        <td class="item">RAVA UPMA</td>
-                        <td class="item">CHICKEN BRIYANI<br>(NON-VEG SPECIAL)</td>
-                        <td class="item">RASAM RICE, APPALAM</td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class="table-wrapper">
+                    <table class="menu">
+                        <thead>
+                        <tr>
+                            <th>DAY</th>
+                            <th>MORNING</th>
+                            <th>AFTERNOON</th>
+                            <th>NIGHT</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="row-a">
+                            <td class="day">MONDAY</td>
+                            <td class="item">PONGAL - VADA</td>
+                            <td class="item">LEMON RICE -<br>PORIYAL</td>
+                            <td class="item">CHAPATHI / PAROTTA<br>KURMA</td>
+                        </tr>
+                        <tr class="row-b">
+                            <td class="day">TUESDAY</td>
+                            <td class="item">IDLY &amp; SAMBAR</td>
+                            <td class="item">RICE,<br>KADALACURRY,<br>PORIYAL</td>
+                            <td class="item">DOSA - CHUTNEY</td>
+                        </tr>
+                        <tr class="row-a">
+                            <td class="day">WEDNESDAY</td>
+                            <td class="item">IDIYAPPAM,<br>COCONUT MILK</td>
+                            <td class="item">TOMATO RICE,<br>CURD RICE,<br>PORIYAL</td>
+                            <td class="item">KUSHKA &amp;<br>EGG FRIED RICE</td>
+                        </tr>
+                        <tr class="row-b">
+                            <td class="day">THURSDAY</td>
+                            <td class="item">SEMIYA UPMA /<br>RAVA UPMA,<br>CHUTNEY</td>
+                            <td class="item">RICE,<br>MOR KULAMBU /<br>KEERAI KULAMBU,<br>PORIYAL</td>
+                            <td class="item">MINI UTHAPPAM<br>&amp; KARA CHUTNEY</td>
+                        </tr>
+                        <tr class="row-a">
+                            <td class="day">FRIDAY</td>
+                            <td class="item">IDLY &amp; CHUTNEY,<br>IDLY PODI</td>
+                            <td class="item">RICE,<br>PORIYAL, SAMBAR /<br>URUNDAI KULAMBU</td>
+                            <td class="item">VEG BRINJI,<br>PULAO &amp; ONION RAITHA</td>
+                        </tr>
+                        <tr class="row-b">
+                            <td class="day">SATURDAY</td>
+                            <td class="item">KICHADI &amp; CHUTNEY</td>
+                            <td class="item">SAMBAR SADAM &amp;<br>PORIYAL</td>
+                            <td class="item">IDLY &amp; CHUTNEY /<br>SAMBAR</td>
+                        </tr>
+                        <tr class="row-a">
+                            <td class="day">SUNDAY</td>
+                            <td class="item">RAVA UPMA</td>
+                            <td class="item">CHICKEN BRIYANI<br>(NON-VEG SPECIAL)</td>
+                            <td class="item">RASAM RICE, APPALAM</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
                 <div class="menu-extras">
                     <ul class="extras-list">
@@ -1737,12 +1777,14 @@
 </div>
 
 <script>
-    // Mobile Navigation Menu Toggle Handler
+    // Mobile Navigation Menu Toggle & Auto-Close Handler
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
 
     if (navToggle && navLinks) {
-        navToggle.addEventListener('click', () => {
+        // Toggle mobile menu
+        navToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
             navLinks.classList.toggle('active');
         });
 
@@ -1751,6 +1793,20 @@
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
             });
+        });
+
+        // Close menu when user scrolls down
+        window.addEventListener('scroll', () => {
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        }, { passive: true });
+
+        // Close menu if user clicks anywhere outside the menu
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
         });
     }
 </script>
