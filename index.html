@@ -142,46 +142,74 @@
             transition: all 0.3s ease;
         }
 
-        /* PERSISTENT FLOATING CALL BUTTON WIDGET */
-        .floating-call-btn {
+        /* =========================================================
+   FIXED SIDEBAR: CONSTANT ON SCREEN ACROSS ALL PAGES
+   ========================================================= */
+
+        .floating-contact-sidebar {
             position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 9999;
-            background: linear-gradient(135deg, #0B7A1F 0%, #075214 100%);
-            color: var(--white);
-            text-decoration: none;
+            right: 20px; /* Pinned to the right edge */
+            bottom: 30px; /* Anchored near bottom right */
             display: flex;
+            flex-direction: column; /* Stacked vertically */
+            gap: 12px;
+            z-index: 9999; /* Keeps it above all page elements */
+        }
+
+        /* Base button styling */
+        .floating-call-btn,
+        .floating-whatsapp-btn {
+            display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 12px 20px;
-            border-radius: 50px;
-            border: 2px solid var(--yellow);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.25rem;
-            letter-spacing: 0.06em;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            animation: pulseCall 2.5s infinite;
+            padding: 12px 18px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+
+        /* Call Button Styles */
+        .floating-call-btn {
+            background-color: var(--dark, #222222);
+            color: var(--white, #ffffff);
         }
 
         .floating-call-btn:hover {
-            transform: scale(1.06);
-            box-shadow: 0 8px 24px rgba(11, 122, 31, 0.6);
+            transform: scale(1.05) translateX(-4px);
+            background-color: #333333;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
         }
 
-        .floating-call-btn .call-icon {
-            font-size: 1.3rem;
+        /* WhatsApp Button Styles */
+        .floating-whatsapp-btn {
+            background-color: #25D366;
+            color: #ffffff;
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
         }
 
-        @keyframes pulseCall {
-            0%, 100% {
-                box-shadow: 0 0 0 0 rgba(11, 122, 31, 0.7);
+        .floating-whatsapp-btn:hover {
+            transform: scale(1.05) translateX(-4px);
+            background-color: #20ba5a;
+            box-shadow: 0 8px 22px rgba(37, 211, 102, 0.6);
+        }
+
+        /* Responsive adjustment for mobile screens */
+        @media (max-width: 576px) {
+            .floating-contact-sidebar {
+                right: 12px;
+                bottom: 20px;
             }
-            50% {
-                box-shadow: 0 0 0 12px rgba(11, 122, 31, 0);
+
+            .floating-call-btn span,
+            .floating-whatsapp-btn span {
+                font-size: 0.75rem;
             }
         }
+
 
         /* Page Container & Radiant Glow Frame */
         .page-container {
@@ -554,27 +582,64 @@
             filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
         }
 
+        /* Base Badge - Straight / Unrotated */
         .starts-badge {
+            position: relative;
             background: linear-gradient(180deg, var(--orange) 0%, var(--orange-deep) 100%);
             border: 3px solid var(--dark);
             border-radius: 18px;
             color: var(--white);
             text-align: center;
-            padding: 12px 18px;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+            padding: 16px 18px 12px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+            transform: none; /* No badge rotation */
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        /* "SPECIAL DEAL" STAMP SEAL (Pushed to top-right overlap) */
+        .starts-badge::before {
+            content: "SPECIAL DEAL";
+            position: absolute;
+            top: -14px;
+            right: -10px;
+            background: var(--dark);
+            color: var(--yellow);
+            font-family: 'Titan One', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 2px dashed var(--yellow);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+            z-index: 5;
+            white-space: nowrap;
+
+            animation: flyInStampCorner 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+            stampGlowPulseCorner 2.2s ease-in-out infinite 0.8s;
+        }
+
+        .starts-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 14px 32px rgba(241, 103, 15, 0.6);
         }
 
         .starts-badge .b1 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.45rem;
             line-height: 1.05;
             display: block;
+            color: var(--white);
+            font-weight: 700;
         }
 
         .starts-badge .b2 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: .85rem;
+            font-size: 0.9rem;
             display: block;
+            color: var(--yellow);
+            letter-spacing: 0.05em;
+            margin-top: 2px;
         }
 
         .hero-plate {
@@ -775,6 +840,7 @@
             position: relative;
             width: 190px;
             flex: 0 0 auto;
+            animation: bounceHighlight 2.2s infinite ease-in-out;
         }
 
         .ribbon-2999 img {
@@ -808,6 +874,7 @@
             -webkit-text-stroke: 2px var(--dark);
             paint-order: stroke fill;
             margin-top: 6px;
+            text-shadow: 0 0 12px rgba(255, 216, 77, 0.7);
         }
 
         /* PANELS & LISTS */
@@ -1092,6 +1159,48 @@
             }
         }
 
+        @keyframes flyInStampCorner {
+            0% {
+                opacity: 0;
+                transform: scale(4) rotate(-45deg) translate(-100px, -100px);
+            }
+            70% {
+                opacity: 1;
+                transform: scale(0.9) rotate(12deg) translate(0, 0);
+            }
+            85% {
+                transform: scale(1.1) rotate(-8deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        /* 2. Continuous Glow Pulse in Top-Right Position */
+        @keyframes stampGlowPulseCorner {
+            0%, 100% {
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                box-shadow: 0 6px 18px rgba(241, 103, 15, 0.8), 0 0 12px rgba(255, 216, 77, 0.9);
+                transform: scale(1.08) rotate(0deg);
+            }
+        }
+
+        @keyframes bounceHighlight {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            40% {
+                transform: translateY(-10px) scale(1.05);
+            }
+            60% {
+                transform: translateY(-5px) scale(1.02);
+            }
+        }
+
         /* RESPONSIVE STYLES */
         @media (max-width: 900px) {
             .nav-toggle {
@@ -1231,14 +1340,30 @@
     </div>
 </nav>
 
-<!-- FLOATING CALL BUTTON WIDGET -->
-<a href="tel:9600566044" class="floating-call-btn" aria-label="Call Sarah Foods at 9600566044">
-    <svg class="call-icon" width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
-        <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-    </svg>
-    <span>CALL US NOW</span>
-</a>
+<!-- Floating Contact Sidebar (Fixed on Side) -->
+<div class="floating-contact-sidebar">
+    <!-- Call Button -->
+    <a href="tel:9600566044" class="floating-call-btn" aria-label="Call Sarah Foods at 9600566044">
+        <svg class="call-icon" width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF"
+             xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+        </svg>
+        <span>CALL US NOW</span>
+    </a>
 
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/919600566044?text=Hello%20Sarah%20Foods!%20I%20would%20like%20to%20know%20more%20about%20your%20special%20deal."
+       target="_blank"
+       rel="noopener noreferrer"
+       class="floating-whatsapp-btn"
+       aria-label="Contact Sarah Foods on WhatsApp at 9600566044">
+        <svg class="whatsapp-icon" width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF"
+             xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.764.459 3.486 1.332 5.001L2 22l5.129-1.332a9.92 9.92 0 004.882 1.28h.005c5.505 0 9.988-4.478 9.989-9.984 0-2.668-1.039-5.176-2.927-7.062A9.925 9.925 0 0012.012 2zm.005 16.582h-.004a8.23 8.23 0 01-4.192-1.151l-.301-.179-3.116.811.831-3.033-.197-.311a8.243 8.243 0 01-1.268-4.382c0-4.551 3.703-8.255 8.255-8.255 2.205 0 4.278.859 5.838 2.419a8.204 8.204 0 012.415 5.833c-.001 4.552-3.705 8.256-8.257 8.256zm4.526-6.182c-.248-.124-1.468-.724-1.696-.807-.227-.083-.393-.124-.559.124-.165.248-.641.807-.786.973-.145.165-.29.186-.538.062-.248-.124-1.047-.386-1.995-1.231-.738-.658-1.236-1.471-1.381-1.719-.145-.248-.015-.382.109-.505.112-.111.248-.29.372-.435.124-.145.165-.248.248-.414.083-.165.041-.31-.021-.435-.062-.124-.559-1.346-.765-1.842-.201-.484-.405-.418-.559-.426h-.476c-.165 0-.435.062-.662.31-.227.248-.869.848-.869 2.068s.889 2.399 1.013 2.564c.124.165 1.75 2.672 4.239 3.747.592.256 1.055.409 1.416.524.594.189 1.135.162 1.563.098.477-.071 1.468-.6 1.674-1.18.207-.579.207-1.075.145-1.18-.062-.104-.227-.165-.475-.289z"/>
+        </svg>
+        <span>CONTACT US ON WHATSAPP</span>
+    </a>
+</div>
 <!-- PAGE 1 (HERO) -->
 <div class="page-container" id="home">
     <section class="page page-1">
@@ -1598,9 +1723,9 @@
                 <div class="trust-badge">
                     <span class="rating-num">4.5</span>
                     <span class="stars">
-    <span class="star s1">★</span><span class="star s2">★</span><span class="star s3">★</span><span
+        <span class="star s1">★</span><span class="star s2">★</span><span class="star s3">★</span><span
                             class="star s4">★</span><span class="star half-star">★</span>
-</span>
+    </span>
                     <span class="divider">|</span>
                     <span class="customer-count">690+</span>
                     <span class="customer-text">HAPPY CUSTOMERS</span>
