@@ -147,6 +147,7 @@
             width: 100%;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
             border-radius: 18px;
             border: 3px solid var(--dark);
             box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
@@ -643,15 +644,16 @@
             background: var(--dark);
             color: var(--yellow);
             font-family: 'Titan One', sans-serif;
-            font-size: 0.7rem;
+            font-size: 0.5rem;
             letter-spacing: 0.08em;
-            padding: 4px 12px;
+            padding: 4px 14px;
             border-radius: 20px;
             border: 2px dashed var(--yellow);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
             pointer-events: none;
             z-index: 5;
             white-space: nowrap;
+            max-width: fit-content;
 
             animation: flyInStampCorner 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
             stampGlowPulseCorner 2.2s ease-in-out infinite 0.8s;
@@ -1524,10 +1526,10 @@
 
                 <div class="menu-extras">
                     <ul class="extras-list">
-                        <li>DIET MENU - 90</li>
-                        <li>FOOD CUSTOMIZED - 70</li>
-                        <li>FRESH JUICE - 35</li>
-                        <li>AN EXTRA PERFECT SIDEKICK TO EVERY MEAL - 89</li>
+                        <li>DIET MENU - ₹90</li>
+                        <li>FOOD CUSTOMIZED - ₹70</li>
+                        <li>FRESH JUICE - ₹35</li>
+                        <li>AN EXTRA PERFECT SIDEKICK TO EVERY MEAL - ₹89</li>
                     </ul>
                     <div class="ribbon-2999">
                         <img src="assets/ribbon.png" alt="Price Ribbon">
