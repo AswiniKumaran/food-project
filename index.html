@@ -173,6 +173,24 @@
             gap: 5px;
         }
 
+        .nav-links a.active-link {
+            background: var(--orange);
+            color: var(--white);
+            border-color: var(--yellow);
+            font-weight: bold;
+        }
+
+        @media screen and (max-width: 768px) {
+            .menu-header {
+                position: sticky;
+                top: 57px; /* Height of the sticky navbar */
+                z-index: 900;
+                background: var(--cream);
+                padding: 8px 0;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+        }
+
         .nav-toggle {
             display: none;
             background: transparent;
@@ -1763,5 +1781,31 @@
     })();
 </script>
 
+const sections = document.querySelectorAll('.page-container');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+const observerOptions = {
+root: null,
+rootMargin: '-20% 0px -70% 0px', // Triggers active state when section is near top of viewport
+threshold: 0
+};
+
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const id = entry.target.getAttribute('id');
+navLinks.forEach(link => {
+link.classList.remove('active-link');
+if (link.getAttribute('href') === `#${id}`) {
+link.classList.add('active-link');
+// Scroll active link into view inside horizontal navbar if overflowed
+link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+}
+});
+}
+});
+}, observerOptions);
+
+sections.forEach(section => observer.observe(section));
 </body>
 </html>
