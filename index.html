@@ -1736,14 +1736,22 @@
 
             if (!toggle || !links) return;
 
+            // Helper function to close menu
+            function closeMenu() {
+                if (window.innerWidth <= 768) {
+                    links.style.display = 'none';
+                    links.classList.remove('active');
+                }
+            }
+
+            // Toggle menu open/close
             function toggleMenu(e) {
                 if (e) {
                     e.preventDefault();
                     e.stopPropagation();
                 }
                 if (links.style.display === 'flex') {
-                    links.style.display = 'none';
-                    links.classList.remove('active');
+                    closeMenu();
                 } else {
                     links.style.display = 'flex';
                     links.classList.add('active');
@@ -1753,24 +1761,25 @@
             toggle.addEventListener('touchstart', toggleMenu, {passive: false});
             toggle.addEventListener('click', toggleMenu);
 
+            // 1. Close menu when any menu link is clicked
             var navItems = links.querySelectorAll('a');
             for (var i = 0; i < navItems.length; i++) {
-                navItems[i].addEventListener('click', function () {
-                    if (window.innerWidth <= 768) {
-                        links.style.display = 'none';
-                        links.classList.remove('active');
-                    }
-                });
+                navItems[i].addEventListener('click', closeMenu);
             }
 
+            // 2. Close menu when clicking anywhere outside
             document.addEventListener('click', function (e) {
                 if (!links.contains(e.target) && !toggle.contains(e.target)) {
-                    if (window.innerWidth <= 768) {
-                        links.style.display = 'none';
-                        links.classList.remove('active');
-                    }
+                    closeMenu();
                 }
             });
+
+            // 3. Close menu automatically as soon as the user scrolls
+            window.addEventListener('scroll', function () {
+                if (links.classList.contains('active')) {
+                    closeMenu();
+                }
+            }, { passive: true });
         }
 
         if (document.readyState === 'loading') {
