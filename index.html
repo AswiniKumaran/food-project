@@ -36,11 +36,83 @@
             background-attachment: fixed;
             font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             color: var(--dark);
-            padding: 0 10px 40px;
+            padding: 0 0 90px 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 40px;
+            gap: 30px;
+        }
+
+        /* Pulsing Keyframes */
+        @keyframes pulse-subtle {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse-glow-hero {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 216, 77, 0.7);
+            }
+            50% {
+                transform: scale(1.08);
+                box-shadow: 0 0 20px 8px rgba(255, 216, 77, 0.9), 0 0 30px 10px rgba(241, 103, 15, 0.6);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 216, 77, 0.7);
+            }
+        }
+
+        /* Horizontal Pulse exclusively for the Half Star */
+        @keyframes pulse-horizontal {
+            0% {
+                transform: scaleX(1);
+                filter: drop-shadow(0 0 0px rgba(255, 193, 7, 0));
+            }
+            50% {
+                transform: scaleX(1.4);
+                filter: drop-shadow(0 0 6px rgba(255, 193, 7, 0.9));
+            }
+            100% {
+                transform: scaleX(1);
+                filter: drop-shadow(0 0 0px rgba(255, 193, 7, 0));
+            }
+        }
+
+        /* Scooter Motion — Horizontal Left Motion */
+        @keyframes scooter-drive-left {
+            0% {
+                transform: translateX(0px);
+            }
+            50% {
+                transform: translateX(-6px);
+            }
+            100% {
+                transform: translateX(0px);
+            }
+        }
+
+        /* Floating Callout Animations */
+        @keyframes float-tag-vertical {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-7px);
+            }
+        }
+
+        .scooter-anim {
+            display: inline-block;
+            animation: scooter-drive-left 1.2s infinite ease-in-out;
         }
 
         /* Sticky Navigation */
@@ -48,13 +120,12 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            width: 100vw;
-            background: rgba(18, 15, 14, 0.94);
+            width: 100%;
+            background: rgba(18, 15, 14, 0.95);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 2px solid rgba(241, 103, 15, 0.6);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 216, 77, 0.2);
-            padding: 10px 20px;
+            padding: 10px 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -66,22 +137,19 @@
             align-items: center;
             gap: 10px;
             text-decoration: none;
-            flex: 0 0 auto;
         }
 
         .nav-brand img {
-            width: 38px;
+            width: 36px;
             height: auto;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
         }
 
         .nav-brand-text {
             font-family: 'Titan One', sans-serif;
             color: var(--yellow);
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             letter-spacing: 0.04em;
             text-transform: uppercase;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .nav-links {
@@ -96,7 +164,6 @@
             text-decoration: none;
             font-family: 'Bebas Neue', sans-serif;
             font-size: 1.05rem;
-            letter-spacing: 0.06em;
             padding: 6px 12px;
             border-radius: 20px;
             background: rgba(255, 255, 255, 0.06);
@@ -104,20 +171,6 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .nav-links a span.icon {
-            font-size: 0.95rem;
-        }
-
-        .nav-links a:hover,
-        .nav-links a:active {
-            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%);
-            color: var(--white);
-            border-color: var(--yellow);
-            box-shadow: 0 4px 14px rgba(241, 103, 15, 0.45);
-            transform: translateY(-2px);
         }
 
         .nav-toggle {
@@ -125,10 +178,11 @@
             background: transparent;
             border: none;
             cursor: pointer;
-            padding: 6px;
+            padding: 8px;
             flex-direction: column;
             gap: 5px;
-            z-index: 1001;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .nav-toggle span {
@@ -137,70 +191,17 @@
             height: 3px;
             background-color: var(--yellow);
             border-radius: 2px;
-            transition: all 0.3s ease;
+            pointer-events: none;
         }
 
-        /* Mobile Dropdown Menu */
-        @media screen and (max-width: 768px) {
-            .nav-toggle {
-                display: flex;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(18, 15, 14, 0.98);
-                flex-direction: column;
-                align-items: stretch;
-                padding: 15px 20px;
-                gap: 10px;
-                border-bottom: 2px solid var(--orange);
-                box-shadow: 0 10px 20px rgba(0,0,0,0.8);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links a {
-                justify-content: flex-start;
-                padding: 10px 16px;
-                font-size: 1.2rem;
-            }
-        }
-
-        /* Responsive Table Wrapper */
-        .table-wrapper {
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            touch-action: pan-y;
-            border-radius: 18px;
-            border: 3px solid var(--dark);
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
-            margin-bottom: 10px;
-        }
-
-        table.menu {
-            width: 100%;
-            min-width: 480px;
-            border-collapse: collapse;
-            border: none;
-            border-radius: 0;
-            box-shadow: none;
-        }
-
-        /* Floating Sidebar */
+        /* Floating Contact Sidebar / Bottom Bar */
         .floating-contact-sidebar {
             position: fixed;
             right: 20px;
-            bottom: 30px;
+            bottom: 20px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             z-index: 9999;
         }
 
@@ -208,38 +209,24 @@
         .floating-whatsapp-btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 18px;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 16px;
             border-radius: 30px;
             font-weight: 700;
             font-size: 0.85rem;
             text-decoration: none;
-            letter-spacing: 0.04em;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
         }
 
         .floating-call-btn {
-            background-color: var(--dark, #222222);
-            color: var(--white, #ffffff);
-        }
-
-        .floating-call-btn:hover {
-            transform: scale(1.05) translateX(-4px);
-            background-color: #333333;
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+            background-color: var(--dark);
+            color: var(--white);
         }
 
         .floating-whatsapp-btn {
             background-color: #25D366;
             color: #ffffff;
-            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
-        }
-
-        .floating-whatsapp-btn:hover {
-            transform: scale(1.05) translateX(-4px);
-            background-color: #20ba5a;
-            box-shadow: 0 8px 22px rgba(37, 211, 102, 0.6);
         }
 
         /* Page Container & Layout */
@@ -247,29 +234,18 @@
             position: relative;
             width: 100%;
             max-width: 800px;
-            scroll-margin-top: 75px;
-        }
-
-        .page-container::before {
-            content: '';
-            position: absolute;
-            inset: -12px;
-            background: radial-gradient(circle at 50% 50%, rgba(241, 103, 15, 0.22) 0%, rgba(232, 72, 12, 0.08) 50%, transparent 75%);
-            border-radius: 24px;
-            z-index: 0;
-            pointer-events: none;
+            scroll-margin-top: 65px;
+            padding: 0 10px;
         }
 
         .page {
             position: relative;
             z-index: 1;
             width: 100%;
-            min-height: auto;
             background: var(--cream);
-            overflow: hidden;
-            padding: 40px 30px;
-            border-radius: 16px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -278,6 +254,7 @@
         @media (min-width: 769px) {
             .page {
                 min-height: 1120px;
+                padding: 40px 30px;
             }
         }
 
@@ -323,12 +300,11 @@
 
         .deco {
             position: absolute;
-            font-size: 74px;
-            filter: blur(2.5px);
+            font-size: 50px;
+            filter: blur(2px);
             opacity: .85;
             pointer-events: none;
             z-index: 1;
-            line-height: 1;
         }
 
         .deco.tl {
@@ -357,35 +333,20 @@
         .z {
             position: relative;
             z-index: 2;
-            height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             gap: 20px;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-6px);
-            }
-        }
-
-        .callout, .delivery-badge {
-            animation: float 4s ease-in-out infinite;
         }
 
         .contact-bar {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 32px;
+            gap: 16px;
             background: linear-gradient(180deg, var(--orange) 0%, var(--orange-deep) 100%);
-            border-radius: 22px;
-            padding: 16px 26px;
-            margin-top: 20px;
+            border-radius: 18px;
+            padding: 12px 16px;
+            margin-top: 15px;
             color: var(--white);
             flex-wrap: wrap;
         }
@@ -393,150 +354,97 @@
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             font-weight: 800;
-            letter-spacing: .06em;
-            font-size: 1.05rem;
+            font-size: 0.85rem;
+            letter-spacing: .04em;
         }
 
         .contact-icon {
-            width: 44px;
-            height: 44px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             background: var(--white);
             color: var(--orange-deep);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1rem;
             flex: 0 0 auto;
         }
 
         .delivery-badge {
-            width: 110px;
-            height: 110px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             background: var(--white);
-            border: 4px solid var(--orange-deep);
+            border: 3px solid var(--orange-deep);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            gap: 2px;
             flex: 0 0 auto;
+            animation: pulse-subtle 2.5s infinite ease-in-out;
         }
 
         .delivery-badge .truck {
-            font-size: 1.8rem;
+            font-size: 1.2rem;
         }
 
         .delivery-badge .t1 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1rem;
+            font-size: 0.75rem;
             color: var(--orange-deep);
             line-height: 1;
         }
 
         .delivery-badge .t2 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: .75rem;
+            font-size: 0.6rem;
             color: #fff;
             background: var(--orange);
-            padding: 2px 8px;
-            border-radius: 20px;
-            line-height: 1.2;
-        }
-
-        .trail-pack {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2rem;
-            letter-spacing: .05em;
-            text-align: center;
-            margin-top: 20px;
-            color: var(--dark);
-        }
-
-        .callout {
-            display: inline-block;
-            background: var(--cream);
-            border: 3px solid var(--dark);
-            border-radius: 18px;
-            padding: 8px 18px;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.25rem;
-            letter-spacing: .05em;
-            text-align: center;
-            line-height: 1.15;
-            box-shadow: 0 3px 0 rgba(0, 0, 0, .25);
-        }
-
-        .under-89 {
-            text-align: center;
-            color: var(--white);
-        }
-
-        .under-89 .l1 {
-            font-family: 'Lilita One', sans-serif;
-            font-size: 1.8rem;
-            line-height: 1.1;
-            text-shadow: 0 2px 0 rgba(0, 0, 0, .2);
-        }
-
-        .under-89 .price {
-            font-family: 'Titan One', sans-serif;
-            font-size: 4rem;
-            color: var(--yellow);
-            line-height: 1;
-            text-shadow: 0 3px 0 rgba(0, 0, 0, .25);
-        }
-
-        .under-89 .only {
-            font-family: 'Lilita One', sans-serif;
-            font-size: 1.2rem;
-            margin-left: 6px;
+            padding: 1px 6px;
+            border-radius: 10px;
         }
 
         .title-with-logo {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 16px;
-            margin-bottom: 12px;
+            gap: 12px;
+            margin-bottom: 10px;
         }
 
         .header-logo {
-            width: 95px;
+            width: 65px;
             height: auto;
             flex: 0 0 auto;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
         }
 
         .section-title {
             font-family: 'Titan One', sans-serif;
             color: var(--orange);
-            font-size: clamp(2.2rem, 6vw, 4.2rem);
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
             line-height: .95;
-            letter-spacing: .01em;
             text-transform: uppercase;
-            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
         }
 
         .veg-dot {
             display: inline-block;
-            width: 22px;
-            height: 22px;
-            border: 3px solid;
-            border-radius: 4px;
+            width: 16px;
+            height: 16px;
+            border: 2px solid;
+            border-radius: 3px;
             position: relative;
-            vertical-align: -3px;
+            vertical-align: -1px;
             flex: 0 0 auto;
         }
 
         .veg-dot::after {
             content: '';
             position: absolute;
-            inset: 4px;
+            inset: 3px;
             border-radius: 50%;
         }
 
@@ -564,250 +472,189 @@
             background: #0E9EC7;
         }
 
-        /* HERO ADJUSTMENTS */
-        .hero-wrapper {
-            position: relative;
-            background: radial-gradient(circle at 50% 30%, rgba(241, 103, 15, 0.12) 0%, transparent 70%);
-            border-radius: 32px;
-            padding: 20px 16px;
-        }
-
+        /* HERO AREA & HIGHLIGHTED STARTS BADGE */
         .hero-top {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            gap: 20px;
-            position: relative;
-            z-index: 4;
-        }
-
-        .hero-left-block {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            gap: 10px;
         }
 
         .hero-title {
             font-family: 'Titan One', sans-serif;
             color: var(--orange);
-            font-size: clamp(3.2rem, 9vw, 5.2rem);
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
             line-height: .95;
             text-transform: uppercase;
-            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         .hero-tagline {
-            font-size: 1.1rem;
-            letter-spacing: .15em;
-            margin-top: 10px;
+            font-size: 0.85rem;
+            letter-spacing: .1em;
+            margin-top: 6px;
             font-weight: 600;
-            color: var(--dark);
         }
 
         .hero-right-block {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            gap: 12px;
-            flex: 0 0 auto;
+            gap: 10px;
         }
 
         .hero-logo-badge-align {
-            width: 100px;
+            width: 70px;
             height: auto;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
         }
 
+        /* Highly Attention-Grabbing "Starts from 2999" Badge */
         .starts-badge {
-            position: relative;
-            background: linear-gradient(180deg, var(--orange) 0%, var(--orange-deep) 100%);
-            border: 3px solid var(--dark);
-            border-radius: 18px;
+            background: linear-gradient(135deg, #FF1744 0%, #D50000 50%, #B71C1C 100%);
+            border: 3px solid var(--yellow);
+            border-radius: 16px;
             color: var(--white);
             text-align: center;
-            padding: 16px 18px 12px;
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
-            transform: none;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-
-        .starts-badge::before {
-            content: "SPECIAL DEAL";
-            position: absolute;
-            top: -14px;
-            right: -10px;
-            background: var(--dark);
-            color: var(--yellow);
-            font-family: 'Titan One', sans-serif;
-            font-size: 0.5rem;
-            letter-spacing: 0.08em;
-            padding: 4px 14px;
-            border-radius: 20px;
-            border: 2px dashed var(--yellow);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-            pointer-events: none;
-            z-index: 5;
-            white-space: nowrap;
-            max-width: fit-content;
-            animation: flyInStampCorner 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
-            stampGlowPulseCorner 2.2s ease-in-out infinite 0.8s;
-        }
-
-        .starts-badge:hover {
-            transform: scale(1.05);
-            box-shadow: 0 14px 32px rgba(241, 103, 15, 0.6);
+            padding: 10px 14px;
+            animation: pulse-glow-hero 1.8s infinite ease-in-out;
+            transform-origin: center;
         }
 
         .starts-badge .b1 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.45rem;
-            line-height: 1.05;
+            font-family: 'Titan One', sans-serif;
+            font-size: 0.85rem;
+            line-height: 1.1;
+            color: #FFFFFF;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .starts-badge .price-highlight {
+            font-family: 'Titan One', sans-serif;
+            font-size: 2.2rem;
+            line-height: 1;
+            color: var(--yellow);
+            text-shadow: 2px 2px 0px #000;
             display: block;
-            color: var(--white);
-            font-weight: 700;
+            margin: 2px 0;
         }
 
         .starts-badge .b2 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 0.9rem;
-            display: block;
-            color: var(--yellow);
-            letter-spacing: 0.05em;
-            margin-top: 2px;
+            font-size: 0.95rem;
+            color: #FFFFFF;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 2px 8px;
+            border-radius: 8px;
+            letter-spacing: 0.08em;
+            display: inline-block;
         }
 
         .hero-plate {
             position: relative;
-            margin-top: 20px;
-            z-index: 2;
-        }
-
-        .hero-swoosh-soft {
-            position: absolute;
-            inset: 10% -20px 0 -20px;
-            background: radial-gradient(ellipse 100% 60% at 50% 50%, var(--orange-soft) 0%, transparent 100%);
-            opacity: .35;
-            border-radius: 50%;
-            z-index: 1;
+            margin-top: 15px;
         }
 
         .hero-plate img.thali {
-            position: relative;
             width: 100%;
             display: block;
-            filter: drop-shadow(0 14px 24px rgba(0, 0, 0, .3)) contrast(1.05) saturate(1.15);
         }
 
-        .hero-callouts {
-            position: absolute;
-            inset: 0;
-            z-index: 3;
-            pointer-events: none;
+        .callout {
+            display: inline-block;
+            background: var(--cream);
+            border: 2px solid var(--dark);
+            border-radius: 12px;
+            padding: 4px 10px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.95rem;
+            text-align: center;
+            line-height: 1.1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
         }
 
+        /* Page 1 Floating Motion Tags */
         .hero-callouts .c1 {
             position: absolute;
-            top: -10px;
-            left: 2%;
+            top: -5px;
+            left: 0;
+            animation: float-tag-vertical 3s infinite ease-in-out;
         }
 
         .hero-callouts .c2 {
             position: absolute;
-            bottom: 10%;
-            left: -8px;
+            bottom: 5%;
+            left: -5px;
+            animation: float-tag-vertical 3.5s infinite ease-in-out 0.5s;
         }
 
         .hero-callouts .c3 {
             position: absolute;
-            bottom: 8%;
-            right: -6px;
+            bottom: 5%;
+            right: -5px;
+            animation: float-tag-vertical 2.8s infinite ease-in-out 0.2s;
         }
 
         .good-meal {
             font-family: 'Lilita One', sans-serif;
-            font-size: clamp(1.9rem, 5vw, 2.8rem);
-            margin-top: 20px;
-            letter-spacing: .01em;
+            font-size: clamp(1.4rem, 4vw, 2.5rem);
+            margin-top: 10px;
             text-align: center;
         }
 
-        /* MENU TABLES & HEADERS */
-        .menu-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 14px;
-            margin-bottom: 18px;
+        /* Add-Ons Page Floating Motion Tags */
+        .addons-figure .c-tl {
+            position: absolute;
+            top: 0;
+            left: -5%;
+            animation: float-tag-vertical 3.2s infinite ease-in-out;
         }
 
-        .menu-header .chef-emoji {
-            font-size: 3rem;
+        .addons-figure .c-tr {
+            position: absolute;
+            top: -5%;
+            right: -5%;
+            animation: float-tag-vertical 3.8s infinite ease-in-out 0.4s;
         }
 
-        .menu-header .mh-title {
-            text-align: center;
-            flex: 1;
+        .addons-figure .c-b {
+            position: absolute;
+            bottom: -5%;
+            left: 0;
+            animation: float-tag-vertical 3s infinite ease-in-out 0.2s;
         }
 
-        .menu-header .mh-title h2 {
-            font-family: 'Titan One', sans-serif;
-            color: var(--cream);
-            font-size: clamp(1.4rem, 4.5vw, 2.4rem);
-            background: linear-gradient(180deg, var(--orange) 0%, var(--orange-deep) 100%);
-            padding: 12px 10px 4px;
-            border-radius: 20px 20px 0 0;
-        }
-
-        .menu-header .mh-title .hours {
-            font-family: 'Titan One', sans-serif;
-            color: var(--yellow);
-            font-size: clamp(1rem, 3.5vw, 1.6rem);
-            background: linear-gradient(180deg, var(--orange-deep) 0%, var(--orange) 100%);
-            padding: 2px 10px 10px;
-            border-radius: 0 0 20px 20px;
-        }
-
-        .diet-header h2 {
-            background: linear-gradient(180deg, #2E7D32 0%, #1B5E20 100%) !important;
-        }
-
-        .diet-header .hours {
-            background: linear-gradient(180deg, #1B5E20 0%, #2E7D32 100%) !important;
-        }
-
-        .menu-header img.logo-sm {
-            width: 90px;
+        /* TABLES & MOBILE CARD TRANSFORMATION */
+        .table-wrapper {
+            width: 100%;
+            border-radius: 14px;
+            border: 2px solid var(--dark);
+            overflow: hidden;
+            background: #fff;
         }
 
         table.menu {
             width: 100%;
             border-collapse: collapse;
-            border: 3px solid var(--dark);
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
         }
 
         table.menu th {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.3rem;
-            letter-spacing: .08em;
+            font-size: 1.1rem;
             padding: 8px 6px;
             background: linear-gradient(180deg, #FFF7E6 0%, #F5E3BD 100%);
-            border-bottom: 3px solid var(--dark);
+            border-bottom: 2px solid var(--dark);
         }
 
         table.menu th + th {
-            border-left: 3px solid var(--dark);
+            border-left: 2px solid var(--dark);
         }
 
         table.menu td {
-            padding: 10px 6px;
+            padding: 8px 6px;
             text-align: center;
-            vertical-align: middle;
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.05rem;
-            letter-spacing: .05em;
+            font-size: 0.95rem;
             line-height: 1.2;
         }
 
@@ -831,38 +678,299 @@
             color: var(--orange-deep);
         }
 
-        table.menu td.day {
-            font-size: 1.15rem;
-            font-weight: 700;
-        }
-
         table.menu td + td {
-            border-left: 3px solid var(--dark);
+            border-left: 2px solid var(--dark);
         }
 
         table.menu tr + tr td {
-            border-top: 2px solid rgba(0, 0, 0, .4);
+            border-top: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        /* Scaled up Icons for Pages 2, 3, & 4 */
+        .menu-header .chef-emoji {
+            font-size: 3.2rem;
+            line-height: 1;
+            display: inline-block;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .menu-header .mh-title h2 {
+            font-family: 'Titan One', sans-serif;
+            color: var(--cream);
+            font-size: clamp(1.1rem, 3.5vw, 2rem);
+            background: linear-gradient(180deg, var(--orange) 0%, var(--orange-deep) 100%);
+            padding: 8px 10px 4px;
+            border-radius: 12px 12px 0 0;
+            text-align: center;
+        }
+
+        .menu-header .mh-title .hours {
+            font-family: 'Titan One', sans-serif;
+            color: var(--yellow);
+            font-size: clamp(0.85rem, 2.8vw, 1.3rem);
+            background: linear-gradient(180deg, var(--orange-deep) 0%, var(--orange) 100%);
+            padding: 2px 8px 6px;
+            border-radius: 0 0 12px 12px;
+            text-align: center;
+        }
+
+        .diet-header h2 {
+            background: linear-gradient(180deg, #2E7D32 0%, #1B5E20 100%) !important;
+        }
+
+        .diet-header .hours {
+            background: linear-gradient(180deg, #1B5E20 0%, #2E7D32 100%) !important;
+        }
+
+        .menu-header img.logo-sm {
+            width: 55px;
+        }
+
+        /* Mobile Rules */
+        @media screen and (max-width: 768px) {
+            .nav-toggle {
+                display: flex !important;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(18, 15, 14, 0.98);
+                flex-direction: column;
+                align-items: stretch;
+                padding: 15px 20px;
+                gap: 10px;
+                border-bottom: 2px solid var(--orange);
+            }
+
+            .nav-links.active {
+                display: flex !important;
+            }
+
+            .floating-contact-sidebar {
+                left: 0;
+                right: 0;
+                bottom: 0;
+                flex-direction: row;
+                justify-content: center;
+                background: rgba(18, 15, 14, 0.92);
+                backdrop-filter: blur(8px);
+                padding: 10px 15px;
+                border-top: 1px solid rgba(255, 255, 255, 0.15);
+                gap: 10px;
+            }
+
+            .floating-call-btn, .floating-whatsapp-btn {
+                flex: 1;
+                font-size: 0.75rem;
+                padding: 8px 10px;
+            }
+
+            .table-wrapper {
+                border: none;
+                background: transparent;
+            }
+
+            table.menu, table.menu tbody, table.menu tr, table.menu td {
+                display: block;
+                width: 100%;
+            }
+
+            table.menu thead {
+                display: none;
+            }
+
+            table.menu tr {
+                margin-bottom: 12px;
+                border-radius: 12px;
+                border: 2px solid var(--dark);
+                overflow: hidden;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            }
+
+            table.menu td {
+                text-align: left !important;
+                padding: 8px 12px !important;
+                border: none !important;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            table.menu td.day {
+                background: var(--dark) !important;
+                color: var(--yellow) !important;
+                font-size: 1.05rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+            }
+
+            table.menu td.item::before {
+                font-weight: 700;
+                font-size: 0.8rem;
+                opacity: 0.8;
+                margin-right: 10px;
+                flex: 0 0 85px;
+            }
+
+            table.menu td:nth-child(2)::before {
+                content: "MORNING:";
+            }
+
+            table.menu td:nth-child(3)::before {
+                content: "AFTERNOON:";
+            }
+
+            table.menu td:nth-child(4)::before {
+                content: "NIGHT:";
+            }
+
+            .dish-list {
+                column-count: 1 !important;
+            }
+        }
+
+        /* PANELS & ADD-ONS */
+        .orange-panel {
+            background: linear-gradient(160deg, var(--orange-soft) 0%, #F06A22 100%);
+            border-radius: 20px;
+            padding: 16px;
+            margin-top: 10px;
+        }
+
+        .addons-figure {
+            position: relative;
+            width: min(320px, 90%);
+            margin: 10px auto;
+        }
+
+        .addons-figure img.plate {
+            width: 100%;
+            display: block;
+        }
+
+        .addons-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .legend {
+            list-style: none;
+        }
+
+        .legend li {
+            font-family: 'Titan One', sans-serif;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 2px 0;
+        }
+
+        .under-89 {
+            text-align: center;
+            color: var(--white);
+        }
+
+        .under-89 .l1 {
+            font-family: 'Lilita One', sans-serif;
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .under-89 .price {
+            font-family: 'Titan One', sans-serif;
+            font-size: 2.8rem;
+            color: var(--yellow);
+            line-height: 1;
+        }
+
+        .under-89 .only {
+            font-family: 'Lilita One', sans-serif;
+            font-size: 1rem;
+            margin-left: 4px;
+        }
+
+        .trail-pack {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .list-title {
+            font-family: 'Titan One', sans-serif;
+            font-size: clamp(1.2rem, 3.5vw, 2rem);
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .dish-list {
+            list-style: none;
+            column-gap: 12px;
+            column-count: 2;
+        }
+
+        .dish-list li {
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            padding: 6px 8px 6px 20px;
+            position: relative;
+            margin-bottom: 6px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 6px;
+            break-inside: avoid;
+        }
+
+        .dish-list li::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 11px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--dark);
         }
 
         .menu-extras {
             display: flex;
             align-items: center;
-            gap: 16px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 15px;
             flex-wrap: wrap;
         }
 
         .extras-list {
             flex: 1;
-            min-width: 240px;
+            min-width: 200px;
             list-style: none;
         }
 
         .extras-list li {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.35rem;
-            letter-spacing: .05em;
-            padding: 4px 0 4px 24px;
+            font-size: 1.15rem;
+            padding: 2px 0 2px 18px;
             position: relative;
         }
 
@@ -870,18 +978,19 @@
             content: '';
             position: absolute;
             left: 0;
-            top: 12px;
-            width: 10px;
-            height: 10px;
+            top: 9px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: var(--dark);
         }
 
         .ribbon-2999 {
             position: relative;
-            width: 190px;
-            flex: 0 0 auto;
-            animation: bounceHighlight 2.2s infinite ease-in-out;
+            width: 140px;
+            margin: 0 auto;
+            animation: pulse-glow-hero 2s infinite ease-in-out;
+            border-radius: 20px;
         }
 
         .ribbon-2999 img {
@@ -897,354 +1006,127 @@
             align-items: center;
             justify-content: center;
             font-family: 'Titan One', sans-serif;
-            line-height: .95;
-            padding-bottom: 18px;
+            padding-bottom: 12px;
         }
 
         .ribbon-2999 .rb-text .just {
             color: #fff;
-            font-size: 1.8rem;
-            -webkit-text-stroke: 2px var(--dark);
-            paint-order: stroke fill;
-            margin-top: -10px;
+            font-size: 1.2rem;
         }
 
         .ribbon-2999 .rb-text .amt {
             color: #fff;
-            font-size: 2.3rem;
-            -webkit-text-stroke: 2px var(--dark);
-            paint-order: stroke fill;
-            margin-top: 6px;
-            text-shadow: 0 0 12px rgba(255, 216, 77, 0.7);
+            font-size: 1.6rem;
         }
 
-        /* PANELS & FULL MENU IMAGES */
-        .orange-panel {
-            background: linear-gradient(160deg, var(--orange-soft) 0%, #F06A22 100%);
-            border-radius: 32px;
-            padding: clamp(16px, 4vw, 32px);
-            margin-top: 16px;
-            box-shadow: inset 0 0 0 2px rgba(0, 0, 0, .35), 0 10px 24px rgba(0, 0, 0, .12);
-            position: relative;
-        }
-
-        .addons-figure {
-            position: relative;
-            width: min(440px, 85%);
-            margin: 10px auto 20px;
-        }
-
-        .addons-figure img.plate {
-            width: 100%;
-            display: block;
-            filter: drop-shadow(0 16px 26px rgba(0, 0, 0, .35));
-        }
-
-        .addons-figure .c-tl {
-            position: absolute;
-            top: 6%;
-            left: -8%;
-            z-index: 3;
-        }
-
-        .addons-figure .c-tr {
-            position: absolute;
-            top: -4%;
-            right: -9%;
-            z-index: 3;
-        }
-
-        .addons-figure .c-b {
-            position: absolute;
-            bottom: -6%;
-            left: 6%;
-            z-index: 3;
-        }
-
-        .addons-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .legend {
-            list-style: none;
-        }
-
-        .legend li {
-            font-family: 'Titan One', sans-serif;
-            font-size: 1.5rem;
-            color: var(--dark);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 4px 0;
-            text-transform: uppercase;
-        }
-
-        .list-title {
-            font-family: 'Titan One', sans-serif;
-            font-size: clamp(1.5rem, 4.5vw, 2.5rem);
-            text-transform: uppercase;
-            letter-spacing: .01em;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .dish-list {
-            list-style: none;
-            column-gap: 16px;
-            column-count: 2;
-        }
-
-        .dish-list li {
-            font-weight: 800;
-            font-size: 0.9rem;
-            letter-spacing: .03em;
-            text-transform: uppercase;
-            padding: 6px 10px 6px 26px;
-            position: relative;
-            margin-bottom: 6px;
-            background: rgba(255, 255, 255, 0.45);
-            border-radius: 8px;
-            backdrop-filter: blur(4px);
-            break-inside: avoid;
-        }
-
-        .dish-list li::before {
-            content: '';
-            position: absolute;
-            left: 10px;
-            top: 12px;
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--dark);
-        }
-
-        .panel-flex {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 10px;
-        }
-
-        /* PRICING & PAYMENT */
+        /* PAYMENT */
         .pay-title {
             font-family: 'Titan One', sans-serif;
-            color: var(--cream);
-            font-size: clamp(2rem, 6vw, 3.2rem);
-            text-transform: uppercase;
+            color: #000000; /* Scan & Pay heading set to black like standard section titles */
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             text-align: center;
-            -webkit-text-stroke: 2px rgba(0, 0, 0, .85);
-            paint-order: stroke fill;
-            margin-bottom: 20px;
-            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
         }
 
         .qr-big {
             display: block;
-            width: min(340px, 82%);
+            width: min(260px, 80%);
             height: auto;
             margin: 0 auto;
-            border-radius: 20px;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, .28);
+            border-radius: 14px;
             background: #ffffff;
-            padding: 12px;
+            padding: 8px;
         }
 
         .scan-pay {
             font-family: 'Lilita One', sans-serif;
             color: var(--white);
-            font-size: 1.5rem;
-            letter-spacing: .12em;
+            font-size: 1.1rem;
             text-align: center;
-            margin-top: 20px;
-            text-shadow: 0 2px 0 rgba(0, 0, 0, .25);
+            margin-top: 12px;
         }
 
         .thanks {
             font-family: 'Great Vibes', cursive;
             color: var(--dark);
-            font-size: 2.8rem;
+            font-size: 2.2rem;
             text-align: center;
-            margin-top: 10px;
         }
 
         .footer-thankyou-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
             text-align: center;
-            padding: 24px 16px;
+            padding: 16px 10px;
         }
 
+        /* Ratings Section — Highlighted 4.5 & Stars Only */
         .trust-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             background-color: #181818;
-            border: 1.5px solid #FFC107;
-            padding: 8px 22px;
-            border-radius: 50px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border: 1px solid #FFC107;
+            padding: 8px 18px;
+            border-radius: 30px;
         }
 
-        .rating-num {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            font-size: 1.05rem;
+        .rating-highlight {
             color: #FFC107;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }
 
-        .stars {
+        .stars-container {
             font-size: 1.1rem;
-            letter-spacing: 2px;
+            color: #FFC107;
             display: inline-flex;
             align-items: center;
         }
 
-        .star {
-            color: #4A3E1B;
-            transition: color 0.3s ease, filter 0.3s ease;
-            animation: sequentialGlow 3s ease-in-out infinite;
+        .stars-full {
+            letter-spacing: 1px;
         }
 
-        .star.half-star {
-            background: linear-gradient(90deg, #FFC107 50%, #444444 50%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: none;
-            filter: drop-shadow(0 0 3px rgba(255, 193, 7, 0.6));
+        /* Pulsing applied exclusively horizontally on half star icon */
+        .half-star {
+            display: inline-block;
+            margin-left: 2px;
+            animation: pulse-horizontal 1.5s infinite ease-in-out;
+            transform-origin: center;
         }
-
-        .star.s1 { animation-delay: 0.0s; }
-        .star.s2 { animation-delay: 0.3s; }
-        .star.s3 { animation-delay: 0.6s; }
-        .star.s4 { animation-delay: 0.9s; }
 
         .trust-badge .divider {
-            color: rgba(255, 255, 255, 0.3);
-            margin: 0 2px;
+            color: #FFFFFF;
         }
 
         .trust-badge .customer-count {
-            font-family: 'Poppins', sans-serif;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             color: #FFFFFF;
         }
 
         .trust-badge .customer-text {
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: 600;
-            color: #CCCCCC;
-            letter-spacing: 0.08em;
-        }
-
-        @keyframes sequentialGlow {
-            0%, 100% {
-                color: #5E4A1E;
-                filter: drop-shadow(0 0 0px transparent);
-                transform: scale(1);
-            }
-            15% {
-                color: #FFD84D;
-                filter: drop-shadow(0 0 8px #FFC107) drop-shadow(0 0 12px #FFD84D);
-                transform: scale(1.18);
-            }
-            30%, 85% {
-                color: #FFC107;
-                filter: drop-shadow(0 0 4px rgba(255, 193, 7, 0.8));
-                transform: scale(1);
-            }
-        }
-
-        @keyframes flyInStampCorner {
-            0% {
-                opacity: 0;
-                transform: scale(4) rotate(-45deg) translate(-100px, -100px);
-            }
-            70% {
-                opacity: 1;
-                transform: scale(0.9) rotate(12deg) translate(0, 0);
-            }
-            85% {
-                transform: scale(1.1) rotate(-8deg);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
-            }
-        }
-
-        @keyframes stampGlowPulseCorner {
-            0%, 100% {
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-                transform: scale(1) rotate(0deg);
-            }
-            50% {
-                box-shadow: 0 6px 18px rgba(241, 103, 15, 0.8), 0 0 12px rgba(255, 216, 77, 0.9);
-                transform: scale(1.08) rotate(0deg);
-            }
-        }
-
-        @keyframes bounceHighlight {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0) scale(1);
-            }
-            40% {
-                transform: translateY(-10px) scale(1.05);
-            }
-            60% {
-                transform: translateY(-5px) scale(1.02);
-            }
-        }
-
-        @media print {
-            .sticky-nav, .floating-contact-sidebar {
-                display: none;
-            }
-
-            body {
-                background: none;
-                padding: 0;
-                gap: 0;
-            }
-
-            .page-container {
-                page-break-after: always;
-                page-break-inside: avoid;
-            }
-
-            .page-container::before {
-                display: none;
-            }
-
-            .page {
-                box-shadow: none;
-                border-radius: 0;
-                width: 100%;
-                min-height: 100vh;
-            }
+            color: #F0E6D8;
         }
     </style>
 </head>
 <body>
 
-<!-- ENHANCED STICKY NAVIGATION -->
+<!-- STICKY NAVIGATION -->
 <nav class="sticky-nav">
     <a href="#home" class="nav-brand">
         <img src="assets/logo.png" alt="Sarah Foods Logo">
         <span class="nav-brand-text">SARAH FOODS</span>
     </a>
 
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation links">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
         <span></span>
         <span></span>
         <span></span>
@@ -1262,24 +1144,20 @@
     </div>
 </nav>
 
-<!-- Floating Contact Sidebar -->
+<!-- Floating Contact Bar -->
 <div class="floating-contact-sidebar">
-    <a href="tel:9600566044" class="floating-call-btn" aria-label="Call Sarah Foods at 9600566044">
-        <svg class="call-icon" width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF"
-             xmlns="http://www.w3.org/2000/svg">
+    <a href="tel:9600566044" class="floating-call-btn" aria-label="Call Sarah Foods">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFFFFF">
             <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
         </svg>
         <span>CALL US NOW</span>
     </a>
-
-    <a href="https://wa.me/919600566044?text=Hello%20Sarah%20Foods!%20I%20would%20like%20to%20know%20more%20about%20your%20special%20deal."
-       target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn"
-       aria-label="Contact Sarah Foods on WhatsApp at 9600566044">
-        <svg class="whatsapp-icon" width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF"
-             xmlns="http://www.w3.org/2000/svg">
-            <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.764.459 3.486 1.332 5.001L2 22l5.129-1.332a9.92 9.92 0 004.882 1.28h.005c5.505 0 9.988-4.478 9.989-9.984 0-2.668-1.039-5.176-2.927-7.062A9.925 9.925 0 0012.012 2zm.005 16.582h-.004a8.23 8.23 0 01-4.192-1.151l-.301-.179-3.116.811.831-3.033-.197-.311a8.243 8.243 0 01-1.268-4.382c0-4.551 3.703-8.255 8.255-8.255 2.205 0 4.278.859 5.838 2.419a8.204 8.204 0 012.415 5.833c-.001 4.552-3.705 8.256-8.257 8.256zm4.526-6.182c-.248-.124-1.468-.724-1.696-.807-.227-.083-.393-.124-.559.124-.165.248-.641.807-.786.973-.145.165-.29.186-.538.062-.248-.124-1.047-.386-1.995-1.231-.738-.658-1.236-1.471-1.381-1.719-.145-.248-.015-.382.109-.505.112-.111.248-.29.372-.435.124-.145.165-.248.248-.414.083-.165.041-.31-.021-.435-.062-.124-.559-1.346-.765-1.842-.201-.484-.405-.418-.559-.426h-.476c-.165 0-.435.062-.662.31-.227.248-.869.848-.869 2.068s.889 2.399 1.013 2.564c.124.165 1.75 2.672 4.239 3.747.592.256 1.055.409 1.416.524.594.189 1.135.162 1.563.098.477-.071 1.468-.6 1.674-1.18.207-.579.207-1.075.145-1.18-.062-.104-.227-.165-.475-.289z"/>
+    <a href="https://wa.me/919600566044?text=Hello%20Sarah%20Foods!" target="_blank" class="floating-whatsapp-btn"
+       aria-label="WhatsApp Sarah Foods">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFFFFF">
+            <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.764.459 3.486 1.332 5.001L2 22l5.129-1.332a9.92 9.92 0 004.882 1.28h.005c5.505 0 9.988-4.478 9.989-9.984 0-2.668-1.039-5.176-2.927-7.062A9.925 9.925 0 0012.012 2zm.005 16.582h-.004a8.23 8.23 0 01-4.192-1.151l-.301-.179-3.116.811.831-3.033-.197-.311a8.243 8.243 0 01-1.268-4.382c0-4.551 3.703-8.255 8.255-8.255 2.205 0 4.278.859 5.838 2.419a8.204 8.204 0 012.415 5.833c-.001 4.552-3.705 8.256-8.257 8.256z"/>
         </svg>
-        <span>CONTACT US ON WHATSAPP</span>
+        <span>WHATSAPP</span>
     </a>
 </div>
 
@@ -1289,24 +1167,24 @@
         <span class="deco tl">🌶️</span>
         <span class="deco mr">🧅</span>
         <div class="z">
-            <div class="hero-wrapper">
+            <div>
                 <div class="hero-top">
-                    <div class="hero-left-block">
+                    <div>
                         <h1 class="hero-title">Sarah<br>Foods</h1>
                         <p class="hero-tagline">A TASTE THAT FEELS LIKE HOME</p>
                     </div>
-
                     <div class="hero-right-block">
                         <img class="hero-logo-badge-align" src="assets/logo.png" alt="Sarah Foods Logo">
+                        <!-- Highly Attention-Grabbing Badge -->
                         <div class="starts-badge">
-                            <span class="b1">STARTS FROM<br>JUST - 2999</span>
+                            <span class="b1">STARTS FROM</span>
+                            <span class="price-highlight">₹2999</span>
                             <span class="b2">PER MONTH</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="hero-plate">
-                    <div class="hero-swoosh-soft"></div>
                     <div class="hero-callouts">
                         <span class="callout c1">FRESH<br>INGREDIENTS</span>
                         <span class="callout c2">VEG &amp;<br>NON VEG</span>
@@ -1321,7 +1199,7 @@
             <div class="contact-bar">
                 <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
                 <div class="delivery-badge">
-                    <span class="truck">🛵</span>
+                    <span class="truck scooter-anim">🛵</span>
                     <span class="t1">DOOR STEP</span>
                     <span class="t2">DELIVERY</span>
                 </div>
@@ -1360,43 +1238,43 @@
                         <tr class="row-a">
                             <td class="day">MONDAY</td>
                             <td class="item">PONGAL - VADA</td>
-                            <td class="item">LEMON RICE -<br>PORIYAL</td>
-                            <td class="item">CHAPATHI / PAROTTA<br>KURMA</td>
+                            <td class="item">LEMON RICE - PORIYAL</td>
+                            <td class="item">CHAPATHI / PAROTTA KURMA</td>
                         </tr>
                         <tr class="row-b">
                             <td class="day">TUESDAY</td>
                             <td class="item">IDLY &amp; SAMBAR</td>
-                            <td class="item">RICE,<br>KADALACURRY,<br>PORIYAL</td>
+                            <td class="item">RICE, KADALACURRY, PORIYAL</td>
                             <td class="item">DOSA - CHUTNEY</td>
                         </tr>
                         <tr class="row-a">
                             <td class="day">WEDNESDAY</td>
-                            <td class="item">IDIYAPPAM,<br>COCONUT MILK</td>
-                            <td class="item">TOMATO RICE,<br>CURD RICE,<br>PORIYAL</td>
-                            <td class="item">KUSHKA &amp;<br>EGG FRIED RICE</td>
+                            <td class="item">IDIYAPPAM, COCONUT MILK</td>
+                            <td class="item">TOMATO RICE, CURD RICE, PORIYAL</td>
+                            <td class="item">KUSHKA &amp; EGG FRIED RICE</td>
                         </tr>
                         <tr class="row-b">
                             <td class="day">THURSDAY</td>
-                            <td class="item">SEMIYA UPMA /<br>RAVA UPMA,<br>CHUTNEY</td>
-                            <td class="item">RICE,<br>MOR KULAMBU /<br>KEERAI KULAMBU,<br>PORIYAL</td>
-                            <td class="item">MINI UTHAPPAM<br>&amp; KARA CHUTNEY</td>
+                            <td class="item">SEMIYA UPMA / RAVA UPMA, CHUTNEY</td>
+                            <td class="item">RICE, MOR KULAMBU / KEERAI KULAMBU, PORIYAL</td>
+                            <td class="item">MINI UTHAPPAM &amp; KARA CHUTNEY</td>
                         </tr>
                         <tr class="row-a">
                             <td class="day">FRIDAY</td>
-                            <td class="item">IDLY &amp; CHUTNEY,<br>IDLY PODI</td>
-                            <td class="item">RICE,<br>PORIYAL, SAMBAR /<br>URUNDAI KULAMBU</td>
-                            <td class="item">VEG BRINJI,<br>PULAO &amp; ONION RAITHA</td>
+                            <td class="item">IDLY &amp; CHUTNEY, IDLY PODI</td>
+                            <td class="item">RICE, PORIYAL, SAMBAR / URUNDAI KULAMBU</td>
+                            <td class="item">VEG BRINJI, PULAO &amp; ONION RAITHA</td>
                         </tr>
                         <tr class="row-b">
                             <td class="day">SATURDAY</td>
                             <td class="item">KICHADI &amp; CHUTNEY</td>
-                            <td class="item">SAMBAR SADAM &amp;<br>PORIYAL</td>
-                            <td class="item">IDLY &amp; CHUTNEY /<br>SAMBAR</td>
+                            <td class="item">SAMBAR SADAM &amp; PORIYAL</td>
+                            <td class="item">IDLY &amp; CHUTNEY / SAMBAR</td>
                         </tr>
                         <tr class="row-a">
                             <td class="day">SUNDAY</td>
                             <td class="item">RAVA UPMA</td>
-                            <td class="item">CHICKEN BRIYANI<br>(NON-VEG SPECIAL)</td>
+                            <td class="item">CHICKEN BRIYANI (NON-VEG SPECIAL)</td>
                             <td class="item">RASAM RICE, APPALAM</td>
                         </tr>
                         </tbody>
@@ -1420,7 +1298,7 @@
             <div class="contact-bar">
                 <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
                 <div class="delivery-badge">
-                    <span class="truck">🛵</span>
+                    <span class="truck scooter-anim">🛵</span>
                     <span class="t1">DOOR STEP</span>
                     <span class="t2">DELIVERY</span>
                 </div>
@@ -1458,45 +1336,45 @@
                         <tbody>
                         <tr class="row-a">
                             <td class="day">MONDAY</td>
-                            <td class="item">Pongal - Vada,<br>Watermelon Juice</td>
-                            <td class="item">Lemon Rice - Poriyal,<br>Boiled Egg, Chicken Chukka</td>
-                            <td class="item">Chapathi / Parotta<br>Kurma</td>
+                            <td class="item">Pongal - Vada, Watermelon Juice</td>
+                            <td class="item">Lemon Rice - Poriyal, Boiled Egg, Chicken Chukka</td>
+                            <td class="item">Chapathi / Parotta Kurma</td>
                         </tr>
                         <tr class="row-b">
                             <td class="day">TUESDAY</td>
-                            <td class="item">Idly &amp; Sambar<br>+ Papaya</td>
-                            <td class="item">Rice, Kadalacurry,<br>Poriyal + Grill Chicken</td>
-                            <td class="item">Dosa - Chutney<br>+ Omelette</td>
+                            <td class="item">Idly &amp; Sambar + Papaya</td>
+                            <td class="item">Rice, Kadalacurry, Poriyal + Grill Chicken</td>
+                            <td class="item">Dosa - Chutney + Omelette</td>
                         </tr>
                         <tr class="row-a">
                             <td class="day">WEDNESDAY</td>
-                            <td class="item">Idiyappam, Coconut Milk<br>+ Muskmelon</td>
-                            <td class="item">Tomato Rice, Curd Rice,<br>Poriyal + Malai Chicken Kabab</td>
-                            <td class="item">Kushka &amp; Egg Fried Rice<br>+ Omelette</td>
+                            <td class="item">Idiyappam, Coconut Milk + Muskmelon</td>
+                            <td class="item">Tomato Rice, Curd Rice, Poriyal + Malai Chicken Kabab</td>
+                            <td class="item">Kushka &amp; Egg Fried Rice + Omelette</td>
                         </tr>
                         <tr class="row-b">
                             <td class="day">THURSDAY</td>
-                            <td class="item">Semiya Upma / Rava Upma,<br>Chutney + Amla</td>
-                            <td class="item">Rice, Mor Kulambu /<br>Keerai Kulambu, Poriyal + Fish Fry</td>
-                            <td class="item">Mini Uthappam &amp;<br>Kara Chutney + Omelette</td>
+                            <td class="item">Semiya Upma / Rava Upma, Chutney + Amla</td>
+                            <td class="item">Rice, Mor Kulambu / Keerai Kulambu, Poriyal + Fish Fry</td>
+                            <td class="item">Mini Uthappam &amp; Kara Chutney + Omelette</td>
                         </tr>
                         <tr class="row-a">
                             <td class="day">FRIDAY</td>
-                            <td class="item">Idly &amp; Chutney, Idly Podi<br>+ Pepper Mint Lemon Juice</td>
-                            <td class="item">Rice, Poriyal, Sambar /<br>Urundai Kulambu + Chicken Nallampatti</td>
-                            <td class="item">Veg Brinji, Pulao &amp;<br>Onion Raitha + Omelette</td>
+                            <td class="item">Idly &amp; Chutney, Idly Podi + Pepper Mint Lemon Juice</td>
+                            <td class="item">Rice, Poriyal, Sambar / Urundai Kulambu + Chicken Nallampatti</td>
+                            <td class="item">Veg Brinji, Pulao &amp; Onion Raitha + Omelette</td>
                         </tr>
                         <tr class="row-b">
                             <td class="day">SATURDAY</td>
-                            <td class="item">Kichadi &amp; Chutney<br>+ Neer Mor</td>
-                            <td class="item">Sambar Sadam &amp; Poriyal<br>+ Masala Chicken Kattu Varuval</td>
-                            <td class="item">Idly &amp; Chutney /<br>Sambar + Omelette</td>
+                            <td class="item">Kichadi &amp; Chutney + Neer Mor</td>
+                            <td class="item">Sambar Sadam &amp; Poriyal + Masala Chicken Kattu Varuval</td>
+                            <td class="item">Idly &amp; Chutney / Sambar + Omelette</td>
                         </tr>
                         <tr class="row-a">
                             <td class="day">SUNDAY</td>
-                            <td class="item">Rava Upma<br>+ Pomegranate Juice</td>
-                            <td class="item">Chicken Briyani<br>(Non-Veg Special) + Chicken 65</td>
-                            <td class="item">Rasam Rice, Appalam<br>+ Omelette</td>
+                            <td class="item">Rava Upma + Pomegranate Juice</td>
+                            <td class="item">Chicken Briyani (Non-Veg Special) + Chicken 65</td>
+                            <td class="item">Rasam Rice, Appalam + Omelette</td>
                         </tr>
                         </tbody>
                     </table>
@@ -1506,7 +1384,7 @@
             <div class="contact-bar">
                 <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
                 <div class="delivery-badge">
-                    <span class="truck">🛵</span>
+                    <span class="truck scooter-anim">🛵</span>
                     <span class="t1">DOOR STEP</span>
                     <span class="t2">DELIVERY</span>
                 </div>
@@ -1544,45 +1422,47 @@
                         <tbody>
                         <tr class="row-a">
                             <td class="day">MONDAY</td>
-                            <td class="item">Papaya + Cabbage-Carrot Sprout Salad<br>+ 2 Boiled Eggs / 100g Paneer</td>
-                            <td class="item">Brown Rice + Mixed Veg Curry<br>+ Grilled Chicken / Paneer + Salad</td>
-                            <td class="item">Chapathi with Veggies<br>+ 1 Boiled Egg</td>
+                            <td class="item">Papaya + Cabbage-Carrot Sprout Salad + 2 Boiled Eggs / 100g Paneer</td>
+                            <td class="item">Brown Rice + Mixed Veg Curry + Grilled Chicken / Paneer + Salad</td>
+                            <td class="item">Chapathi with Veggies + 1 Boiled Egg</td>
                         </tr>
                         <tr class="row-b">
                             <td class="day">TUESDAY</td>
-                            <td class="item">Watermelon + Lettuce-Cucumber Sprout Salad<br>+ Greek Yogurt / 2 Boiled Eggs</td>
-                            <td class="item">Brown Rice + Chana Masala<br>+ Chicken Curry / Paneer Curry + Salad</td>
-                            <td class="item">Valarai Idly with Coconut Chutney<br>+ 1 Boiled Egg</td>
+                            <td class="item">Watermelon + Lettuce-Cucumber Sprout Salad + Greek Yogurt / 2 Boiled Eggs
+                            </td>
+                            <td class="item">Brown Rice + Chana Masala + Chicken Curry / Paneer Curry + Salad</td>
+                            <td class="item">Valarai Idly with Coconut Chutney + 1 Boiled Egg</td>
                         </tr>
                         <tr class="row-a">
                             <td class="day">WEDNESDAY</td>
-                            <td class="item">Banana + Broccoli-Cabbage Salad<br>+ 2 Boiled Eggs / Paneer</td>
-                            <td class="item">Brown Rice + Beans Poriyal<br>+ Pepper Chicken / Paneer Pepper Fry + Salad</td>
-                            <td class="item">Club Sandwich Chicken / Paneer<br>+ 1 Boiled Egg</td>
+                            <td class="item">Banana + Broccoli-Cabbage Salad + 2 Boiled Eggs / Paneer</td>
+                            <td class="item">Brown Rice + Beans Poriyal + Pepper Chicken / Paneer Pepper Fry + Salad
+                            </td>
+                            <td class="item">Club Sandwich Chicken / Paneer + 1 Boiled Egg</td>
                         </tr>
                         <tr class="row-b">
                             <td class="day">THURSDAY</td>
-                            <td class="item">Muskmelon + Caesar Salad<br>(Lettuce, Parmesan, Light Dressing) + Eggs</td>
-                            <td class="item">Brown Rice + Vegetable Kurma<br>+ Grilled Chicken / Paneer Tikka + Salad</td>
-                            <td class="item">Wrap Chicken / Paneer<br>+ 1 Boiled Egg</td>
+                            <td class="item">Muskmelon + Caesar Salad (Lettuce, Parmesan, Light Dressing) + Eggs</td>
+                            <td class="item">Brown Rice + Vegetable Kurma + Grilled Chicken / Paneer Tikka + Salad</td>
+                            <td class="item">Wrap Chicken / Paneer + 1 Boiled Egg</td>
                         </tr>
                         <tr class="row-a">
                             <td class="day">FRIDAY</td>
-                            <td class="item">Guava + Cabbage-Lettuce Sprout Salad<br>+ Greek Yogurt</td>
-                            <td class="item">Brown Rice + Mixed Veg Curry<br>+ Chicken Masala / Paneer Masala + Salad</td>
-                            <td class="item">Gut Health Bowl<br>+ 1 Boiled Egg</td>
+                            <td class="item">Guava + Cabbage-Lettuce Sprout Salad + Greek Yogurt</td>
+                            <td class="item">Brown Rice + Mixed Veg Curry + Chicken Masala / Paneer Masala + Salad</td>
+                            <td class="item">Gut Health Bowl + 1 Boiled Egg</td>
                         </tr>
                         <tr class="row-b">
                             <td class="day">SATURDAY</td>
-                            <td class="item">Pineapple + Broccoli-Cucumber Sprout Salad<br>+ 2 Boiled Eggs</td>
-                            <td class="item">Brown Rice + Cabbage Peas Curry<br>+ Herb Chicken / Paneer + Salad</td>
-                            <td class="item">Veg Masala Idly with Sambhar<br>+ 1 Boiled Egg</td>
+                            <td class="item">Pineapple + Broccoli-Cucumber Sprout Salad + 2 Boiled Eggs</td>
+                            <td class="item">Brown Rice + Cabbage Peas Curry + Herb Chicken / Paneer + Salad</td>
+                            <td class="item">Veg Masala Idly with Sambhar + 1 Boiled Egg</td>
                         </tr>
                         <tr class="row-a">
                             <td class="day">SUNDAY</td>
-                            <td class="item">Mixed Fruit Bowl<br>+ Sprout Salad + Greek Yogurt</td>
-                            <td class="item">Brown Rice + Dal + Veg Curry<br>+ Chicken Roast / Paneer Tikka + Salad</td>
-                            <td class="item">Chicken Bowl with Amla Juice<br>+ 1 Boiled Egg</td>
+                            <td class="item">Mixed Fruit Bowl + Sprout Salad + Greek Yogurt</td>
+                            <td class="item">Brown Rice + Dal + Veg Curry + Chicken Roast / Paneer Tikka + Salad</td>
+                            <td class="item">Chicken Bowl with Amla Juice + 1 Boiled Egg</td>
                         </tr>
                         </tbody>
                     </table>
@@ -1592,7 +1472,7 @@
             <div class="contact-bar">
                 <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
                 <div class="delivery-badge">
-                    <span class="truck">🛵</span>
+                    <span class="truck scooter-anim">🛵</span>
                     <span class="t1">DOOR STEP</span>
                     <span class="t2">DELIVERY</span>
                 </div>
@@ -1615,9 +1495,9 @@
 
                 <div class="orange-panel">
                     <div class="addons-figure">
-                        <span class="callout c-tl">QUICK CRAVING<br>FIX</span>
-                        <span class="callout c-tr">FRESH AND<br>HEALTHY</span>
-                        <span class="callout c-b">UPGRADE YOUR<br>MEAL</span>
+                        <span class="callout c-tl">QUICK CRAVING FIX</span>
+                        <span class="callout c-tr">FRESH &amp; HEALTHY</span>
+                        <span class="callout c-b">UPGRADE YOUR MEAL</span>
                         <img class="plate" src="assets/addons-plate.png" alt="Add-ons platter">
                     </div>
 
@@ -1628,7 +1508,7 @@
                             <li><span class="veg-dot blue"></span> SEA FOODS</li>
                         </ul>
                         <div class="under-89">
-                            <div class="l1">ALL SIDE DISHES<br>ARE UNDER</div>
+                            <div class="l1">ALL SIDE DISHES ARE UNDER</div>
                             <span class="price">89</span><span class="only">ONLY</span>
                         </div>
                     </div>
@@ -1640,7 +1520,7 @@
             <div class="contact-bar">
                 <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
                 <div class="delivery-badge">
-                    <span class="truck">🛵</span>
+                    <span class="truck scooter-anim">🛵</span>
                     <span class="t1">DOOR STEP</span>
                     <span class="t2">DELIVERY</span>
                 </div>
@@ -1657,9 +1537,8 @@
         <div class="z">
             <div>
                 <div class="title-with-logo">
-                    <h2 class="list-title">CHICKEN &amp; SEA FOOD VARIETIES
-                        <span class="veg-dot red"></span><span class="veg-dot blue"></span>
-                    </h2>
+                    <h2 class="list-title">CHICKEN &amp; SEA FOOD <span class="veg-dot red"></span><span
+                            class="veg-dot blue"></span></h2>
                     <img class="header-logo" src="assets/logo.png" alt="Sarah Foods Logo">
                 </div>
 
@@ -1693,9 +1572,9 @@
                         <li>CHICKEN MAHARANI</li>
                         <li>MONIKA CHICKEN</li>
                     </ul>
-                    <div class="panel-flex">
+                    <div style="margin-top:15px; text-align:center;">
                         <div class="under-89">
-                            <div class="l1">ALL SIDE DISHES<br>ARE UNDER</div>
+                            <div class="l1">ALL SIDE DISHES ARE UNDER</div>
                             <span class="price">89</span><span class="only">ONLY</span>
                         </div>
                     </div>
@@ -1707,7 +1586,7 @@
             <div class="contact-bar">
                 <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
                 <div class="delivery-badge">
-                    <span class="truck">🛵</span>
+                    <span class="truck scooter-anim">🛵</span>
                     <span class="t1">DOOR STEP</span>
                     <span class="t2">DELIVERY</span>
                 </div>
@@ -1729,7 +1608,7 @@
                 </div>
 
                 <div class="orange-panel">
-                    <ul class="dish-list" style="margin-bottom:16px;">
+                    <ul class="dish-list">
                         <li>BOILED EGG</li>
                         <li>FULL BOIL</li>
                         <li>OMELETTE</li>
@@ -1751,9 +1630,9 @@
                         <li>MEAL MAKER MASALA</li>
                         <li>MEAL MAKER CHUKKA</li>
                     </ul>
-                    <div class="panel-flex">
+                    <div style="margin-top:15px; text-align:center;">
                         <div class="under-89">
-                            <div class="l1">ALL SIDE DISHES<br>ARE UNDER</div>
+                            <div class="l1">ALL SIDE DISHES ARE UNDER</div>
                             <span class="price">89</span><span class="only">ONLY</span>
                         </div>
                     </div>
@@ -1765,7 +1644,7 @@
             <div class="contact-bar">
                 <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
                 <div class="delivery-badge">
-                    <span class="truck">🛵</span>
+                    <span class="truck scooter-anim">🛵</span>
                     <span class="t1">DOOR STEP</span>
                     <span class="t2">DELIVERY</span>
                 </div>
@@ -1774,7 +1653,7 @@
     </section>
 </div>
 
-<!-- PAGE 6 (CHECKOUT / PAYMENT) -->
+<!-- PAGE 6 (PAYMENT) -->
 <div class="page-container" id="payment">
     <section class="page page-6">
         <span class="deco tl">🧅</span>
@@ -1797,7 +1676,7 @@
             <div class="contact-bar">
                 <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
                 <div class="delivery-badge">
-                    <span class="truck">🛵</span>
+                    <span class="truck scooter-anim">🛵</span>
                     <span class="t1">DOOR STEP</span>
                     <span class="t2">DELIVERY</span>
                 </div>
@@ -1806,10 +1685,21 @@
             <div class="footer-thankyou-container">
                 <div class="thanks">Thank You for Choosing Sarah Foods!</div>
                 <div class="trust-badge">
-                    <span class="rating-num">4.5</span>
-                    <span class="stars">
-                        <span class="star s1">★</span><span class="star s2">★</span><span class="star s3">★</span><span
-                            class="star s4">★</span><span class="star half-star">★</span>
+                    <span class="rating-highlight">
+                        4.5
+                        <span class="stars-container">
+                            <span class="stars-full">★★★★</span>
+<svg width="20" height="20" viewBox="0 0 24 24">
+  <defs>
+    <linearGradient id="half-star">
+      <stop offset="50%" stop-color="#FFC107"/>
+      <stop offset="50%" stop-color="#4A4A4A"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#half-star)"
+        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+                        </span>
                     </span>
                     <span class="divider">|</span>
                     <span class="customer-count">690+</span>
@@ -1821,33 +1711,56 @@
 </div>
 
 <script>
-    const navToggle = document.getElementById('navToggle');
-    const navLinks = document.getElementById('navLinks');
+    (function () {
+        function initNav() {
+            var toggle = document.getElementById('navToggle');
+            var links = document.getElementById('navLinks');
 
-    if (navToggle && navLinks) {
-        navToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            navLinks.classList.toggle('active');
-        });
+            if (!toggle || !links) return;
 
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
+            function toggleMenu(e) {
+                if (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                if (links.style.display === 'flex') {
+                    links.style.display = 'none';
+                    links.classList.remove('active');
+                } else {
+                    links.style.display = 'flex';
+                    links.classList.add('active');
+                }
+            }
+
+            toggle.addEventListener('touchstart', toggleMenu, {passive: false});
+            toggle.addEventListener('click', toggleMenu);
+
+            var navItems = links.querySelectorAll('a');
+            for (var i = 0; i < navItems.length; i++) {
+                navItems[i].addEventListener('click', function () {
+                    if (window.innerWidth <= 768) {
+                        links.style.display = 'none';
+                        links.classList.remove('active');
+                    }
+                });
+            }
+
+            document.addEventListener('click', function (e) {
+                if (!links.contains(e.target) && !toggle.contains(e.target)) {
+                    if (window.innerWidth <= 768) {
+                        links.style.display = 'none';
+                        links.classList.remove('active');
+                    }
+                }
             });
-        });
+        }
 
-        window.addEventListener('scroll', () => {
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-            }
-        }, {passive: true});
-
-        document.addEventListener('click', (e) => {
-            if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
-                navLinks.classList.remove('active');
-            }
-        });
-    }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initNav);
+        } else {
+            initNav();
+        }
+    })();
 </script>
 
 </body>
