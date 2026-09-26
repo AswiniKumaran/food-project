@@ -1684,7 +1684,7 @@
                 </div>
 
                 <div class="orange-panel" style="text-align:center;">
-                    <a href="upi://pay?pa=saithulasi98-5@okaxis&pn=Applab&cu=INR">
+                    <a href="upi://pay?pa=saithulasi98-5@okaxis&pn=SarahFoods&cu=INR">
                         <img class="qr-big" src="assets/qr-card.png" alt="UPI Checkout QR Code" loading="lazy">
                     </a>
                     <div class="scan-pay">SCAN QR CODE TO COMPLETE PAYMENT</div>
@@ -1779,11 +1779,31 @@
                 if (links.classList.contains('active')) {
                     closeMenu();
                 }
-            }, { passive: true });
+            }, {passive: true});
         }
 
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initNav);
+            document.addEventListener('DOMContentLoaded', function () {
+                const sections = document.querySelectorAll('.page-container');
+                const navLinks = document.querySelectorAll('.nav-links a');
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.getAttribute('id');
+                            navLinks.forEach(link => {
+                                if (link.getAttribute('href') === '#' + id) {
+                                    link.classList.add('active-link');
+                                } else {
+                                    link.classList.remove('active-link');
+                                }
+                            });
+                        }
+                    });
+                }, {threshold: 0.3});
+
+                sections.forEach(section => observer.observe(section));
+            });
         } else {
             initNav();
         }
