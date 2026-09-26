@@ -6,7 +6,7 @@
     <title>Sarah Foods — Menu &amp; Specials</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Bebas+Neue&family=Poppins:wght@400;600;700;800&family=Great+Vibes&family=Lilita+One&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Bebas+Neue&family=Poppins:wght@400;600;700;800&family=Great+Vibes&family=Lilita+One&family=Bodoni+Moda:ital,opsz,wght@1,6..96,600&display=swap"
           rel="stylesheet">
     <style>
         :root {
@@ -31,7 +31,6 @@
             scroll-behavior: smooth;
         }
 
-        /* Document Body with Warm Charcoal & Ambient Glow */
         body {
             background: radial-gradient(circle at 50% 20%, #2A1F1A 0%, #151110 60%, #0D0B0A 100%);
             background-attachment: fixed;
@@ -44,7 +43,7 @@
             gap: 40px;
         }
 
-        /* Enhanced Sticky Navigation Header */
+        /* Sticky Navigation */
         .sticky-nav {
             position: sticky;
             top: 0;
@@ -88,7 +87,7 @@
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
@@ -96,20 +95,20 @@
             color: #F0E6D8;
             text-decoration: none;
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.15rem;
-            letter-spacing: 0.08em;
-            padding: 7px 16px;
+            font-size: 1.05rem;
+            letter-spacing: 0.06em;
+            padding: 6px 12px;
             border-radius: 20px;
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .nav-links a span.icon {
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         .nav-links a:hover,
@@ -121,7 +120,6 @@
             transform: translateY(-2px);
         }
 
-        /* Hamburger Menu Toggle Button */
         .nav-toggle {
             display: none;
             background: transparent;
@@ -142,6 +140,38 @@
             transition: all 0.3s ease;
         }
 
+        /* Mobile Dropdown Menu */
+        @media screen and (max-width: 768px) {
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(18, 15, 14, 0.98);
+                flex-direction: column;
+                align-items: stretch;
+                padding: 15px 20px;
+                gap: 10px;
+                border-bottom: 2px solid var(--orange);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                justify-content: flex-start;
+                padding: 10px 16px;
+                font-size: 1.2rem;
+            }
+        }
+
         /* Responsive Table Wrapper */
         .table-wrapper {
             width: 100%;
@@ -154,48 +184,26 @@
             margin-bottom: 10px;
         }
 
-        /* Remove border/radius from table directly since wrapper now handles outer border */
         table.menu {
             width: 100%;
-            min-width: 480px; /* Ensures all 4 columns keep legible width on small screens */
+            min-width: 480px;
             border-collapse: collapse;
             border: none;
             border-radius: 0;
             box-shadow: none;
         }
 
-        @media (max-width: 768px) {
-            /* ... existing media query styles ... */
-            table.menu th {
-                font-size: 1.1rem;
-                padding: 6px 4px;
-            }
-
-            table.menu td {
-                font-size: 0.85rem;
-                padding: 6px 4px;
-            }
-
-            table.menu td.day {
-                font-size: 0.95rem;
-            }
-        }
-
-        /* =========================================================
-   FIXED SIDEBAR: CONSTANT ON SCREEN ACROSS ALL PAGES
-   ========================================================= */
-
+        /* Floating Sidebar */
         .floating-contact-sidebar {
             position: fixed;
-            right: 20px; /* Pinned to the right edge */
-            bottom: 30px; /* Anchored near bottom right */
+            right: 20px;
+            bottom: 30px;
             display: flex;
-            flex-direction: column; /* Stacked vertically */
+            flex-direction: column;
             gap: 12px;
-            z-index: 9999; /* Keeps it above all page elements */
+            z-index: 9999;
         }
 
-        /* Base button styling */
         .floating-call-btn,
         .floating-whatsapp-btn {
             display: inline-flex;
@@ -211,7 +219,6 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
         }
 
-        /* Call Button Styles */
         .floating-call-btn {
             background-color: var(--dark, #222222);
             color: var(--white, #ffffff);
@@ -223,7 +230,6 @@
             box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
         }
 
-        /* WhatsApp Button Styles */
         .floating-whatsapp-btn {
             background-color: #25D366;
             color: #ffffff;
@@ -236,21 +242,7 @@
             box-shadow: 0 8px 22px rgba(37, 211, 102, 0.6);
         }
 
-        /* Responsive adjustment for mobile screens */
-        @media (max-width: 576px) {
-            .floating-contact-sidebar {
-                right: 12px;
-                bottom: 20px;
-            }
-
-            .floating-call-btn span,
-            .floating-whatsapp-btn span {
-                font-size: 0.75rem;
-            }
-        }
-
-
-        /* Page Container & Radiant Glow Frame */
+        /* Page Container & Layout */
         .page-container {
             position: relative;
             width: 100%;
@@ -272,10 +264,10 @@
             position: relative;
             z-index: 1;
             width: 100%;
-            min-height: 1120px;
+            min-height: auto;
             background: var(--cream);
             overflow: hidden;
-            padding: 48px 40px 40px;
+            padding: 40px 30px;
             border-radius: 16px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
             display: flex;
@@ -283,45 +275,50 @@
             justify-content: space-between;
         }
 
-        /* Page Background Customizations */
+        @media (min-width: 769px) {
+            .page {
+                min-height: 1120px;
+            }
+        }
+
+        /* Background Varieties */
         .page-1 {
-            background: repeating-conic-gradient(from 0deg at 50% 42%, rgba(241, 103, 15, .06) 0deg 7deg, transparent 7deg 14deg),
-            var(--cream);
+            background: repeating-conic-gradient(from 0deg at 50% 42%, rgba(241, 103, 15, .06) 0deg 7deg, transparent 7deg 14deg), var(--cream);
         }
 
         .page-2 {
-            background: repeating-conic-gradient(from 45deg at 50% 50%, rgba(232, 72, 12, .05) 0deg 8deg, transparent 8deg 16deg),
-            #FFF8EB;
+            background: repeating-conic-gradient(from 45deg at 50% 50%, rgba(232, 72, 12, .05) 0deg 8deg, transparent 8deg 16deg), #FFF8EB;
             border-top: 6px solid var(--orange);
         }
 
         .page-3 {
-            background: radial-gradient(circle at top right, rgba(255, 216, 77, 0.2), transparent 60%),
-            #FAF2E1;
+            background: radial-gradient(circle at top right, rgba(255, 216, 77, 0.2), transparent 60%), #FAF2E1;
             border-top: 6px solid var(--orange-deep);
         }
 
         .page-4 {
-            background: repeating-conic-gradient(from 120deg at 50% 50%, rgba(232, 72, 12, .04) 0deg 6deg, transparent 6deg 12deg),
-            #FFF6ED;
+            background: repeating-conic-gradient(from 120deg at 50% 50%, rgba(232, 72, 12, .04) 0deg 6deg, transparent 6deg 12deg), #FFF6ED;
             border-top: 6px solid #C41E12;
         }
 
         .page-5 {
-            background: radial-gradient(circle at bottom left, rgba(11, 122, 31, 0.08), transparent 50%),
-            #F7F8F0;
+            background: radial-gradient(circle at bottom left, rgba(11, 122, 31, 0.08), transparent 50%), #F7F8F0;
             border-top: 6px solid #0B7A1F;
         }
 
         .page-6 {
-            background: radial-gradient(circle at center, rgba(255, 216, 77, 0.25), transparent 70%),
-            #FFFDF5;
+            background: radial-gradient(circle at center, rgba(255, 216, 77, 0.25), transparent 70%), #FFFDF5;
             border-top: 6px solid var(--yellow);
         }
 
-        .page-7 {
-            background: #FAF5EA;
-            border-top: 6px solid var(--dark);
+        .page-elite {
+            background: repeating-conic-gradient(from 30deg at 50% 50%, rgba(241, 103, 15, 0.05) 0deg 10deg, transparent 10deg 20deg), #FFF9EE;
+            border-top: 6px solid #E65100;
+        }
+
+        .page-diet {
+            background: radial-gradient(circle at top left, rgba(11, 122, 31, 0.1), transparent 60%), #F4F8F1;
+            border-top: 6px solid #2E7D32;
         }
 
         .deco {
@@ -363,7 +360,8 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            justify-style: space-between;
+            justify-content: space-between;
+            gap: 20px;
         }
 
         @keyframes float {
@@ -379,7 +377,6 @@
             animation: float 4s ease-in-out infinite;
         }
 
-        /* UPDATED CONTACT BAR - CENTERED & BALANCED */
         .contact-bar {
             display: flex;
             align-items: center;
@@ -518,7 +515,7 @@
         .section-title {
             font-family: 'Titan One', sans-serif;
             color: var(--orange);
-            font-size: clamp(2.6rem, 7vw, 4.4rem);
+            font-size: clamp(2.2rem, 6vw, 4.2rem);
             line-height: .95;
             letter-spacing: .01em;
             text-transform: uppercase;
@@ -621,7 +618,6 @@
             filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
         }
 
-        /* Base Badge - Straight / Unrotated */
         .starts-badge {
             position: relative;
             background: linear-gradient(180deg, var(--orange) 0%, var(--orange-deep) 100%);
@@ -631,11 +627,10 @@
             text-align: center;
             padding: 16px 18px 12px;
             box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
-            transform: none; /* No badge rotation */
+            transform: none;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
 
-        /* "SPECIAL DEAL" STAMP SEAL (Pushed to top-right overlap) */
         .starts-badge::before {
             content: "SPECIAL DEAL";
             position: absolute;
@@ -654,7 +649,6 @@
             z-index: 5;
             white-space: nowrap;
             max-width: fit-content;
-
             animation: flyInStampCorner 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
             stampGlowPulseCorner 2.2s ease-in-out infinite 0.8s;
         }
@@ -737,7 +731,7 @@
             text-align: center;
         }
 
-        /* MENU TABLE */
+        /* MENU TABLES & HEADERS */
         .menu-header {
             display: flex;
             align-items: center;
@@ -758,7 +752,7 @@
         .menu-header .mh-title h2 {
             font-family: 'Titan One', sans-serif;
             color: var(--cream);
-            font-size: clamp(1.5rem, 4.5vw, 2.4rem);
+            font-size: clamp(1.4rem, 4.5vw, 2.4rem);
             background: linear-gradient(180deg, var(--orange) 0%, var(--orange-deep) 100%);
             padding: 12px 10px 4px;
             border-radius: 20px 20px 0 0;
@@ -767,10 +761,18 @@
         .menu-header .mh-title .hours {
             font-family: 'Titan One', sans-serif;
             color: var(--yellow);
-            font-size: clamp(1.1rem, 3.5vw, 1.6rem);
+            font-size: clamp(1rem, 3.5vw, 1.6rem);
             background: linear-gradient(180deg, var(--orange-deep) 0%, var(--orange) 100%);
             padding: 2px 10px 10px;
             border-radius: 0 0 20px 20px;
+        }
+
+        .diet-header h2 {
+            background: linear-gradient(180deg, #2E7D32 0%, #1B5E20 100%) !important;
+        }
+
+        .diet-header .hours {
+            background: linear-gradient(180deg, #1B5E20 0%, #2E7D32 100%) !important;
         }
 
         .menu-header img.logo-sm {
@@ -788,7 +790,7 @@
 
         table.menu th {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             letter-spacing: .08em;
             padding: 8px 6px;
             background: linear-gradient(180deg, #FFF7E6 0%, #F5E3BD 100%);
@@ -800,13 +802,13 @@
         }
 
         table.menu td {
-            padding: 12px 8px;
+            padding: 10px 6px;
             text-align: center;
             vertical-align: middle;
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             letter-spacing: .05em;
-            line-height: 1.25;
+            line-height: 1.2;
         }
 
         table.menu tr.row-a td {
@@ -830,7 +832,7 @@
         }
 
         table.menu td.day {
-            font-size: 1.3rem;
+            font-size: 1.15rem;
             font-weight: 700;
         }
 
@@ -858,11 +860,10 @@
 
         .extras-list li {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.45rem;
+            font-size: 1.35rem;
             letter-spacing: .05em;
-            padding: 4px 0;
+            padding: 4px 0 4px 24px;
             position: relative;
-            padding-left: 24px;
         }
 
         .extras-list li::before {
@@ -902,7 +903,7 @@
 
         .ribbon-2999 .rb-text .just {
             color: #fff;
-            font-size: 2rem;
+            font-size: 1.8rem;
             -webkit-text-stroke: 2px var(--dark);
             paint-order: stroke fill;
             margin-top: -10px;
@@ -910,18 +911,18 @@
 
         .ribbon-2999 .rb-text .amt {
             color: #fff;
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             -webkit-text-stroke: 2px var(--dark);
             paint-order: stroke fill;
             margin-top: 6px;
             text-shadow: 0 0 12px rgba(255, 216, 77, 0.7);
         }
 
-        /* PANELS & LISTS */
+        /* PANELS & FULL MENU IMAGES */
         .orange-panel {
             background: linear-gradient(160deg, var(--orange-soft) 0%, #F06A22 100%);
             border-radius: 32px;
-            padding: clamp(20px, 4vw, 32px);
+            padding: clamp(16px, 4vw, 32px);
             margin-top: 16px;
             box-shadow: inset 0 0 0 2px rgba(0, 0, 0, .35), 0 10px 24px rgba(0, 0, 0, .12);
             position: relative;
@@ -974,7 +975,7 @@
 
         .legend li {
             font-family: 'Titan One', sans-serif;
-            font-size: 1.7rem;
+            font-size: 1.5rem;
             color: var(--dark);
             display: flex;
             align-items: center;
@@ -985,7 +986,7 @@
 
         .list-title {
             font-family: 'Titan One', sans-serif;
-            font-size: clamp(1.6rem, 4.5vw, 2.5rem);
+            font-size: clamp(1.5rem, 4.5vw, 2.5rem);
             text-transform: uppercase;
             letter-spacing: .01em;
             display: flex;
@@ -1002,7 +1003,7 @@
 
         .dish-list li {
             font-weight: 800;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             letter-spacing: .03em;
             text-transform: uppercase;
             padding: 6px 10px 6px 26px;
@@ -1058,7 +1059,7 @@
         .scan-pay {
             font-family: 'Lilita One', sans-serif;
             color: var(--white);
-            font-size: 1.7rem;
+            font-size: 1.5rem;
             letter-spacing: .12em;
             text-align: center;
             margin-top: 20px;
@@ -1082,18 +1083,6 @@
             padding: 24px 16px;
         }
 
-        /* Single-color Italian style font */
-        .thank-you-heading {
-            font-family: 'Bodoni Moda', 'Didot', 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: #1A1A1A; /* Solid single color */
-            margin: 0;
-            letter-spacing: -0.01em;
-        }
-
-        /* Sleek Dark Pill Badge */
         .trust-badge {
             display: inline-flex;
             align-items: center;
@@ -1112,8 +1101,6 @@
             color: #FFC107;
         }
 
-        /* 4.5 Stars display */
-        /* CONTAINER FOR STARS */
         .stars {
             font-size: 1.1rem;
             letter-spacing: 2px;
@@ -1121,40 +1108,24 @@
             align-items: center;
         }
 
-        /* BASE STYLING FOR ALL STARS */
         .star {
-            color: #4A3E1B; /* Dim base gold color before glowing */
+            color: #4A3E1B;
             transition: color 0.3s ease, filter 0.3s ease;
             animation: sequentialGlow 3s ease-in-out infinite;
         }
 
-        /* HALF STAR PERMANENT 4.5 RATING STYLING */
         .star.half-star {
-            /* 50% Golden, 50% Dark Gray split */
             background: linear-gradient(90deg, #FFC107 50%, #444444 50%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: none; /* Stays constant for 4.5 rating */
+            animation: none;
             filter: drop-shadow(0 0 3px rgba(255, 193, 7, 0.6));
         }
 
-        /* SEQUENTIAL ANIMATION DELAYS (1 BY 1) */
-        .star.s1 {
-            animation-delay: 0.0s;
-        }
-
-        .star.s2 {
-            animation-delay: 0.3s;
-        }
-
-        .star.s3 {
-            animation-delay: 0.6s;
-        }
-
-        .star.s4 {
-            animation-delay: 0.9s;
-        }
-
+        .star.s1 { animation-delay: 0.0s; }
+        .star.s2 { animation-delay: 0.3s; }
+        .star.s3 { animation-delay: 0.6s; }
+        .star.s4 { animation-delay: 0.9s; }
 
         .trust-badge .divider {
             color: rgba(255, 255, 255, 0.3);
@@ -1176,11 +1147,6 @@
             letter-spacing: 0.08em;
         }
 
-        /* STAR CONTAINER */
-
-
-        /* KEYFRAMES FOR THE LIGHT SWEEP */
-        /* ONE-BY-ONE GLOW KEYFRAMES */
         @keyframes sequentialGlow {
             0%, 100% {
                 color: #5E4A1E;
@@ -1188,12 +1154,12 @@
                 transform: scale(1);
             }
             15% {
-                color: #FFD84D; /* Bright Gold Glow */
+                color: #FFD84D;
                 filter: drop-shadow(0 0 8px #FFC107) drop-shadow(0 0 12px #FFD84D);
                 transform: scale(1.18);
             }
             30%, 85% {
-                color: #FFC107; /* Holds Constant Warm Gold */
+                color: #FFC107;
                 filter: drop-shadow(0 0 4px rgba(255, 193, 7, 0.8));
                 transform: scale(1);
             }
@@ -1217,7 +1183,6 @@
             }
         }
 
-        /* 2. Continuous Glow Pulse in Top-Right Position */
         @keyframes stampGlowPulseCorner {
             0%, 100% {
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
@@ -1241,93 +1206,8 @@
             }
         }
 
-        /* RESPONSIVE STYLES */
-        @media (max-width: 900px) {
-            .nav-toggle {
-                display: flex;
-            }
-
-            .nav-links {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100vw;
-                background: rgba(18, 15, 14, 0.98);
-                flex-direction: column;
-                padding: 16px;
-                gap: 12px;
-                display: none;
-                border-bottom: 2px solid var(--orange);
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links a {
-                width: 100%;
-                justify-content: center;
-                padding: 10px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 0 0 90px;
-                gap: 20px;
-            }
-
-            .sticky-nav {
-                padding: 10px 16px;
-            }
-
-            .page-container {
-                max-width: 100%;
-            }
-
-            .page-container::before {
-                inset: 0;
-                border-radius: 0;
-            }
-
-            .page {
-                padding: 28px 16px;
-                min-height: auto;
-                border-radius: 0;
-            }
-
-            table.menu td {
-                font-size: 0.95rem;
-                padding: 8px 4px;
-            }
-
-            .dish-list {
-                column-count: 1;
-            }
-
-            .hero-right-block {
-                align-items: flex-start;
-            }
-
-            .header-logo {
-                width: 70px;
-            }
-
-            .floating-call-btn {
-                bottom: 16px;
-                right: 16px;
-                padding: 10px 16px;
-                font-size: 1.1rem;
-            }
-
-            .contact-bar {
-                gap: 16px;
-            }
-        }
-
         @media print {
-            .sticky-nav, .floating-call-btn {
+            .sticky-nav, .floating-contact-sidebar {
                 display: none;
             }
 
@@ -1373,16 +1253,17 @@
     <div class="nav-links" id="navLinks">
         <a href="#home"><span class="icon">🏠</span> HOME</a>
         <a href="#daily-menu"><span class="icon">📅</span> DAILY MENU</a>
-        <a href="#add-ons"><span class="icon">🥗</span> ADD-ONS</a>
+        <a href="#elite-menu"><span class="icon">👑</span> ELITE MENU</a>
+        <a href="#diet-menu"><span class="icon">🥗</span> DIET MENU</a>
+        <a href="#add-ons"><span class="icon">🥘</span> ADD-ONS</a>
         <a href="#chicken-seafood"><span class="icon">🍗</span> CHICKEN &amp; SEAFOOD</a>
         <a href="#egg-veg"><span class="icon">🍳</span> EGG &amp; VEG</a>
         <a href="#payment"><span class="icon">💳</span> PAYMENT</a>
     </div>
 </nav>
 
-<!-- Floating Contact Sidebar (Fixed on Side) -->
+<!-- Floating Contact Sidebar -->
 <div class="floating-contact-sidebar">
-    <!-- Call Button -->
     <a href="tel:9600566044" class="floating-call-btn" aria-label="Call Sarah Foods at 9600566044">
         <svg class="call-icon" width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF"
              xmlns="http://www.w3.org/2000/svg">
@@ -1391,11 +1272,8 @@
         <span>CALL US NOW</span>
     </a>
 
-    <!-- WhatsApp Button -->
     <a href="https://wa.me/919600566044?text=Hello%20Sarah%20Foods!%20I%20would%20like%20to%20know%20more%20about%20your%20special%20deal."
-       target="_blank"
-       rel="noopener noreferrer"
-       class="floating-whatsapp-btn"
+       target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn"
        aria-label="Contact Sarah Foods on WhatsApp at 9600566044">
         <svg class="whatsapp-icon" width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF"
              xmlns="http://www.w3.org/2000/svg">
@@ -1404,6 +1282,7 @@
         <span>CONTACT US ON WHATSAPP</span>
     </a>
 </div>
+
 <!-- PAGE 1 (HERO) -->
 <div class="page-container" id="home">
     <section class="page page-1">
@@ -1535,6 +1414,178 @@
                         <img src="assets/ribbon.png" alt="Price Ribbon">
                         <div class="rb-text"><span class="just">JUST</span><span class="amt">2999</span></div>
                     </div>
+                </div>
+            </div>
+
+            <div class="contact-bar">
+                <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
+                <div class="delivery-badge">
+                    <span class="truck">🛵</span>
+                    <span class="t1">DOOR STEP</span>
+                    <span class="t2">DELIVERY</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ELITE MENU -->
+<div class="page-container" id="elite-menu">
+    <section class="page page-elite">
+        <span class="deco tl">👑</span>
+        <span class="deco mr">🌶️</span>
+        <div class="z">
+            <div>
+                <div class="menu-header">
+                    <span class="chef-emoji">👑</span>
+                    <div class="mh-title">
+                        <h2>SARAH FOODS - ELITE MENU</h2>
+                        <div class="hours">7AM TO 7PM — ₹6999/MONTH</div>
+                    </div>
+                    <img class="logo-sm" src="assets/logo.png" alt="Sarah Foods Logo">
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="menu">
+                        <thead>
+                        <tr>
+                            <th>DAY</th>
+                            <th>MORNING</th>
+                            <th>AFTERNOON</th>
+                            <th>NIGHT</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="row-a">
+                            <td class="day">MONDAY</td>
+                            <td class="item">Pongal - Vada,<br>Watermelon Juice</td>
+                            <td class="item">Lemon Rice - Poriyal,<br>Boiled Egg, Chicken Chukka</td>
+                            <td class="item">Chapathi / Parotta<br>Kurma</td>
+                        </tr>
+                        <tr class="row-b">
+                            <td class="day">TUESDAY</td>
+                            <td class="item">Idly &amp; Sambar<br>+ Papaya</td>
+                            <td class="item">Rice, Kadalacurry,<br>Poriyal + Grill Chicken</td>
+                            <td class="item">Dosa - Chutney<br>+ Omelette</td>
+                        </tr>
+                        <tr class="row-a">
+                            <td class="day">WEDNESDAY</td>
+                            <td class="item">Idiyappam, Coconut Milk<br>+ Muskmelon</td>
+                            <td class="item">Tomato Rice, Curd Rice,<br>Poriyal + Malai Chicken Kabab</td>
+                            <td class="item">Kushka &amp; Egg Fried Rice<br>+ Omelette</td>
+                        </tr>
+                        <tr class="row-b">
+                            <td class="day">THURSDAY</td>
+                            <td class="item">Semiya Upma / Rava Upma,<br>Chutney + Amla</td>
+                            <td class="item">Rice, Mor Kulambu /<br>Keerai Kulambu, Poriyal + Fish Fry</td>
+                            <td class="item">Mini Uthappam &amp;<br>Kara Chutney + Omelette</td>
+                        </tr>
+                        <tr class="row-a">
+                            <td class="day">FRIDAY</td>
+                            <td class="item">Idly &amp; Chutney, Idly Podi<br>+ Pepper Mint Lemon Juice</td>
+                            <td class="item">Rice, Poriyal, Sambar /<br>Urundai Kulambu + Chicken Nallampatti</td>
+                            <td class="item">Veg Brinji, Pulao &amp;<br>Onion Raitha + Omelette</td>
+                        </tr>
+                        <tr class="row-b">
+                            <td class="day">SATURDAY</td>
+                            <td class="item">Kichadi &amp; Chutney<br>+ Neer Mor</td>
+                            <td class="item">Sambar Sadam &amp; Poriyal<br>+ Masala Chicken Kattu Varuval</td>
+                            <td class="item">Idly &amp; Chutney /<br>Sambar + Omelette</td>
+                        </tr>
+                        <tr class="row-a">
+                            <td class="day">SUNDAY</td>
+                            <td class="item">Rava Upma<br>+ Pomegranate Juice</td>
+                            <td class="item">Chicken Briyani<br>(Non-Veg Special) + Chicken 65</td>
+                            <td class="item">Rasam Rice, Appalam<br>+ Omelette</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="contact-bar">
+                <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
+                <div class="delivery-badge">
+                    <span class="truck">🛵</span>
+                    <span class="t1">DOOR STEP</span>
+                    <span class="t2">DELIVERY</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- DIET MENU -->
+<div class="page-container" id="diet-menu">
+    <section class="page page-diet">
+        <span class="deco tl">🥗</span>
+        <span class="deco mr">🥑</span>
+        <div class="z">
+            <div>
+                <div class="menu-header diet-header">
+                    <span class="chef-emoji">🥗</span>
+                    <div class="mh-title">
+                        <h2>SARAH FOODS - DIET MENU</h2>
+                        <div class="hours">7AM TO 7PM — ₹5999/MONTH</div>
+                    </div>
+                    <img class="logo-sm" src="assets/logo.png" alt="Sarah Foods Logo">
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="menu">
+                        <thead>
+                        <tr>
+                            <th>DAY</th>
+                            <th>MORNING</th>
+                            <th>AFTERNOON</th>
+                            <th>NIGHT</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="row-a">
+                            <td class="day">MONDAY</td>
+                            <td class="item">Papaya + Cabbage-Carrot Sprout Salad<br>+ 2 Boiled Eggs / 100g Paneer</td>
+                            <td class="item">Brown Rice + Mixed Veg Curry<br>+ Grilled Chicken / Paneer + Salad</td>
+                            <td class="item">Chapathi with Veggies<br>+ 1 Boiled Egg</td>
+                        </tr>
+                        <tr class="row-b">
+                            <td class="day">TUESDAY</td>
+                            <td class="item">Watermelon + Lettuce-Cucumber Sprout Salad<br>+ Greek Yogurt / 2 Boiled Eggs</td>
+                            <td class="item">Brown Rice + Chana Masala<br>+ Chicken Curry / Paneer Curry + Salad</td>
+                            <td class="item">Valarai Idly with Coconut Chutney<br>+ 1 Boiled Egg</td>
+                        </tr>
+                        <tr class="row-a">
+                            <td class="day">WEDNESDAY</td>
+                            <td class="item">Banana + Broccoli-Cabbage Salad<br>+ 2 Boiled Eggs / Paneer</td>
+                            <td class="item">Brown Rice + Beans Poriyal<br>+ Pepper Chicken / Paneer Pepper Fry + Salad</td>
+                            <td class="item">Club Sandwich Chicken / Paneer<br>+ 1 Boiled Egg</td>
+                        </tr>
+                        <tr class="row-b">
+                            <td class="day">THURSDAY</td>
+                            <td class="item">Muskmelon + Caesar Salad<br>(Lettuce, Parmesan, Light Dressing) + Eggs</td>
+                            <td class="item">Brown Rice + Vegetable Kurma<br>+ Grilled Chicken / Paneer Tikka + Salad</td>
+                            <td class="item">Wrap Chicken / Paneer<br>+ 1 Boiled Egg</td>
+                        </tr>
+                        <tr class="row-a">
+                            <td class="day">FRIDAY</td>
+                            <td class="item">Guava + Cabbage-Lettuce Sprout Salad<br>+ Greek Yogurt</td>
+                            <td class="item">Brown Rice + Mixed Veg Curry<br>+ Chicken Masala / Paneer Masala + Salad</td>
+                            <td class="item">Gut Health Bowl<br>+ 1 Boiled Egg</td>
+                        </tr>
+                        <tr class="row-b">
+                            <td class="day">SATURDAY</td>
+                            <td class="item">Pineapple + Broccoli-Cucumber Sprout Salad<br>+ 2 Boiled Eggs</td>
+                            <td class="item">Brown Rice + Cabbage Peas Curry<br>+ Herb Chicken / Paneer + Salad</td>
+                            <td class="item">Veg Masala Idly with Sambhar<br>+ 1 Boiled Egg</td>
+                        </tr>
+                        <tr class="row-a">
+                            <td class="day">SUNDAY</td>
+                            <td class="item">Mixed Fruit Bowl<br>+ Sprout Salad + Greek Yogurt</td>
+                            <td class="item">Brown Rice + Dal + Veg Curry<br>+ Chicken Roast / Paneer Tikka + Salad</td>
+                            <td class="item">Chicken Bowl with Amla Juice<br>+ 1 Boiled Egg</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
@@ -1741,8 +1792,6 @@
                     </a>
                     <div class="scan-pay">SCAN QR CODE TO COMPLETE PAYMENT</div>
                 </div>
-
-
             </div>
 
             <div class="contact-bar">
@@ -1753,58 +1802,46 @@
                     <span class="t2">DELIVERY</span>
                 </div>
             </div>
-            <!-- Load an Italian-style calligraphic/serif font -->
-            <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,600&family=Poppins:wght@600;700&display=swap"
-                  rel="stylesheet">
 
             <div class="footer-thankyou-container">
-                <!-- Italian style typography, uniform color -->
                 <div class="thanks">Thank You for Choosing Sarah Foods!</div>
-
-                <!-- Badge with 4.5 Stars and Customer Count -->
                 <div class="trust-badge">
                     <span class="rating-num">4.5</span>
                     <span class="stars">
-        <span class="star s1">★</span><span class="star s2">★</span><span class="star s3">★</span><span
+                        <span class="star s1">★</span><span class="star s2">★</span><span class="star s3">★</span><span
                             class="star s4">★</span><span class="star half-star">★</span>
-    </span>
+                    </span>
                     <span class="divider">|</span>
                     <span class="customer-count">690+</span>
                     <span class="customer-text">HAPPY CUSTOMERS</span>
                 </div>
             </div>
-
         </div>
     </section>
 </div>
 
 <script>
-    // Mobile Navigation Menu Toggle & Auto-Close Handler
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
 
     if (navToggle && navLinks) {
-        // Toggle mobile menu
         navToggle.addEventListener('click', (e) => {
             e.stopPropagation();
             navLinks.classList.toggle('active');
         });
 
-        // Close menu when clicking navigation items
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
             });
         });
 
-        // Close menu when user scrolls down
         window.addEventListener('scroll', () => {
             if (navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
             }
-        }, { passive: true });
+        }, {passive: true});
 
-        // Close menu if user clicks anywhere outside the menu
         document.addEventListener('click', (e) => {
             if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
                 navLinks.classList.remove('active');
