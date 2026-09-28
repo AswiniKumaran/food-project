@@ -6,8 +6,7 @@
     <title>Sarah Foods — Menu &amp; Specials</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Bebas+Neue&family=Poppins:wght@400;600;700;800&family=Great+Vibes&family=Lilita+One&family=Bodoni+Moda:ital,opsz,wght@1,6..96,600&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Bebas+Neue&family=Poppins:wght@400;600;700;800&family=Great+Vibes&family=Lilita+One&family=Bodoni+Moda:ital,opsz,wght@1,6..96,600&display=swap" rel="stylesheet">
     <style>
         :root {
             --cream: #FBF0D6;
@@ -32,6 +31,10 @@
         }
 
         body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
             background: radial-gradient(circle at 50% 20%, #2A1F1A 0%, #151110 60%, #0D0B0A 100%);
             background-attachment: fixed;
             font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -45,15 +48,9 @@
 
         /* Pulsing Keyframes */
         @keyframes pulse-subtle {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         @keyframes pulse-glow-hero {
@@ -71,7 +68,6 @@
             }
         }
 
-        /* Horizontal Pulse exclusively for the Half Star */
         @keyframes pulse-horizontal {
             0% {
                 transform: scaleX(1);
@@ -87,27 +83,15 @@
             }
         }
 
-        /* Scooter Motion — Horizontal Left Motion */
         @keyframes scooter-drive-left {
-            0% {
-                transform: translateX(0px);
-            }
-            50% {
-                transform: translateX(-6px);
-            }
-            100% {
-                transform: translateX(0px);
-            }
+            0% { transform: translateX(0px); }
+            50% { transform: translateX(-6px); }
+            100% { transform: translateX(0px); }
         }
 
-        /* Floating Callout Animations */
         @keyframes float-tag-vertical {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-7px);
-            }
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-7px); }
         }
 
         .scooter-anim {
@@ -180,17 +164,6 @@
             font-weight: bold;
         }
 
-        @media screen and (max-width: 768px) {
-            .menu-header {
-                position: sticky;
-                top: 57px; /* Height of the sticky navbar */
-                z-index: 900;
-                background: var(--cream);
-                padding: 8px 0;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }
-        }
-
         .nav-toggle {
             display: none;
             background: transparent;
@@ -212,7 +185,6 @@
             pointer-events: none;
         }
 
-        /* Floating Contact Sidebar / Bottom Bar */
         .floating-contact-sidebar {
             position: fixed;
             right: 20px;
@@ -254,6 +226,7 @@
             max-width: 800px;
             scroll-margin-top: 65px;
             padding: 0 10px;
+            overflow: visible;
         }
 
         .page {
@@ -276,7 +249,6 @@
             }
         }
 
-        /* Background Varieties */
         .page-1 {
             background: repeating-conic-gradient(from 0deg at 50% 42%, rgba(241, 103, 15, .06) 0deg 7deg, transparent 7deg 14deg), var(--cream);
         }
@@ -326,25 +298,25 @@
         }
 
         .deco.tl {
-            top: -8px;
-            left: -14px;
+            top: 5px;
+            left: 5px;
             transform: rotate(-15deg);
         }
 
         .deco.tr {
-            top: -4px;
-            right: -14px;
+            top: 5px;
+            right: 5px;
             transform: rotate(20deg) scaleX(-1);
         }
 
         .deco.ml {
             top: 45%;
-            left: -24px;
+            left: 5px;
         }
 
         .deco.mr {
             top: 52%;
-            right: -22px;
+            right: 5px;
             transform: scaleX(-1);
         }
 
@@ -466,31 +438,13 @@
             border-radius: 50%;
         }
 
-        .veg-dot.green {
-            border-color: #0B7A1F;
-        }
+        .veg-dot.green { border-color: #0B7A1F; }
+        .veg-dot.green::after { background: #0B7A1F; }
+        .veg-dot.red { border-color: #C41E12; }
+        .veg-dot.red::after { background: #C41E12; }
+        .veg-dot.blue { border-color: #0E9EC7; }
+        .veg-dot.blue::after { background: #0E9EC7; }
 
-        .veg-dot.green::after {
-            background: #0B7A1F;
-        }
-
-        .veg-dot.red {
-            border-color: #C41E12;
-        }
-
-        .veg-dot.red::after {
-            background: #C41E12;
-        }
-
-        .veg-dot.blue {
-            border-color: #0E9EC7;
-        }
-
-        .veg-dot.blue::after {
-            background: #0E9EC7;
-        }
-
-        /* HERO AREA & HIGHLIGHTED STARTS BADGE */
         .hero-top {
             display: flex;
             justify-content: space-between;
@@ -525,7 +479,6 @@
             height: auto;
         }
 
-        /* Highly Attention-Grabbing "Starts from 2999" Badge */
         .starts-badge {
             background: linear-gradient(135deg, #FF1744 0%, #D50000 50%, #B71C1C 100%);
             border: 3px solid var(--yellow);
@@ -591,10 +544,9 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
         }
 
-        /* Page 1 Floating Motion Tags */
         .hero-callouts .c1 {
             position: absolute;
-            top: -5px;
+            top: 0;
             left: 0;
             animation: float-tag-vertical 3s infinite ease-in-out;
         }
@@ -602,14 +554,14 @@
         .hero-callouts .c2 {
             position: absolute;
             bottom: 5%;
-            left: -5px;
+            left: 0;
             animation: float-tag-vertical 3.5s infinite ease-in-out 0.5s;
         }
 
         .hero-callouts .c3 {
             position: absolute;
             bottom: 5%;
-            right: -5px;
+            right: 0;
             animation: float-tag-vertical 2.8s infinite ease-in-out 0.2s;
         }
 
@@ -620,29 +572,27 @@
             text-align: center;
         }
 
-        /* Add-Ons Page Floating Motion Tags */
         .addons-figure .c-tl {
             position: absolute;
             top: 0;
-            left: -5%;
+            left: 0;
             animation: float-tag-vertical 3.2s infinite ease-in-out;
         }
 
         .addons-figure .c-tr {
             position: absolute;
-            top: -5%;
-            right: -5%;
+            top: 0;
+            right: 0;
             animation: float-tag-vertical 3.8s infinite ease-in-out 0.4s;
         }
 
         .addons-figure .c-b {
             position: absolute;
-            bottom: -5%;
+            bottom: 0;
             left: 0;
             animation: float-tag-vertical 3s infinite ease-in-out 0.2s;
         }
 
-        /* TABLES & MOBILE CARD TRANSFORMATION */
         .table-wrapper {
             width: 100%;
             border-radius: 14px;
@@ -676,33 +626,15 @@
             line-height: 1.2;
         }
 
-        table.menu tr.row-a td {
-            background: var(--panel);
-        }
+        table.menu tr.row-a td { background: var(--panel); }
+        table.menu tr.row-a td.day { color: var(--dark); }
+        table.menu tr.row-a td.item { color: var(--white); }
 
-        table.menu tr.row-a td.day {
-            color: var(--dark);
-        }
+        table.menu tr.row-b td { background: var(--cream); }
+        table.menu tr.row-b td.item { color: var(--orange-deep); }
 
-        table.menu tr.row-a td.item {
-            color: var(--white);
-        }
-
-        table.menu tr.row-b td {
-            background: var(--cream);
-        }
-
-        table.menu tr.row-b td.item {
-            color: var(--orange-deep);
-        }
-
-        table.menu td + td {
-            border-left: 2px solid var(--dark);
-        }
-
-        table.menu tr + tr td {
-            border-top: 1px solid rgba(0, 0, 0, 0.2);
-        }
+        table.menu td + td { border-left: 2px solid var(--dark); }
+        table.menu tr + tr td { border-top: 1px solid rgba(0, 0, 0, 0.2); }
 
         .menu-header {
             display: flex;
@@ -712,12 +644,10 @@
             margin-bottom: 12px;
         }
 
-        /* Scaled up Icons for Pages 2, 3, & 4 */
         .menu-header .chef-emoji {
             font-size: 3.2rem;
             line-height: 1;
             display: inline-block;
-            transition: transform 0.2s ease-in-out;
         }
 
         .menu-header .mh-title h2 {
@@ -752,7 +682,6 @@
             width: 55px;
         }
 
-        /* Mobile Rules */
         @media screen and (max-width: 768px) {
             .nav-toggle {
                 display: flex !important;
@@ -843,24 +772,15 @@
                 flex: 0 0 85px;
             }
 
-            table.menu td:nth-child(2)::before {
-                content: "MORNING:";
-            }
-
-            table.menu td:nth-child(3)::before {
-                content: "AFTERNOON:";
-            }
-
-            table.menu td:nth-child(4)::before {
-                content: "NIGHT:";
-            }
+            table.menu td:nth-child(2)::before { content: "MORNING:"; }
+            table.menu td:nth-child(3)::before { content: "AFTERNOON:"; }
+            table.menu td:nth-child(4)::before { content: "NIGHT:"; }
 
             .dish-list {
                 column-count: 1 !important;
             }
         }
 
-        /* PANELS & ADD-ONS */
         .orange-panel {
             background: linear-gradient(160deg, var(--orange-soft) 0%, #F06A22 100%);
             border-radius: 20px;
@@ -888,10 +808,7 @@
             margin-top: 15px;
         }
 
-        .legend {
-            list-style: none;
-        }
-
+        .legend { list-style: none; }
         .legend li {
             font-family: 'Titan One', sans-serif;
             font-size: 1.1rem;
@@ -1037,10 +954,9 @@
             font-size: 1.6rem;
         }
 
-        /* PAYMENT */
         .pay-title {
             font-family: 'Titan One', sans-serif;
-            color: #000000; /* Scan & Pay heading set to black like standard section titles */
+            color: #000000;
             font-size: clamp(1.5rem, 4vw, 2.5rem);
             text-align: center;
         }
@@ -1079,7 +995,6 @@
             padding: 16px 10px;
         }
 
-        /* Ratings Section — Highlighted 4.5 & Stars Only */
         .trust-badge {
             display: inline-flex;
             align-items: center;
@@ -1110,24 +1025,12 @@
             letter-spacing: 1px;
         }
 
-        /* Pulsing applied exclusively horizontally on half star icon */
-        .half-star {
-            display: inline-block;
-            margin-left: 2px;
-            animation: pulse-horizontal 1.5s infinite ease-in-out;
-            transform-origin: center;
-        }
-
-        .trust-badge .divider {
-            color: #FFFFFF;
-        }
-
+        .trust-badge .divider { color: #FFFFFF; }
         .trust-badge .customer-count {
             font-weight: 700;
             font-size: 0.9rem;
             color: #FFFFFF;
         }
-
         .trust-badge .customer-text {
             font-size: 0.7rem;
             font-weight: 600;
@@ -1170,8 +1073,7 @@
         </svg>
         <span>CALL US NOW</span>
     </a>
-    <a href="https://wa.me/919600566044?text=Hello%20Sarah%20Foods!" target="_blank" class="floating-whatsapp-btn"
-       aria-label="WhatsApp Sarah Foods">
+    <a href="https://wa.me/919600566044?text=Hello%20Sarah%20Foods!" target="_blank" class="floating-whatsapp-btn" aria-label="WhatsApp Sarah Foods">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFFFFF">
             <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.764.459 3.486 1.332 5.001L2 22l5.129-1.332a9.92 9.92 0 004.882 1.28h.005c5.505 0 9.988-4.478 9.989-9.984 0-2.668-1.039-5.176-2.927-7.062A9.925 9.925 0 0012.012 2zm.005 16.582h-.004a8.23 8.23 0 01-4.192-1.151l-.301-.179-3.116.811.831-3.033-.197-.311a8.243 8.243 0 01-1.268-4.382c0-4.551 3.703-8.255 8.255-8.255 2.205 0 4.278.859 5.838 2.419a8.204 8.204 0 012.415 5.833c-.001 4.552-3.705 8.256-8.257 8.256z"/>
         </svg>
@@ -1193,7 +1095,6 @@
                     </div>
                     <div class="hero-right-block">
                         <img class="hero-logo-badge-align" src="assets/logo.png" alt="Sarah Foods Logo">
-                        <!-- Highly Attention-Grabbing Badge -->
                         <div class="starts-badge">
                             <span class="b1">STARTS FROM</span>
                             <span class="price-highlight">₹2999</span>
@@ -1446,16 +1347,14 @@
                         </tr>
                         <tr class="row-b">
                             <td class="day">TUESDAY</td>
-                            <td class="item">Watermelon + Lettuce-Cucumber Sprout Salad + Greek Yogurt / 2 Boiled Eggs
-                            </td>
+                            <td class="item">Watermelon + Lettuce-Cucumber Sprout Salad + Greek Yogurt / 2 Boiled Eggs</td>
                             <td class="item">Brown Rice + Chana Masala + Chicken Curry / Paneer Curry + Salad</td>
                             <td class="item">Valarai Idly with Coconut Chutney + 1 Boiled Egg</td>
                         </tr>
                         <tr class="row-a">
                             <td class="day">WEDNESDAY</td>
                             <td class="item">Banana + Broccoli-Cabbage Salad + 2 Boiled Eggs / Paneer</td>
-                            <td class="item">Brown Rice + Beans Poriyal + Pepper Chicken / Paneer Pepper Fry + Salad
-                            </td>
+                            <td class="item">Brown Rice + Beans Poriyal + Pepper Chicken / Paneer Pepper Fry + Salad</td>
                             <td class="item">Club Sandwich Chicken / Paneer + 1 Boiled Egg</td>
                         </tr>
                         <tr class="row-b">
@@ -1555,8 +1454,7 @@
         <div class="z">
             <div>
                 <div class="title-with-logo">
-                    <h2 class="list-title">CHICKEN &amp; SEA FOOD <span class="veg-dot red"></span><span
-                            class="veg-dot blue"></span></h2>
+                    <h2 class="list-title">CHICKEN &amp; SEA FOOD <span class="veg-dot red"></span><span class="veg-dot blue"></span></h2>
                     <img class="header-logo" src="assets/logo.png" alt="Sarah Foods Logo">
                 </div>
 
@@ -1706,17 +1604,7 @@
                     <span class="rating-highlight">
                         4.5
                         <span class="stars-container">
-                            <span class="stars-full">★★★★</span>
-<svg width="20" height="20" viewBox="0 0 24 24">
-  <defs>
-    <linearGradient id="half-star">
-      <stop offset="50%" stop-color="#FFC107"/>
-      <stop offset="50%" stop-color="#4A4A4A"/>
-    </linearGradient>
-  </defs>
-  <path fill="url(#half-star)"
-        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-</svg>
+                            <span class="stars-full">★★★★½</span>
                         </span>
                     </span>
                     <span class="divider">|</span>
@@ -1736,7 +1624,6 @@
 
             if (!toggle || !links) return;
 
-            // Helper function to close menu
             function closeMenu() {
                 if (window.innerWidth <= 768) {
                     links.style.display = 'none';
@@ -1744,7 +1631,6 @@
                 }
             }
 
-            // Toggle menu open/close
             function toggleMenu(e) {
                 if (e) {
                     e.preventDefault();
@@ -1761,80 +1647,55 @@
             toggle.addEventListener('touchstart', toggleMenu, {passive: false});
             toggle.addEventListener('click', toggleMenu);
 
-            // 1. Close menu when any menu link is clicked
             var navItems = links.querySelectorAll('a');
             for (var i = 0; i < navItems.length; i++) {
                 navItems[i].addEventListener('click', closeMenu);
             }
 
-            // 2. Close menu when clicking anywhere outside
             document.addEventListener('click', function (e) {
                 if (!links.contains(e.target) && !toggle.contains(e.target)) {
                     closeMenu();
                 }
             });
+        }
 
-            // 3. Close menu automatically as soon as the user scrolls
-            window.addEventListener('scroll', function () {
-                if (links.classList.contains('active')) {
-                    closeMenu();
-                }
-            }, {passive: true});
+        function initObserver() {
+            const sections = document.querySelectorAll('.page-container');
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -70% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.remove('active-link');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active-link');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
         }
 
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', function () {
-                const sections = document.querySelectorAll('.page-container');
-                const navLinks = document.querySelectorAll('.nav-links a');
-
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const id = entry.target.getAttribute('id');
-                            navLinks.forEach(link => {
-                                if (link.getAttribute('href') === '#' + id) {
-                                    link.classList.add('active-link');
-                                } else {
-                                    link.classList.remove('active-link');
-                                }
-                            });
-                        }
-                    });
-                }, {threshold: 0.3});
-
-                sections.forEach(section => observer.observe(section));
+                initNav();
+                initObserver();
             });
         } else {
             initNav();
+            initObserver();
         }
     })();
 </script>
-
-const sections = document.querySelectorAll('.page-container');
-const navLinks = document.querySelectorAll('.nav-links a');
-
-const observerOptions = {
-root: null,
-rootMargin: '-20% 0px -70% 0px', // Triggers active state when section is near top of viewport
-threshold: 0
-};
-
-const observer = new IntersectionObserver((entries) => {
-entries.forEach(entry => {
-if (entry.isIntersecting) {
-const id = entry.target.getAttribute('id');
-navLinks.forEach(link => {
-link.classList.remove('active-link');
-if (link.getAttribute('href') === `#${id}`) {
-link.classList.add('active-link');
-// Scroll active link into view inside horizontal navbar if overflowed
-link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-}
-});
-}
-});
-}, observerOptions);
-
-sections.forEach(section => observer.observe(section));
 </body>
 </html>
