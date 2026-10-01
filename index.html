@@ -24,10 +24,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Bebas+Neue&family=Poppins:wght@400;600;700;800&family=Great+Vibes&family=Lilita+One&family=Bodoni+Moda:ital,opsz,wght@1,6..96,600&display=swap"
           rel="stylesheet">
     <style>
+        /* Update this class in your <style> tag */
         .sticky-header-container {
-            position: static; /* Removes sticky positioning */
+            position: -webkit-sticky;
+            position: sticky;
+            top: 52px; /* Sits right under the 0px fixed main navbar */
+            z-index: 99;
+            background: inherit; /* Keeps the background color matching the page */
             padding-top: 10px;
             padding-bottom: 10px;
+            border-radius: 12px;
+        }
+
+        /* Ensure the page wrapper permits sticky children */
+        .page {
+            overflow: visible !important;
         }
 
         :root {
@@ -264,7 +275,7 @@
             max-width: 800px;
             scroll-margin-top: 65px;
             padding: 0 10px;
-            overflow: visible;
+            overflow: visible !important;
         }
 
         .page {
@@ -278,6 +289,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            overflow: visible !important;
         }
 
         @media (min-width: 769px) {
@@ -1239,85 +1251,85 @@
                     </div>
                     <img class="logo-sm" src="assets/logo.png" alt="Sarah Foods Logo">
                 </div>
-
-                <div class="table-wrapper">
-                    <table class="menu">
-                        <thead>
-                        <tr>
-                            <th>DAY</th>
-                            <th>MORNING</th>
-                            <th>AFTERNOON</th>
-                            <th>NIGHT</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="row-a">
-                            <td class="day">MONDAY</td>
-                            <td class="item">PONGAL - VADA</td>
-                            <td class="item">LEMON RICE - PORIYAL</td>
-                            <td class="item">CHAPATHI / PAROTTA KURMA</td>
-                        </tr>
-                        <tr class="row-b">
-                            <td class="day">TUESDAY</td>
-                            <td class="item">IDLY &amp; SAMBAR</td>
-                            <td class="item">RICE, KADALACURRY, PORIYAL</td>
-                            <td class="item">DOSA - CHUTNEY</td>
-                        </tr>
-                        <tr class="row-a">
-                            <td class="day">WEDNESDAY</td>
-                            <td class="item">IDIYAPPAM, COCONUT MILK</td>
-                            <td class="item">TOMATO RICE, CURD RICE, PORIYAL</td>
-                            <td class="item">KUSHKA &amp; EGG FRIED RICE</td>
-                        </tr>
-                        <tr class="row-b">
-                            <td class="day">THURSDAY</td>
-                            <td class="item">SEMIYA UPMA / RAVA UPMA, CHUTNEY</td>
-                            <td class="item">RICE, MOR KULAMBU / KEERAI KULAMBU, PORIYAL</td>
-                            <td class="item">MINI UTHAPPAM &amp; KARA CHUTNEY</td>
-                        </tr>
-                        <tr class="row-a">
-                            <td class="day">FRIDAY</td>
-                            <td class="item">IDLY &amp; CHUTNEY, IDLY PODI</td>
-                            <td class="item">RICE, PORIYAL, SAMBAR / URUNDAI KULAMBU</td>
-                            <td class="item">VEG BRINJI, PULAO &amp; ONION RAITHA</td>
-                        </tr>
-                        <tr class="row-b">
-                            <td class="day">SATURDAY</td>
-                            <td class="item">KICHADI &amp; CHUTNEY</td>
-                            <td class="item">SAMBAR SADAM &amp; PORIYAL</td>
-                            <td class="item">IDLY &amp; CHUTNEY / SAMBAR</td>
-                        </tr>
-                        <tr class="row-a">
-                            <td class="day">SUNDAY</td>
-                            <td class="item">RAVA UPMA</td>
-                            <td class="item">CHICKEN BRIYANI (NON-VEG SPECIAL)</td>
-                            <td class="item">RASAM RICE, APPALAM</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="menu-extras">
-                    <ul class="extras-list">
-                        <li>DIET MENU - ₹90</li>
-                        <li>FOOD CUSTOMIZED - ₹70</li>
-                        <li>FRESH JUICE - ₹35</li>
-                        <li>AN EXTRA PERFECT SIDEKICK TO EVERY MEAL - ₹89</li>
-                    </ul>
-                    <div class="ribbon-2999">
-                        <img src="assets/ribbon.png" alt="Price Ribbon">
-                        <div class="rb-text"><span class="just">JUST</span><span class="amt">2999</span></div>
-                    </div>
-                </div>
             </div>
 
-            <div class="contact-bar">
-                <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
-                <div class="delivery-badge">
-                    <span class="truck scooter-anim">🛵</span>
-                    <span class="t1">DOOR STEP</span>
-                    <span class="t2">DELIVERY</span>
+            <div class="table-wrapper">
+                <table class="menu">
+                    <thead>
+                    <tr>
+                        <th>DAY</th>
+                        <th>MORNING</th>
+                        <th>AFTERNOON</th>
+                        <th>NIGHT</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="row-a">
+                        <td class="day">MONDAY</td>
+                        <td class="item">PONGAL - VADA</td>
+                        <td class="item">LEMON RICE - PORIYAL</td>
+                        <td class="item">CHAPATHI / PAROTTA KURMA</td>
+                    </tr>
+                    <tr class="row-b">
+                        <td class="day">TUESDAY</td>
+                        <td class="item">IDLY &amp; SAMBAR</td>
+                        <td class="item">RICE, KADALACURRY, PORIYAL</td>
+                        <td class="item">DOSA - CHUTNEY</td>
+                    </tr>
+                    <tr class="row-a">
+                        <td class="day">WEDNESDAY</td>
+                        <td class="item">IDIYAPPAM, COCONUT MILK</td>
+                        <td class="item">TOMATO RICE, CURD RICE, PORIYAL</td>
+                        <td class="item">KUSHKA &amp; EGG FRIED RICE</td>
+                    </tr>
+                    <tr class="row-b">
+                        <td class="day">THURSDAY</td>
+                        <td class="item">SEMIYA UPMA / RAVA UPMA, CHUTNEY</td>
+                        <td class="item">RICE, MOR KULAMBU / KEERAI KULAMBU, PORIYAL</td>
+                        <td class="item">MINI UTHAPPAM &amp; KARA CHUTNEY</td>
+                    </tr>
+                    <tr class="row-a">
+                        <td class="day">FRIDAY</td>
+                        <td class="item">IDLY &amp; CHUTNEY, IDLY PODI</td>
+                        <td class="item">RICE, PORIYAL, SAMBAR / URUNDAI KULAMBU</td>
+                        <td class="item">VEG BRINJI, PULAO &amp; ONION RAITHA</td>
+                    </tr>
+                    <tr class="row-b">
+                        <td class="day">SATURDAY</td>
+                        <td class="item">KICHADI &amp; CHUTNEY</td>
+                        <td class="item">SAMBAR SADAM &amp; PORIYAL</td>
+                        <td class="item">IDLY &amp; CHUTNEY / SAMBAR</td>
+                    </tr>
+                    <tr class="row-a">
+                        <td class="day">SUNDAY</td>
+                        <td class="item">RAVA UPMA</td>
+                        <td class="item">CHICKEN BRIYANI (NON-VEG SPECIAL)</td>
+                        <td class="item">RASAM RICE, APPALAM</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="menu-extras">
+                <ul class="extras-list">
+                    <li>DIET MENU - ₹90</li>
+                    <li>FOOD CUSTOMIZED - ₹70</li>
+                    <li>FRESH JUICE - ₹35</li>
+                    <li>AN EXTRA PERFECT SIDEKICK TO EVERY MEAL - ₹89</li>
+                </ul>
+                <div class="ribbon-2999">
+                    <img src="assets/ribbon.png" alt="Price Ribbon">
+                    <div class="rb-text"><span class="just">JUST</span><span class="amt">2999</span></div>
                 </div>
+            </div>
+        </div>
+
+        <div class="contact-bar">
+            <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
+            <div class="delivery-badge">
+                <span class="truck scooter-anim">🛵</span>
+                <span class="t1">DOOR STEP</span>
+                <span class="t2">DELIVERY</span>
             </div>
         </div>
     </section>
@@ -1338,72 +1350,72 @@
                     </div>
                     <img class="logo-sm" src="assets/logo.png" alt="Sarah Foods Logo">
                 </div>
-
-                <div class="table-wrapper">
-                    <table class="menu">
-                        <thead>
-                        <tr>
-                            <th>DAY</th>
-                            <th>MORNING</th>
-                            <th>AFTERNOON</th>
-                            <th>NIGHT</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="row-a">
-                            <td class="day">MONDAY</td>
-                            <td class="item">Pongal - Vada, Watermelon Juice</td>
-                            <td class="item">Lemon Rice - Poriyal, Boiled Egg, Chicken Chukka</td>
-                            <td class="item">Chapathi / Parotta Kurma</td>
-                        </tr>
-                        <tr class="row-b">
-                            <td class="day">TUESDAY</td>
-                            <td class="item">Idly &amp; Sambar + Papaya</td>
-                            <td class="item">Rice, Kadalacurry, Poriyal + Grill Chicken</td>
-                            <td class="item">Dosa - Chutney + Omelette</td>
-                        </tr>
-                        <tr class="row-a">
-                            <td class="day">WEDNESDAY</td>
-                            <td class="item">Idiyappam, Coconut Milk + Muskmelon</td>
-                            <td class="item">Tomato Rice, Curd Rice, Poriyal + Malai Chicken Kabab</td>
-                            <td class="item">Kushka &amp; Egg Fried Rice + Omelette</td>
-                        </tr>
-                        <tr class="row-b">
-                            <td class="day">THURSDAY</td>
-                            <td class="item">Semiya Upma / Rava Upma, Chutney + Amla</td>
-                            <td class="item">Rice, Mor Kulambu / Keerai Kulambu, Poriyal + Fish Fry</td>
-                            <td class="item">Mini Uthappam &amp; Kara Chutney + Omelette</td>
-                        </tr>
-                        <tr class="row-a">
-                            <td class="day">FRIDAY</td>
-                            <td class="item">Idly &amp; Chutney, Idly Podi + Pepper Mint Lemon Juice</td>
-                            <td class="item">Rice, Poriyal, Sambar / Urundai Kulambu + Chicken Nallampatti</td>
-                            <td class="item">Veg Brinji, Pulao &amp; Onion Raitha + Omelette</td>
-                        </tr>
-                        <tr class="row-b">
-                            <td class="day">SATURDAY</td>
-                            <td class="item">Kichadi &amp; Chutney + Neer Mor</td>
-                            <td class="item">Sambar Sadam &amp; Poriyal + Masala Chicken Kattu Varuval</td>
-                            <td class="item">Idly &amp; Chutney / Sambar + Omelette</td>
-                        </tr>
-                        <tr class="row-a">
-                            <td class="day">SUNDAY</td>
-                            <td class="item">Rava Upma + Pomegranate Juice</td>
-                            <td class="item">Chicken Briyani (Non-Veg Special) + Chicken 65</td>
-                            <td class="item">Rasam Rice, Appalam + Omelette</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
 
-            <div class="contact-bar">
-                <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
-                <div class="delivery-badge">
-                    <span class="truck scooter-anim">🛵</span>
-                    <span class="t1">DOOR STEP</span>
-                    <span class="t2">DELIVERY</span>
-                </div>
+            <div class="table-wrapper">
+                <table class="menu">
+                    <thead>
+                    <tr>
+                        <th>DAY</th>
+                        <th>MORNING</th>
+                        <th>AFTERNOON</th>
+                        <th>NIGHT</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="row-a">
+                        <td class="day">MONDAY</td>
+                        <td class="item">Pongal - Vada, Watermelon Juice</td>
+                        <td class="item">Lemon Rice - Poriyal, Boiled Egg, Chicken Chukka</td>
+                        <td class="item">Chapathi / Parotta Kurma</td>
+                    </tr>
+                    <tr class="row-b">
+                        <td class="day">TUESDAY</td>
+                        <td class="item">Idly &amp; Sambar + Papaya</td>
+                        <td class="item">Rice, Kadalacurry, Poriyal + Grill Chicken</td>
+                        <td class="item">Dosa - Chutney + Omelette</td>
+                    </tr>
+                    <tr class="row-a">
+                        <td class="day">WEDNESDAY</td>
+                        <td class="item">Idiyappam, Coconut Milk + Muskmelon</td>
+                        <td class="item">Tomato Rice, Curd Rice, Poriyal + Malai Chicken Kabab</td>
+                        <td class="item">Kushka &amp; Egg Fried Rice + Omelette</td>
+                    </tr>
+                    <tr class="row-b">
+                        <td class="day">THURSDAY</td>
+                        <td class="item">Semiya Upma / Rava Upma, Chutney + Amla</td>
+                        <td class="item">Rice, Mor Kulambu / Keerai Kulambu, Poriyal + Fish Fry</td>
+                        <td class="item">Mini Uthappam &amp; Kara Chutney + Omelette</td>
+                    </tr>
+                    <tr class="row-a">
+                        <td class="day">FRIDAY</td>
+                        <td class="item">Idly &amp; Chutney, Idly Podi + Pepper Mint Lemon Juice</td>
+                        <td class="item">Rice, Poriyal, Sambar / Urundai Kulambu + Chicken Nallampatti</td>
+                        <td class="item">Veg Brinji, Pulao &amp; Onion Raitha + Omelette</td>
+                    </tr>
+                    <tr class="row-b">
+                        <td class="day">SATURDAY</td>
+                        <td class="item">Kichadi &amp; Chutney + Neer Mor</td>
+                        <td class="item">Sambar Sadam &amp; Poriyal + Masala Chicken Kattu Varuval</td>
+                        <td class="item">Idly &amp; Chutney / Sambar + Omelette</td>
+                    </tr>
+                    <tr class="row-a">
+                        <td class="day">SUNDAY</td>
+                        <td class="item">Rava Upma + Pomegranate Juice</td>
+                        <td class="item">Chicken Briyani (Non-Veg Special) + Chicken 65</td>
+                        <td class="item">Rasam Rice, Appalam + Omelette</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="contact-bar">
+            <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
+            <div class="delivery-badge">
+                <span class="truck scooter-anim">🛵</span>
+                <span class="t1">DOOR STEP</span>
+                <span class="t2">DELIVERY</span>
             </div>
         </div>
     </section>
@@ -1424,74 +1436,74 @@
                     </div>
                     <img class="logo-sm" src="assets/logo.png" alt="Sarah Foods Logo">
                 </div>
-
-                <div class="table-wrapper">
-                    <table class="menu">
-                        <thead>
-                        <tr>
-                            <th>DAY</th>
-                            <th>MORNING</th>
-                            <th>AFTERNOON</th>
-                            <th>NIGHT</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="row-a">
-                            <td class="day">MONDAY</td>
-                            <td class="item">Papaya + Cabbage-Carrot Sprout Salad + 2 Boiled Eggs / 100g Paneer</td>
-                            <td class="item">Brown Rice + Mixed Veg Curry + Grilled Chicken / Paneer + Salad</td>
-                            <td class="item">Chapathi with Veggies + 1 Boiled Egg</td>
-                        </tr>
-                        <tr class="row-b">
-                            <td class="day">TUESDAY</td>
-                            <td class="item">Watermelon + Lettuce-Cucumber Sprout Salad + Greek Yogurt / 2 Boiled Eggs
-                            </td>
-                            <td class="item">Brown Rice + Chana Masala + Chicken Curry / Paneer Curry + Salad</td>
-                            <td class="item">Valarai Idly with Coconut Chutney + 1 Boiled Egg</td>
-                        </tr>
-                        <tr class="row-a">
-                            <td class="day">WEDNESDAY</td>
-                            <td class="item">Banana + Broccoli-Cabbage Salad + 2 Boiled Eggs / Paneer</td>
-                            <td class="item">Brown Rice + Beans Poriyal + Pepper Chicken / Paneer Pepper Fry + Salad
-                            </td>
-                            <td class="item">Club Sandwich Chicken / Paneer + 1 Boiled Egg</td>
-                        </tr>
-                        <tr class="row-b">
-                            <td class="day">THURSDAY</td>
-                            <td class="item">Muskmelon + Caesar Salad (Lettuce, Parmesan, Light Dressing) + Eggs</td>
-                            <td class="item">Brown Rice + Vegetable Kurma + Grilled Chicken / Paneer Tikka + Salad</td>
-                            <td class="item">Wrap Chicken / Paneer + 1 Boiled Egg</td>
-                        </tr>
-                        <tr class="row-a">
-                            <td class="day">FRIDAY</td>
-                            <td class="item">Guava + Cabbage-Lettuce Sprout Salad + Greek Yogurt</td>
-                            <td class="item">Brown Rice + Mixed Veg Curry + Chicken Masala / Paneer Masala + Salad</td>
-                            <td class="item">Gut Health Bowl + 1 Boiled Egg</td>
-                        </tr>
-                        <tr class="row-b">
-                            <td class="day">SATURDAY</td>
-                            <td class="item">Pineapple + Broccoli-Cucumber Sprout Salad + 2 Boiled Eggs</td>
-                            <td class="item">Brown Rice + Cabbage Peas Curry + Herb Chicken / Paneer + Salad</td>
-                            <td class="item">Veg Masala Idly with Sambhar + 1 Boiled Egg</td>
-                        </tr>
-                        <tr class="row-a">
-                            <td class="day">SUNDAY</td>
-                            <td class="item">Mixed Fruit Bowl + Sprout Salad + Greek Yogurt</td>
-                            <td class="item">Brown Rice + Dal + Veg Curry + Chicken Roast / Paneer Tikka + Salad</td>
-                            <td class="item">Chicken Bowl with Amla Juice + 1 Boiled Egg</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
 
-            <div class="contact-bar">
-                <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
-                <div class="delivery-badge">
-                    <span class="truck scooter-anim">🛵</span>
-                    <span class="t1">DOOR STEP</span>
-                    <span class="t2">DELIVERY</span>
-                </div>
+            <div class="table-wrapper">
+                <table class="menu">
+                    <thead>
+                    <tr>
+                        <th>DAY</th>
+                        <th>MORNING</th>
+                        <th>AFTERNOON</th>
+                        <th>NIGHT</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="row-a">
+                        <td class="day">MONDAY</td>
+                        <td class="item">Papaya + Cabbage-Carrot Sprout Salad + 2 Boiled Eggs / 100g Paneer</td>
+                        <td class="item">Brown Rice + Mixed Veg Curry + Grilled Chicken / Paneer + Salad</td>
+                        <td class="item">Chapathi with Veggies + 1 Boiled Egg</td>
+                    </tr>
+                    <tr class="row-b">
+                        <td class="day">TUESDAY</td>
+                        <td class="item">Watermelon + Lettuce-Cucumber Sprout Salad + Greek Yogurt / 2 Boiled Eggs
+                        </td>
+                        <td class="item">Brown Rice + Chana Masala + Chicken Curry / Paneer Curry + Salad</td>
+                        <td class="item">Valarai Idly with Coconut Chutney + 1 Boiled Egg</td>
+                    </tr>
+                    <tr class="row-a">
+                        <td class="day">WEDNESDAY</td>
+                        <td class="item">Banana + Broccoli-Cabbage Salad + 2 Boiled Eggs / Paneer</td>
+                        <td class="item">Brown Rice + Beans Poriyal + Pepper Chicken / Paneer Pepper Fry + Salad
+                        </td>
+                        <td class="item">Club Sandwich Chicken / Paneer + 1 Boiled Egg</td>
+                    </tr>
+                    <tr class="row-b">
+                        <td class="day">THURSDAY</td>
+                        <td class="item">Muskmelon + Caesar Salad (Lettuce, Parmesan, Light Dressing) + Eggs</td>
+                        <td class="item">Brown Rice + Vegetable Kurma + Grilled Chicken / Paneer Tikka + Salad</td>
+                        <td class="item">Wrap Chicken / Paneer + 1 Boiled Egg</td>
+                    </tr>
+                    <tr class="row-a">
+                        <td class="day">FRIDAY</td>
+                        <td class="item">Guava + Cabbage-Lettuce Sprout Salad + Greek Yogurt</td>
+                        <td class="item">Brown Rice + Mixed Veg Curry + Chicken Masala / Paneer Masala + Salad</td>
+                        <td class="item">Gut Health Bowl + 1 Boiled Egg</td>
+                    </tr>
+                    <tr class="row-b">
+                        <td class="day">SATURDAY</td>
+                        <td class="item">Pineapple + Broccoli-Cucumber Sprout Salad + 2 Boiled Eggs</td>
+                        <td class="item">Brown Rice + Cabbage Peas Curry + Herb Chicken / Paneer + Salad</td>
+                        <td class="item">Veg Masala Idly with Sambhar + 1 Boiled Egg</td>
+                    </tr>
+                    <tr class="row-a">
+                        <td class="day">SUNDAY</td>
+                        <td class="item">Mixed Fruit Bowl + Sprout Salad + Greek Yogurt</td>
+                        <td class="item">Brown Rice + Dal + Veg Curry + Chicken Roast / Paneer Tikka + Salad</td>
+                        <td class="item">Chicken Bowl with Amla Juice + 1 Boiled Egg</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="contact-bar">
+            <div class="contact-item"><span class="contact-icon">📍</span> INDUSTRIAL ESTATE, AMBATTUR</div>
+            <div class="delivery-badge">
+                <span class="truck scooter-anim">🛵</span>
+                <span class="t1">DOOR STEP</span>
+                <span class="t2">DELIVERY</span>
             </div>
         </div>
     </section>
