@@ -24,6 +24,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Bebas+Neue&family=Poppins:wght@400;600;700;800&family=Great+Vibes&family=Lilita+One&family=Bodoni+Moda:ital,opsz,wght@1,6..96,600&display=swap"
           rel="stylesheet">
     <style>
+        .sticky-header-container {
+            position: sticky;
+            top: 60px; /* Offset below your main navigation bar */
+            z-index: 100;
+            background: inherit; /* Matches page background color */
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
         :root {
             --cream: #FBF0D6;
             --cream-2: #F7E9C8;
@@ -499,6 +508,14 @@
             justify-content: space-between;
             align-items: flex-start;
             gap: 10px;
+        }
+
+        /* Half-star gradient effect */
+        .star-half {
+            display: inline-block;
+            background: linear-gradient(90deg, #FFC107 50%, #555555 50%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero-title {
@@ -1216,7 +1233,7 @@
         <span class="deco tl">🧅</span>
         <span class="deco mr">🌶️</span>
         <div class="z">
-            <div>
+            <div class="sticky-header-container">
                 <div class="menu-header">
                     <span class="chef-emoji">👨‍🍳</span>
                     <div class="mh-title">
@@ -1315,7 +1332,7 @@
         <span class="deco tl">👑</span>
         <span class="deco mr">🌶️</span>
         <div class="z">
-            <div>
+            <div class="sticky-header-container">
                 <div class="menu-header">
                     <span class="chef-emoji">👑</span>
                     <div class="mh-title">
@@ -1401,7 +1418,7 @@
         <span class="deco tl">🥗</span>
         <span class="deco mr">🥑</span>
         <div class="z">
-            <div>
+            <div class="sticky-header-container">
                 <div class="menu-header diet-header">
                     <span class="chef-emoji">🥗</span>
                     <div class="mh-title">
@@ -1690,7 +1707,7 @@
                     <span class="rating-highlight">
                         4.5
                         <span class="stars-container">
-                            <span class="stars-full">★★★★½</span>
+                            <span class="stars-full">★★★★</span><span class="star-half">★</span>
                         </span>
                     </span>
                     <span class="divider">|</span>
@@ -1737,6 +1754,10 @@
             for (var i = 0; i < navItems.length; i++) {
                 navItems[i].addEventListener('click', closeMenu);
             }
+
+            // Close menu when user scrolls on mobile
+            window.addEventListener('scroll', closeMenu, {passive: true});
+            document.addEventListener('touchmove', closeMenu, {passive: true});
 
             document.addEventListener('click', function (e) {
                 if (!links.contains(e.target) && !toggle.contains(e.target)) {
