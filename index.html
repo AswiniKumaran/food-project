@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="js/main.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-32ZFJYESRL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-32ZFJYESRL');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sarah Foods — Menu &amp; Specials</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Bebas+Neue&family=Poppins:wght@400;600;700;800&family=Great+Vibes&family=Lilita+One&family=Bodoni+Moda:ital,opsz,wght@1,6..96,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Bebas+Neue&family=Poppins:wght@400;600;700;800&family=Great+Vibes&family=Lilita+One&family=Bodoni+Moda:ital,opsz,wght@1,6..96,600&display=swap"
+          rel="stylesheet">
     <style>
         :root {
             --cream: #FBF0D6;
@@ -48,9 +64,15 @@
 
         /* Pulsing Keyframes */
         @keyframes pulse-subtle {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
 
         @keyframes pulse-glow-hero {
@@ -84,14 +106,24 @@
         }
 
         @keyframes scooter-drive-left {
-            0% { transform: translateX(0px); }
-            50% { transform: translateX(-6px); }
-            100% { transform: translateX(0px); }
+            0% {
+                transform: translateX(0px);
+            }
+            50% {
+                transform: translateX(-6px);
+            }
+            100% {
+                transform: translateX(0px);
+            }
         }
 
         @keyframes float-tag-vertical {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-7px); }
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-7px);
+            }
         }
 
         .scooter-anim {
@@ -438,12 +470,29 @@
             border-radius: 50%;
         }
 
-        .veg-dot.green { border-color: #0B7A1F; }
-        .veg-dot.green::after { background: #0B7A1F; }
-        .veg-dot.red { border-color: #C41E12; }
-        .veg-dot.red::after { background: #C41E12; }
-        .veg-dot.blue { border-color: #0E9EC7; }
-        .veg-dot.blue::after { background: #0E9EC7; }
+        .veg-dot.green {
+            border-color: #0B7A1F;
+        }
+
+        .veg-dot.green::after {
+            background: #0B7A1F;
+        }
+
+        .veg-dot.red {
+            border-color: #C41E12;
+        }
+
+        .veg-dot.red::after {
+            background: #C41E12;
+        }
+
+        .veg-dot.blue {
+            border-color: #0E9EC7;
+        }
+
+        .veg-dot.blue::after {
+            background: #0E9EC7;
+        }
 
         .hero-top {
             display: flex;
@@ -626,15 +675,33 @@
             line-height: 1.2;
         }
 
-        table.menu tr.row-a td { background: var(--panel); }
-        table.menu tr.row-a td.day { color: var(--dark); }
-        table.menu tr.row-a td.item { color: var(--white); }
+        table.menu tr.row-a td {
+            background: var(--panel);
+        }
 
-        table.menu tr.row-b td { background: var(--cream); }
-        table.menu tr.row-b td.item { color: var(--orange-deep); }
+        table.menu tr.row-a td.day {
+            color: var(--dark);
+        }
 
-        table.menu td + td { border-left: 2px solid var(--dark); }
-        table.menu tr + tr td { border-top: 1px solid rgba(0, 0, 0, 0.2); }
+        table.menu tr.row-a td.item {
+            color: var(--white);
+        }
+
+        table.menu tr.row-b td {
+            background: var(--cream);
+        }
+
+        table.menu tr.row-b td.item {
+            color: var(--orange-deep);
+        }
+
+        table.menu td + td {
+            border-left: 2px solid var(--dark);
+        }
+
+        table.menu tr + tr td {
+            border-top: 1px solid rgba(0, 0, 0, 0.2);
+        }
 
         .menu-header {
             display: flex;
@@ -772,9 +839,17 @@
                 flex: 0 0 85px;
             }
 
-            table.menu td:nth-child(2)::before { content: "MORNING:"; }
-            table.menu td:nth-child(3)::before { content: "AFTERNOON:"; }
-            table.menu td:nth-child(4)::before { content: "NIGHT:"; }
+            table.menu td:nth-child(2)::before {
+                content: "MORNING:";
+            }
+
+            table.menu td:nth-child(3)::before {
+                content: "AFTERNOON:";
+            }
+
+            table.menu td:nth-child(4)::before {
+                content: "NIGHT:";
+            }
 
             .dish-list {
                 column-count: 1 !important;
@@ -808,7 +883,10 @@
             margin-top: 15px;
         }
 
-        .legend { list-style: none; }
+        .legend {
+            list-style: none;
+        }
+
         .legend li {
             font-family: 'Titan One', sans-serif;
             font-size: 1.1rem;
@@ -1025,12 +1103,16 @@
             letter-spacing: 1px;
         }
 
-        .trust-badge .divider { color: #FFFFFF; }
+        .trust-badge .divider {
+            color: #FFFFFF;
+        }
+
         .trust-badge .customer-count {
             font-weight: 700;
             font-size: 0.9rem;
             color: #FFFFFF;
         }
+
         .trust-badge .customer-text {
             font-size: 0.7rem;
             font-weight: 600;
@@ -1073,7 +1155,8 @@
         </svg>
         <span>CALL US NOW</span>
     </a>
-    <a href="https://wa.me/919600566044?text=Hello%20Sarah%20Foods!" target="_blank" class="floating-whatsapp-btn" aria-label="WhatsApp Sarah Foods">
+    <a href="https://wa.me/919600566044?text=Hello%20Sarah%20Foods!" target="_blank" class="floating-whatsapp-btn"
+       aria-label="WhatsApp Sarah Foods">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFFFFF">
             <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.764.459 3.486 1.332 5.001L2 22l5.129-1.332a9.92 9.92 0 004.882 1.28h.005c5.505 0 9.988-4.478 9.989-9.984 0-2.668-1.039-5.176-2.927-7.062A9.925 9.925 0 0012.012 2zm.005 16.582h-.004a8.23 8.23 0 01-4.192-1.151l-.301-.179-3.116.811.831-3.033-.197-.311a8.243 8.243 0 01-1.268-4.382c0-4.551 3.703-8.255 8.255-8.255 2.205 0 4.278.859 5.838 2.419a8.204 8.204 0 012.415 5.833c-.001 4.552-3.705 8.256-8.257 8.256z"/>
         </svg>
@@ -1347,14 +1430,16 @@
                         </tr>
                         <tr class="row-b">
                             <td class="day">TUESDAY</td>
-                            <td class="item">Watermelon + Lettuce-Cucumber Sprout Salad + Greek Yogurt / 2 Boiled Eggs</td>
+                            <td class="item">Watermelon + Lettuce-Cucumber Sprout Salad + Greek Yogurt / 2 Boiled Eggs
+                            </td>
                             <td class="item">Brown Rice + Chana Masala + Chicken Curry / Paneer Curry + Salad</td>
                             <td class="item">Valarai Idly with Coconut Chutney + 1 Boiled Egg</td>
                         </tr>
                         <tr class="row-a">
                             <td class="day">WEDNESDAY</td>
                             <td class="item">Banana + Broccoli-Cabbage Salad + 2 Boiled Eggs / Paneer</td>
-                            <td class="item">Brown Rice + Beans Poriyal + Pepper Chicken / Paneer Pepper Fry + Salad</td>
+                            <td class="item">Brown Rice + Beans Poriyal + Pepper Chicken / Paneer Pepper Fry + Salad
+                            </td>
                             <td class="item">Club Sandwich Chicken / Paneer + 1 Boiled Egg</td>
                         </tr>
                         <tr class="row-b">
@@ -1454,7 +1539,8 @@
         <div class="z">
             <div>
                 <div class="title-with-logo">
-                    <h2 class="list-title">CHICKEN &amp; SEA FOOD <span class="veg-dot red"></span><span class="veg-dot blue"></span></h2>
+                    <h2 class="list-title">CHICKEN &amp; SEA FOOD <span class="veg-dot red"></span><span
+                            class="veg-dot blue"></span></h2>
                     <img class="header-logo" src="assets/logo.png" alt="Sarah Foods Logo">
                 </div>
 
