@@ -24,6 +24,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Bebas+Neue&family=Poppins:wght@400;600;700;800&family=Great+Vibes&family=Lilita+One&family=Bodoni+Moda:ital,opsz,wght@1,6..96,600&display=swap"
           rel="stylesheet">
     <style>
+        /* Keep paused offerings hidden; remove their hidden attributes to restore them. */
+        [hidden] {
+            display: none !important;
+        }
+
         /* Update this class in your <style> tag */
         .sticky-header-container {
             position: -webkit-sticky;
@@ -1164,9 +1169,9 @@
     <div class="nav-links" id="navLinks">
         <a href="#home"><span class="icon">🏠</span> HOME</a>
         <a href="#daily-menu"><span class="icon">📅</span> DAILY MENU</a>
-        <a href="#elite-menu"><span class="icon">👑</span> ELITE MENU</a>
+        <a href="#elite-menu" hidden><span class="icon">👑</span> ELITE MENU</a>
         <a href="#diet-menu"><span class="icon">🥗</span> DIET MENU</a>
-        <a href="#add-ons"><span class="icon">🥘</span> ADD-ONS</a>
+        <a href="#add-ons" hidden><span class="icon">🥘</span> ADD-ONS</a>
         <a href="#chicken-seafood"><span class="icon">🍗</span> CHICKEN &amp; SEAFOOD</a>
         <a href="#egg-veg"><span class="icon">🍳</span> EGG &amp; VEG</a>
         <a href="#payment"><span class="icon">💳</span> PAYMENT</a>
@@ -1336,7 +1341,7 @@
 </div>
 
 <!-- ELITE MENU -->
-<div class="page-container" id="elite-menu">
+<div class="page-container" id="elite-menu" hidden>
     <section class="page page-elite">
         <span class="deco tl">👑</span>
         <span class="deco mr">🌶️</span>
@@ -1510,7 +1515,7 @@
 </div>
 
 <!-- PAGE 3 (ADD-ONS & SIDES) -->
-<div class="page-container" id="add-ons">
+<div class="page-container" id="add-ons" hidden>
     <section class="page page-3">
         <span class="deco tr">🌶️</span>
         <span class="deco ml">🧅</span>
