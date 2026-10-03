@@ -1174,7 +1174,7 @@
         <a href="#add-ons" hidden><span class="icon">🥘</span> ADD-ONS</a>
         <a href="#chicken-seafood"><span class="icon">🍗</span> CHICKEN &amp; SEAFOOD</a>
         <a href="#egg-veg"><span class="icon">🍳</span> EGG &amp; VEG</a>
-        <a href="#payment"><span class="icon">💳</span> PAYMENT</a>
+        <a href="#payment"><span class="icon">ORDER &amp; PAY💳</span> </a>
     </div>
 </nav>
 
@@ -1686,7 +1686,7 @@
     </section>
 </div>
 
-<!-- PAGE 6 (PAYMENT) -->
+<!-- PAGE 6 (ORDER & PAY) -->
 <div class="page-container" id="payment">
     <section class="page page-6">
         <span class="deco tl">🧅</span>
@@ -1694,15 +1694,74 @@
         <div class="z">
             <div>
                 <div class="title-with-logo">
-                    <h2 class="pay-title">SCAN &amp; PAY</h2>
+                    <h2 class="pay-title">ORDER &amp; PAY</h2>
                     <img class="header-logo" src="assets/logo.png" alt="Sarah Foods Logo">
                 </div>
 
-                <div class="orange-panel" style="text-align:center;">
-                    <a href="upi://pay?pa=saithulasi98-5@okaxis&pn=SarahFoods&cu=INR">
-                        <img class="qr-big" src="assets/qr-card.png" alt="UPI Checkout QR Code" loading="lazy">
-                    </a>
-                    <div class="scan-pay">SCAN QR CODE TO COMPLETE PAYMENT</div>
+                <div class="orange-panel" style="padding: 20px;">
+                    <form id="orderPayForm" autocomplete="off" onsubmit="event.preventDefault();"
+                          style="display: flex; flex-direction: column; gap: 14px; text-align: left;">
+                        <div>
+                            <label style="font-weight:700; font-size:0.85rem; color:#fff; display:block; margin-bottom:4px;">Full
+                                Name *</label>
+                            <input type="text" id="custName" placeholder="Enter your name" required
+                                   style="width:100%; padding:10px 14px; border-radius:8px; border:none; font-family:inherit;">
+                        </div>
+
+                        <div>
+                            <label style="font-weight:700; font-size:0.85rem; color:#fff; display:block; margin-bottom:4px;">Phone
+                                Number *</label>
+                            <input type="tel" id="custPhone" placeholder="Enter 10-digit mobile number" required
+                                   style="width:100%; padding:10px 14px; border-radius:8px; border:none; font-family:inherit;">
+                        </div>
+
+                        <div>
+                            <label style="font-weight:700; font-size:0.85rem; color:#fff; display:block; margin-bottom:4px;">Delivery
+                                Location / Address *</label>
+                            <input type="text" id="custLocation" placeholder="e.g. Ambattur Industrial Estate, Flat 3B"
+                                   required
+                                   style="width:100%; padding:10px 14px; border-radius:8px; border:none; font-family:inherit;">
+                        </div>
+
+                        <div>
+                            <label style="font-weight:700; font-size:0.85rem; color:#fff; display:block; margin-bottom:4px;">Select
+                                Meal Plan / Type *</label>
+                            <select id="mealType" autocomplete="off" required
+                                    style="width:100%; padding:10px 14px; border-radius:8px; border:none; font-family:inherit; font-weight:600; cursor:pointer;">
+                                <option value="2999" data-name="Standard Menu (₹2999/mo)">Standard Menu — ₹2,999 /
+                                    month
+                                </option>
+                                <option value="5999" data-name="Diet Menu (₹5999/mo)">Diet Menu — ₹5,999 / month
+                                <option value="199" data-name="Trail Pack -Standard Menu (₹199/day)">Standard Trail Pack — ₹199 / day</option>
+                                <option value="299" data-name="Trail Pack -Diet Menu (₹299/day)">Diet Trial Pack — ₹299 / day</option>
+                            </select>
+                        </div>
+
+                        <div style="text-align:center; margin-top:15px; background: #ffffff; padding: 16px; border-radius: 14px;">
+                            <div style="font-family:'Bebas Neue', sans-serif; font-size:1.4rem; color:var(--dark); margin-bottom:8px;">
+                                Total Amount: <span id="displayAmount"
+                                                    style="color:var(--orange-deep); font-weight:bold;">₹2999</span>
+                            </div>
+
+                            <a id="upiPayLink" href="upi://pay?pa=saithulasi98-5@okaxis&pn=SarahFoods&am=2999&cu=INR">
+                                <img id="dynamicQR" class="qr-big"
+                                     src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi%3A%2F%2Fpay%3Fpa%3Dsaithulasi98-5%2540okaxis%26pn%3DSarahFoods%26am%3D2999%26cu%3DINR"
+                                     alt="UPI Checkout QR Code">
+                            </a>
+
+                            <div style="font-size:0.8rem; color:#555; margin-top:6px;">Tap QR code to pay directly on
+                                mobile UPI apps
+                            </div>
+                        </div>
+
+                        <button type="button" id="whatsappConfirmBtn"
+                                style="background-color:#25D366; color:#fff; border:none; padding:12px; border-radius:30px; font-weight:800; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; width:100%; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF">
+                                <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.764.459 3.486 1.332 5.001L2 22l5.129-1.332a9.92 9.92 0 004.882 1.28h.005c5.505 0 9.988-4.478 9.989-9.984 0-2.668-1.039-5.176-2.927-7.062A9.925 9.925 0 0012.012 2zm.005 16.582h-.004a8.23 8.23 0 01-4.192-1.151l-.301-.179-3.116.811.831-3.033-.197-.311a8.243 8.243 0 01-1.268-4.382c0-4.551 3.703-8.255 8.255-8.255 2.205 0 4.278.859 5.838 2.419a8.204 8.204 0 012.415 5.833c-.001 4.552-3.705 8.256-8.257 8.256z"/>
+                            </svg>
+                            CONFIRM ORDER ON WHATSAPP
+                        </button>
+                    </form>
                 </div>
             </div>
 
@@ -1717,22 +1776,10 @@
 
             <div class="footer-thankyou-container">
                 <div class="thanks">Thank You for Choosing Sarah Foods!</div>
-                <div class="trust-badge">
-                    <span class="rating-highlight">
-                        4.5
-                        <span class="stars-container">
-                            <span class="stars-full">★★★★</span><span class="star-half">★</span>
-                        </span>
-                    </span>
-                    <span class="divider">|</span>
-                    <span class="customer-count">690+</span>
-                    <span class="customer-text">HAPPY CUSTOMERS</span>
-                </div>
             </div>
         </div>
     </section>
 </div>
-
 <script>
     (function () {
         function initNav() {
@@ -1817,6 +1864,58 @@
             initObserver();
         }
     })();
+    document.addEventListener('DOMContentLoaded', function () {
+        const mealSelect = document.getElementById('mealType');
+        const displayAmount = document.getElementById('displayAmount');
+        const upiLink = document.getElementById('upiPayLink');
+        const qrImg = document.getElementById('dynamicQR');
+        const waBtn = document.getElementById('whatsappConfirmBtn');
+
+        const pa = "saithulasi98-5@okaxis";
+        const pn = "SarahFoods";
+
+        function updatePaymentDetails() {
+            const amount = mealSelect.value;
+            displayAmount.textContent = `₹${amount}`;
+
+            const rawUpiUri = `upi://pay?pa=${pa}&pn=${pn}&am=${amount}&cu=INR`;
+            upiLink.href = rawUpiUri;
+
+            // Dynamically update QR code image via free QR Generator API
+            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(rawUpiUri)}`;
+        }
+
+        if (mealSelect) {
+            mealSelect.addEventListener('change', updatePaymentDetails);
+        }
+
+        if (waBtn) {
+            waBtn.addEventListener('click', function () {
+                const name = document.getElementById('custName').value.trim();
+                const phone = document.getElementById('custPhone').value.trim();
+                const location = document.getElementById('custLocation').value.trim();
+                const selectedOption = mealSelect.options[mealSelect.selectedIndex];
+                const planName = selectedOption.getAttribute('data-name');
+                const amount = mealSelect.value;
+
+                if (!name || !phone || !location) {
+                    alert('Please fill in your Name, Phone Number, and Location before confirming.');
+                    return;
+                }
+
+                const message = `Hello Sarah Foods! I would like to place an order:\n\n` +
+                    `👤 Name: ${name}\n` +
+                    `📱 Phone: ${phone}\n` +
+                    `📍 Location: ${location}\n` +
+                    `🍱 Meal Plan: ${planName}\n` +
+                    `💳 Total Amount: ₹${amount}\n\n` +
+                    `I am completing the payment via UPI. Please process my order!`;
+
+                const waUrl = `https://wa.me/919600566044?text=${encodeURIComponent(message)}`;
+                window.open(waUrl, '_blank');
+            });
+        }
+    });
 </script>
 </body>
 </html>
