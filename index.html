@@ -621,7 +621,7 @@
         }
 
         input, select, textarea {
-            font-size:16px;
+            font-size: 16px;
             font-family: inherit;
             padding: 13px 12px;
             border: 1px solid #dfd0c1;
@@ -1261,6 +1261,184 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+        /* ====================================
+           FIX MOBILE SIDEWAYS / SHAKY SCROLL
+           ==================================== */
+
+        /* Prevent page width from exceeding the screen */
+        html {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: clip;
+            overscroll-behavior-x: none;
+        }
+
+        body {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            overflow-x: clip;
+        }
+
+        /* Make grid and flex children shrink inside their containers */
+        main,
+        section,
+        nav,
+        header,
+        footer,
+        .hero,
+        .hero > div,
+        .split-inner,
+        .contact-inner,
+        .section,
+        .section-head,
+        .cards,
+        .occasion,
+        .menu-grid,
+        .menu-tile,
+        .feedback-grid,
+        .feedback,
+        form,
+        label {
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        /* Keep images and form controls within the screen */
+        img,
+        input,
+        select,
+        textarea,
+        button {
+            max-width: 100%;
+        }
+
+        img {
+            height: auto;
+        }
+
+        /* Preserve intended fixed heights for designed image areas */
+        .hero-photo > img {
+            height: 490px;
+        }
+
+        .occasion img {
+            height: 230px;
+        }
+
+        .split-photo img {
+            height: 470px;
+        }
+
+        .menu-tile img {
+            height: 100%;
+        }
+
+        /* Prevent hover zoom from creating visual jitter on touchscreens */
+        @media (hover: none) {
+            .occasion:hover {
+                transform: none;
+                box-shadow: none;
+            }
+
+            .occasion:hover img,
+            .menu-tile:hover img {
+                transform: none;
+            }
+
+            .navbtn:hover,
+            .btn:hover {
+                transform: none;
+            }
+        }
+
+        /* Stable mobile sizing */
+        @media (max-width: 800px) {
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+
+            .hero,
+            .section,
+            .split-inner,
+            .contact-inner,
+            .nav {
+                width: 100%;
+            }
+
+            .hero-photo {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .hero-photo > img {
+                width: 100%;
+                height: clamp(250px, 72vw, 390px);
+            }
+
+            .floating {
+                max-width: calc(100% - 20px);
+                left: 10px;
+            }
+
+            .cards,
+            .menu-grid,
+            .feedback-grid {
+                width: 100%;
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .menu-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .occasion img {
+                width: 100%;
+                height: clamp(210px, 60vw, 300px);
+            }
+
+            .split-photo img {
+                width: 100%;
+                height: clamp(240px, 65vw, 350px);
+            }
+
+            .mobile-cta {
+                width: 100%;
+                right: auto;
+                left: 0;
+            }
+
+            .mobile-cta > div {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .mobile-cta a {
+                min-width: 0;
+            }
+
+            input,
+            select,
+            textarea {
+                width: 100%;
+                min-width: 0;
+            }
+        }
+
+        /* Avoid animation-related movement for people who prefer less motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
 
     </style>
 </head>
